@@ -1,0 +1,26 @@
+//////////////////////////////////////////////////////////////////////
+//! Copyright Alastair Melville
+//////////////////////////////////////////////////////////////////////
+
+#pragma once
+
+//////////////////////////////////////////////////////////////////////
+//! Includes
+//////////////////////////////////////////////////////////////////////
+
+#include "input/shared/keyboard/keyboard_base.h"
+
+#include <stdint.h>
+#include <Windows.h>
+
+namespace input
+{
+	class KEYBOARD_WINDOWS : public KEYBOARD_BASE
+	{
+	protected:
+		KEYBOARD_WINDOWS() = default;
+		~KEYBOARD_WINDOWS() override = default;
+
+		bool handle_message(HWND in_window, uint32_t in_message, WPARAM in_wparam, LPARAM in_lparam);
+	};
+}

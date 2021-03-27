@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{4D61F67E-B9CB-AAF5-020A-5C9B6EB3884A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game\projects\windows\game.vcxproj", "{9F35977C-8B6C-980D-3459-7E10206F140F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4E40957C-3A77-960D-E363-7C10CF79120F} = {4E40957C-3A77-960D-E363-7C10CF79120F}
+		{FBDB78FB-E77D-A3D1-D038-B725BC792A22} = {FBDB78FB-E77D-A3D1-D038-B725BC792A22}
+		{B54AA90F-215F-D1C0-EAE0-742056B4CDF1} = {B54AA90F-215F-D1C0-EAE0-742056B4CDF1}
+		{8A78880B-F681-887C-7FFD-9E7CEB05947C} = {8A78880B-F681-887C-7FFD-9E7CEB05947C}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{49CDA3BE-B558-1183-BE69-94772A746D83}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "libs\core\projects\windows\core.vcxproj", "{4E40957C-3A77-960D-E363-7C10CF79120F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine", "libs\engine\projects\windows\engine.vcxproj", "{FBDB78FB-E77D-A3D1-D038-B725BC792A22}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4E40957C-3A77-960D-E363-7C10CF79120F} = {4E40957C-3A77-960D-E363-7C10CF79120F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui", "libs\gui\projects\windows\gui.vcxproj", "{8A78880B-F681-887C-7FFD-9E7CEB05947C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBDB78FB-E77D-A3D1-D038-B725BC792A22} = {FBDB78FB-E77D-A3D1-D038-B725BC792A22}
+		{B54AA90F-215F-D1C0-EAE0-742056B4CDF1} = {B54AA90F-215F-D1C0-EAE0-742056B4CDF1}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "input", "libs\input\projects\windows\input.vcxproj", "{B54AA90F-215F-D1C0-EAE0-742056B4CDF1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4E40957C-3A77-960D-E363-7C10CF79120F} = {4E40957C-3A77-960D-E363-7C10CF79120F}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		debug|x64 = debug|x64
+		release|x64 = release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F35977C-8B6C-980D-3459-7E10206F140F}.debug|x64.ActiveCfg = debug|x64
+		{9F35977C-8B6C-980D-3459-7E10206F140F}.debug|x64.Build.0 = debug|x64
+		{9F35977C-8B6C-980D-3459-7E10206F140F}.release|x64.ActiveCfg = release|x64
+		{9F35977C-8B6C-980D-3459-7E10206F140F}.release|x64.Build.0 = release|x64
+		{4E40957C-3A77-960D-E363-7C10CF79120F}.debug|x64.ActiveCfg = debug|x64
+		{4E40957C-3A77-960D-E363-7C10CF79120F}.debug|x64.Build.0 = debug|x64
+		{4E40957C-3A77-960D-E363-7C10CF79120F}.release|x64.ActiveCfg = release|x64
+		{4E40957C-3A77-960D-E363-7C10CF79120F}.release|x64.Build.0 = release|x64
+		{FBDB78FB-E77D-A3D1-D038-B725BC792A22}.debug|x64.ActiveCfg = debug|x64
+		{FBDB78FB-E77D-A3D1-D038-B725BC792A22}.debug|x64.Build.0 = debug|x64
+		{FBDB78FB-E77D-A3D1-D038-B725BC792A22}.release|x64.ActiveCfg = release|x64
+		{FBDB78FB-E77D-A3D1-D038-B725BC792A22}.release|x64.Build.0 = release|x64
+		{8A78880B-F681-887C-7FFD-9E7CEB05947C}.debug|x64.ActiveCfg = debug|x64
+		{8A78880B-F681-887C-7FFD-9E7CEB05947C}.debug|x64.Build.0 = debug|x64
+		{8A78880B-F681-887C-7FFD-9E7CEB05947C}.release|x64.ActiveCfg = release|x64
+		{8A78880B-F681-887C-7FFD-9E7CEB05947C}.release|x64.Build.0 = release|x64
+		{B54AA90F-215F-D1C0-EAE0-742056B4CDF1}.debug|x64.ActiveCfg = debug|x64
+		{B54AA90F-215F-D1C0-EAE0-742056B4CDF1}.debug|x64.Build.0 = debug|x64
+		{B54AA90F-215F-D1C0-EAE0-742056B4CDF1}.release|x64.ActiveCfg = release|x64
+		{B54AA90F-215F-D1C0-EAE0-742056B4CDF1}.release|x64.Build.0 = release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F35977C-8B6C-980D-3459-7E10206F140F} = {4D61F67E-B9CB-AAF5-020A-5C9B6EB3884A}
+		{4E40957C-3A77-960D-E363-7C10CF79120F} = {49CDA3BE-B558-1183-BE69-94772A746D83}
+		{FBDB78FB-E77D-A3D1-D038-B725BC792A22} = {49CDA3BE-B558-1183-BE69-94772A746D83}
+		{8A78880B-F681-887C-7FFD-9E7CEB05947C} = {49CDA3BE-B558-1183-BE69-94772A746D83}
+		{B54AA90F-215F-D1C0-EAE0-742056B4CDF1} = {49CDA3BE-B558-1183-BE69-94772A746D83}
+	EndGlobalSection
+EndGlobal

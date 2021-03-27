@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="platforms">
+      <UniqueIdentifier>{FDCC2FD5-6937-E44B-B275-95F11E1FC2A0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\graphics">
+      <UniqueIdentifier>{FD1D5527-E901-167D-5262-10D03E6500FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\graphics\RHI">
+      <UniqueIdentifier>{AF0099E8-9BFA-C13A-8467-584B700028A7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\graphics\RHI\windows">
+      <UniqueIdentifier>{0982FF37-F5A7-C99E-DEED-4E6ACAB2EE6A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\graphics\RHI\windows\d3d11">
+      <UniqueIdentifier>{F5D3B637-E1BA-782F-8A0B-DF4C76D1F195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\graphics\renderer">
+      <UniqueIdentifier>{630A9D66-CF17-CB4C-58FE-C637C40A9703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\graphics\renderer\windows">
+      <UniqueIdentifier>{BDFF7BC1-29B9-E66B-B218-01461ED19CDB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\window">
+      <UniqueIdentifier>{64CF327C-50C8-51CE-79FA-3653655231DA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\window\windows">
+      <UniqueIdentifier>{BE3583D3-AA5A-D253-D3A5-B7E3BF29D171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared">
+      <UniqueIdentifier>{9C5CB11B-88FE-DBF1-71B9-EF455DFA6242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\graphics">
+      <UniqueIdentifier>{7CB097B8-E83B-057D-F14C-88715D57617D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\graphics\RHI">
+      <UniqueIdentifier>{AEBACEA5-1A1C-ACB3-A389-F2650FEAE272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\graphics\renderer">
+      <UniqueIdentifier>{C2DB218A-AE00-710A-D74B-569AC3CF6F28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\graphics\window_resources">
+      <UniqueIdentifier>{7D0928E2-695A-1324-92BE-01E67E6EA68D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\imgui">
+      <UniqueIdentifier>{066F0FA8-F2D1-9E4C-9B57-D70287996ACF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\ui">
+      <UniqueIdentifier>{893EDA7C-F5A8-8EF3-3EE7-3F99AA906C48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\ui\rendering">
+      <UniqueIdentifier>{36A75E7F-A208-3C8D-2B76-823F97D6724C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\ui\widgets">
+      <UniqueIdentifier>{0F7F7255-7B95-70EB-C40C-FC0C30624173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\ui\widgets\containers">
+      <UniqueIdentifier>{547E7341-4039-63ED-E9F0-DB37D58AAD7D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\window">
+      <UniqueIdentifier>{23B660CA-8F76-DC00-58B1-257EC43021DD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{50A5DA7C-3C5D-1CCA-A564-F525913BB7BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\imgui">
+      <UniqueIdentifier>{BA6E0105-A667-2057-CF99-05DCBBF1FF62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\imgui\windows">
+      <UniqueIdentifier>{14CB4EB6-00F0-9D36-293B-83C615BF9C54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\vulkan">
+      <UniqueIdentifier>{F0AC15C4-5CC3-135A-A53A-9F7B1190E4E1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\platforms\graphics\RHI\RHI_context_vulkan.h">
+      <Filter>platforms\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\RHI_device_vulkan.h">
+      <Filter>platforms\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_context_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_device_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_swapchain_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\buffer_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\command_list_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\d3d11_types.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\dxgi_info_manager.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\input_layout_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\pipeline_state_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.h">
+      <Filter>platforms\graphics\renderer\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\window\windows\window_windows.h">
+      <Filter>platforms\window\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\RHI_context_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\RHI_device.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\RHI_device_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\RHI_pyhsical_device.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\RHI_swapchain _base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\RHI_swapchain.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\RHI_types.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\buffer_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\command_list.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\command_list_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\constant_buffer_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\descriptor.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\input_layout.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\pipeline_state_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\render_information.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\shader_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\viewport.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\renderer\renderer.h">
+      <Filter>shared\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\renderer\renderer_base.h">
+      <Filter>shared\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\window_resources\window_resources_base.h">
+      <Filter>shared\graphics\window_resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\imgui\imgui.h">
+      <Filter>shared\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\screen.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\screen_manager.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\ui\image.h">
+      <Filter>shared\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\ui\rendering\ui_renderer.h">
+      <Filter>shared\ui\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\ui\widgets\containers\container.h">
+      <Filter>shared\ui\widgets\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\ui\widgets\widget.h">
+      <Filter>shared\ui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\window\window.h">
+      <Filter>shared\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\window\window_base.h">
+      <Filter>shared\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\imconfig.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\imgui.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\imgui_internal.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\imgui_stdlib.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\imstb_rectpack.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\imstb_textedit.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\imstb_truetype.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\windows\imgui_impl_win32.h">
+      <Filter>thirdparty\imgui\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vk_mem_alloc.h">
+      <Filter>thirdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vk_enum_string_helper.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vk_icd.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vk_layer.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vk_platform.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vk_sdk_platform.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan.hpp">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_android.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_beta.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_core.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_directfb.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_fuchsia.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_ggp.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_ios.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_macos.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_metal.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_vi.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_wayland.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_win32.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_xcb.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_xlib.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\vulkan\vulkan_xlib_xrandr.h">
+      <Filter>thirdparty\vulkan</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\platforms\graphics\RHI\RHI_context_vulkan.cpp">
+      <Filter>platforms\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\RHI_device_vulkan.cpp">
+      <Filter>platforms\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_context_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_device_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_swapchain_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\buffer_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\command_list_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\dxgi_info_manager.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\input_layout_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\pipeline_state_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.cpp">
+      <Filter>platforms\graphics\renderer\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\window\windows\window_windows.cpp">
+      <Filter>platforms\window\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\RHI_device.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\RHI_device_base.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\RHI_swapchain.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\command_list.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\command_list_base.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\pipeline_state_base.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\shader_base.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\renderer\renderer.cpp">
+      <Filter>shared\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\renderer\renderer_base.cpp">
+      <Filter>shared\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\screen.cpp">
+      <Filter>shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\screen_manager.cpp">
+      <Filter>shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\ui\image.cpp">
+      <Filter>shared\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\ui\rendering\ui_renderer.cpp">
+      <Filter>shared\ui\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\ui\widgets\containers\container.cpp">
+      <Filter>shared\ui\widgets\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\ui\widgets\widget.cpp">
+      <Filter>shared\ui\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\window\window.cpp">
+      <Filter>shared\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\window\window_base.cpp">
+      <Filter>shared\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\imgui\imgui.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\imgui\imgui_demo.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\imgui\imgui_draw.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\imgui\imgui_stdlib.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\imgui\imgui_tables.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\imgui\imgui_widgets.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\imgui\windows\imgui_impl_win32.cpp">
+      <Filter>thirdparty\imgui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\vk_mem_alloc.cpp">
+      <Filter>thirdparty</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
