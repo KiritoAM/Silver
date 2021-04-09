@@ -9,27 +9,27 @@ namespace core
 	template<typename TYPE>
 	struct VECTOR4D
 	{
-		TYPE X{};
+		TYPE x{};
 
-		TYPE Y{};
+		TYPE y{};
 
-		TYPE Z{};
+		TYPE z{};
 
-		TYPE A{};
+		TYPE a{};
 
 		VECTOR4D() = default;
 
 		explicit VECTOR4D(TYPE InXYZ)
-			: X(InXYZ)
-			, Y(InXYZ)
-			, Z(InXYZ)
+			: x(InXYZ)
+			, y(InXYZ)
+			, z(InXYZ)
 		{}
 
 		VECTOR4D(TYPE InX, TYPE InY, TYPE InZ, TYPE InA)
-			: X(InX)
-			, Y(InY)
-			, Z(InZ)
-			, A(InA)
+			: x(InX)
+			, y(InY)
+			, z(InZ)
+			, a(InA)
 		{}
 
 		static const VECTOR4D<TYPE> ZERO_VALUE;
@@ -49,10 +49,10 @@ namespace core
 		template<typename TYPE>
 		void operator=(const VECTOR4D<TYPE>& InVECTOR4D)
 		{
-			X = InVECTOR4D.X;
-			Y = InVECTOR4D.Y;
-			Z = InVECTOR4D.Z;
-			A = InVECTOR4D.A;
+			x = InVECTOR4D.x;
+			y = InVECTOR4D.y;
+			z = InVECTOR4D.z;
+			a = InVECTOR4D.a;
 		}
 
 		/**
@@ -86,7 +86,7 @@ namespace core
 	template<typename TYPE>
 	inline bool VECTOR4D<TYPE>::operator==(const VECTOR4D<TYPE>& InVECTOR4D) const
 	{
-		return X == InVECTOR4D.X && Y == InVECTOR4D.Y && Z == InVECTOR4D.Z && A == InVECTOR4D.A;
+		return x == InVECTOR4D.x && y == InVECTOR4D.y && z == InVECTOR4D.z && a == InVECTOR4D.a;
 	}
 
 	template<typename TYPE>
@@ -98,20 +98,20 @@ namespace core
 	template<typename TYPE>
 	inline VECTOR4D<TYPE> VECTOR4D<TYPE>::operator+=(const VECTOR4D<TYPE>& InVECTOR4D)
 	{
-		X += InVECTOR4D.X;
-		Y += InVECTOR4D.Y;
-		Z += InVECTOR4D.Z;
-		A += InVECTOR4D.A;
+		x += InVECTOR4D.x;
+		y += InVECTOR4D.y;
+		z += InVECTOR4D.z;
+		a += InVECTOR4D.a;
 		return *this;
 	}
 
 	template<typename TYPE>
 	inline VECTOR4D<TYPE> VECTOR4D<TYPE>::operator-=(const VECTOR4D<TYPE>& InVECTOR4D)
 	{
-		X -= InVECTOR4D.X;
-		Y -= InVECTOR4D.Y;
-		Z -= InVECTOR4D.Z;
-		A -= InVECTOR4D.A;
+		x -= InVECTOR4D.x;
+		y -= InVECTOR4D.y;
+		z -= InVECTOR4D.z;
+		a -= InVECTOR4D.a;
 		return *this;
 	}
 

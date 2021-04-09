@@ -9,30 +9,24 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "core/shared/math/rectangle.h"
-
-namespace core
-{
-	template<typename TYPE>
-	struct RECTANGLE;
-}
+#include "gui/shared/window/window_details.h"
 
 namespace gui
 {
 	class WINDOW_BASE
 	{
 	public:
-		void set_bounds(const core::RECTANGLE<int32_t>& in_bounds);
-		const core::RECTANGLE<int32_t>& get_bounds() const;
-		uint32_t get_width() const;
-		uint32_t get_height() const;
+		void set_bounds(const core::FRECTANGLE& in_bounds);
+		const core::FRECTANGLE& get_bounds() const;
+		float get_width() const;
+		float get_height() const;
 
-		static inline uint8_t s_current_window_id{ 0 };
-		uint8_t m_window_id{ 0 };
+		WINDOW_ID_TYPE m_window_id{};
 
 	protected:
 		WINDOW_BASE() = default;
 		virtual ~WINDOW_BASE() = default;
 
-		core::RECTANGLE<int32_t> m_bounds{ 24, 1, 1063, 807 };
+		core::FRECTANGLE m_bounds{ 24.0f, 1.0f, 1063.0f, 807.0f };
 	};
 }

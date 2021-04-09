@@ -10,40 +10,13 @@
 #include "core/shared/math/vector3d.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/RHI_context_d3d11.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/RHI_device_d3d11.h"
+#include "gui/platforms/graphics/RHI/windows/d3d11/d3d11_types.h"
 
 #include <dxgi1_5.h>
 #include <dxgiformat.h>
 
 namespace
 {
-	constexpr DXGI_FORMAT d3d11_format[] =
-	{
-		// R
-		DXGI_FORMAT_R8_UNORM,
-		DXGI_FORMAT_R16_UINT,
-		DXGI_FORMAT_R16_FLOAT,
-		DXGI_FORMAT_R32_UINT,
-		DXGI_FORMAT_R32_FLOAT,
-		// RG
-		DXGI_FORMAT_R8G8_UNORM,
-		DXGI_FORMAT_R16G16_FLOAT,
-		DXGI_FORMAT_R32G32_FLOAT,
-		// RGB
-		DXGI_FORMAT_R11G11B10_FLOAT,
-		DXGI_FORMAT_R32G32B32_FLOAT,
-		// RGBA
-		DXGI_FORMAT_R8G8B8A8_UNORM,
-		DXGI_FORMAT_R10G10B10A2_UNORM,
-		DXGI_FORMAT_R16G16B16A16_SNORM,
-		DXGI_FORMAT_R16G16B16A16_FLOAT,
-		DXGI_FORMAT_R32G32B32A32_FLOAT,
-		// Depth
-		DXGI_FORMAT_D32_FLOAT,
-		DXGI_FORMAT_D32_FLOAT_S8X24_UINT,
-
-		DXGI_FORMAT_UNKNOWN
-	};
-
 	// Determines whether tearing support is available for fullscreen borderless windows.
 	inline bool CheckTearingSupport( const gui::RENDERING_DEVICE_D3D11& device )
 	{
@@ -85,7 +58,7 @@ namespace
 		return flags;
 	}
 
-	inline UINT get_flags( uint32_t flags )
+	inline UINT get_d3d11_flags( uint32_t flags )
 	{
 		UINT d3d11_flags = 0;
 
@@ -125,19 +98,13 @@ namespace
 
 namespace gui
 {
-	SWAPCHAIN_D3D11::SWAPCHAIN_D3D11(
-		HWND window_handle,
-		RENDERING_DEVICE_D3D11& rhi_device,
-		const uint32_t width,
-		const uint32_t height,
-		RHI_Format format = RHI_Format_R8G8B8A8_Unorm,
-		uint32_t flags = RHI_Present_Immediate,
-		const char* name = nullptr
-	)
+	SWAPCHAIN_D3D11::SWAPCHAIN_D3D11( HWND window_handle, RENDERING_DEVICE_D3D11& rhi_device, const float width, const float height,
+		RHI_Format format, uint32_t flags, const char* name )
 		: m_device{ rhi_device }
+		, m_viewport_quad{ m_device, { width, height } }
 	{
 		// Validate device
-		if ( !rhi_device.get_device() )
+		if ( !m_device.get_device() )
 		{
 			ASSERT_FAILED( "Invalid device." );
 			return;
@@ -151,7 +118,7 @@ namespace gui
 		}
 
 		// Validate resolution
-		if ( !rhi_device.ValidateResolution( width, height ) )
+		if ( !m_device.ValidateResolution( static_cast<uint32_t>(width), static_cast<uint32_t>(height) ) )
 		{
 			//LOG_WARNING( "%dx%d is an invalid resolution", width, height );
 			return;
@@ -159,7 +126,7 @@ namespace gui
 
 		// Get factory
 		wrl::ComPtr<IDXGIFactory> dxgi_factory;
-		if ( const auto& adapter = rhi_device.GetPrimaryPhysicalDevice() )
+		if ( const auto& adapter = m_device.GetPrimaryPhysicalDevice() )
 		{
 			auto dxgi_adapter = static_cast<IDXGIAdapter*>(adapter->GetData());
 			if ( dxgi_adapter->GetParent( IID_PPV_ARGS( dxgi_factory.GetAddressOf() ) ) != S_OK )
@@ -177,8 +144,7 @@ namespace gui
 		m_format = format;
 		m_buffer_count = s_swap_chain_buffer_count;
 		m_windowed = true;
-		m_width = width;
-		m_height = height;
+		m_dimensions = { width, height };
 		m_flags = validate_flags( m_device, flags );
 
 		// Create swap chain
@@ -193,7 +159,7 @@ namespace gui
 		desc.SampleDesc.Quality = 0;
 		desc.Windowed = m_windowed;
 		desc.SwapEffect = get_swap_effect( m_device, m_flags );
-		desc.Flags = get_flags( m_flags );
+		desc.Flags = get_d3d11_flags( m_flags );
 
 		if ( FAILED( dxgi_factory->CreateSwapChain( m_device.get_device(), &desc, m_swapchain.GetAddressOf() ) ) )
 		{
@@ -206,14 +172,14 @@ namespace gui
 		auto result = m_swapchain->GetBuffer( 0, IID_PPV_ARGS( backbuffer.GetAddressOf() ) );
 		if ( FAILED( result ) )
 		{
-			//ASSERT_FAILED( "%s", dxgi_error_to_string( result ) );
+			ASSERT_FAILED( "Failed to get swapchain buffer" );
 			return;
 		}
 
 		result = m_device.get_device()->CreateRenderTargetView( backbuffer.Get(), nullptr, m_render_target_view.GetAddressOf() );
 		if ( FAILED( result ) )
 		{
-			//ASSERT_FAILED( "%s", d3d11_utility::dxgi_error_to_string( result ) );
+			ASSERT_FAILED( "Call to CreateRenderTargetView failed" );
 			return;
 		}
 
@@ -224,6 +190,88 @@ namespace gui
 		}
 
 		//m_cmd_index = 0;
+	}
+
+	bool SWAPCHAIN_D3D11::resize( const float width, const float height, const bool force /*= false*/ )
+	{
+		if ( !m_swapchain )
+		{
+			ASSERT_SHOULDNT_BE_HERE();
+			return false;
+		}
+
+		// Validate resolution
+		const bool present_enabled = m_device.ValidateResolution( static_cast<uint32_t>(width), static_cast<uint32_t>(height) );
+		if ( !present_enabled )
+		{
+			// Return true as when minimizing, a resolution
+			// of 0,0 can be passed in, and this is fine.
+			return true;
+		}
+
+		// Only resize if needed
+		if ( !force && m_dimensions.x == width && m_dimensions.y == height )
+		{
+			return true;
+		}
+
+		// Save new dimensions
+		m_dimensions = { width, height };
+
+		m_render_target_view->Release(); // release previous render target view
+
+		// Set this flag to enable an application to switch modes by calling IDXGISwapChain::ResizeTarget.
+		// When switching from windowed to full-screen mode, the display mode (or monitor resolution)
+		// will be changed to match the dimensions of the application window.
+		//if ( m_flags & RHI_SwapChain_Allow_Mode_Switch )
+		//{
+		//	const DisplayMode& display_mode = Display::GetActiveDisplayMode();
+
+		//	// Resize swapchain target
+		//	DXGI_MODE_DESC dxgi_mode_desc = {};
+		//	dxgi_mode_desc.Width = static_cast<UINT>(width);
+		//	dxgi_mode_desc.Height = static_cast<UINT>(height);
+		//	dxgi_mode_desc.Format = d3d11_format[m_format];
+		//	dxgi_mode_desc.RefreshRate = DXGI_RATIONAL{ display_mode.numerator, display_mode.denominator };
+		//	dxgi_mode_desc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+		//	dxgi_mode_desc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+
+		//	// Resize swapchain target
+		//	const auto result = swap_chain->ResizeTarget( &dxgi_mode_desc );
+		//	if ( FAILED( result ) )
+		//	{
+		//		LOG_ERROR( "Failed to resize swapchain target, %s.", d3d11_utility::dxgi_error_to_string( result ) );
+		//		return false;
+		//	}
+		//}
+
+		// Resize swapchain buffers
+		const UINT d3d11_flags = get_d3d11_flags( validate_flags( m_device, m_flags ) );
+		auto result = m_swapchain->ResizeBuffers( m_buffer_count, static_cast<UINT>(width), static_cast<UINT>(height), d3d11_format[m_format], d3d11_flags );
+		if ( FAILED( result ) )
+		{
+			ASSERT_FAILED( "Failed to resize swapchain buffers" );
+			return false;
+		}
+
+		// Get swapchain back-buffer
+		wrl::ComPtr<ID3D11Texture2D> backbuffer;
+		result = m_swapchain->GetBuffer( 0, IID_PPV_ARGS( backbuffer.GetAddressOf() ) );
+		if ( FAILED( result ) )
+		{
+			ASSERT_FAILED( "Failed to get swapchain buffer" );
+			return false;
+		}
+
+		// Create render target view
+		result = m_device.get_device()->CreateRenderTargetView( backbuffer.Get(), nullptr, m_render_target_view.GetAddressOf() );
+		if ( FAILED( result ) )
+		{
+			ASSERT_FAILED( "Failed to create render target view" );
+			return false;
+		}
+
+		return true;
 	}
 
 	void SWAPCHAIN_D3D11::clear_backbuffer( const core::VECTOR3D<float>& rgb )

@@ -23,27 +23,41 @@ namespace gui
 		}
 	}
 
-	bool BUFFER_D3D11::_create( RENDERING_DEVICE_BASE& device, const BUFFER_TYPE buffer_type, const void* vertices )
+	bool BUFFER_D3D11::_create( RENDERING_DEVICE_BASE& device, const BUFFER_TYPE buffer_type, const void* data )
 	{
 		RENDERING_DEVICE_D3D11& device_d3d11 = static_cast<RENDERING_DEVICE_D3D11&>(device);
 
-		const bool is_dynamic = vertices == nullptr;
+		const bool is_dynamic = data == nullptr;
 
 		// Destroy previous buffer
 		_destroy();
 
 		// fill in a buffer description.
 		D3D11_BUFFER_DESC buffer_desc = {};
-		buffer_desc.ByteWidth = m_total_size;
 		buffer_desc.Usage = is_dynamic ? D3D11_USAGE_DYNAMIC : D3D11_USAGE_IMMUTABLE;
 		buffer_desc.CPUAccessFlags = is_dynamic ? D3D11_CPU_ACCESS_WRITE : 0;
-		buffer_desc.BindFlags = static_cast<uint32_t>(buffer_type);// D3D11_BIND_VERTEX_BUFFER;
+		buffer_desc.BindFlags = static_cast<uint32_t>(buffer_type);
 		buffer_desc.MiscFlags = 0;
 		buffer_desc.StructureByteStride = 0;
 
+		switch ( buffer_type )
+		{
+		case BUFFER_TYPE::CONSTANT:
+			{
+				buffer_desc.ByteWidth = m_stride;
+			}
+			break;
+		case BUFFER_TYPE::VERTEX:
+		case BUFFER_TYPE::INDEX:
+			{
+				buffer_desc.ByteWidth = m_total_size;
+			}
+			break;
+		}
+
 		// fill in the subresource data.
 		D3D11_SUBRESOURCE_DATA init_data = {};
-		init_data.pSysMem = vertices;
+		init_data.pSysMem = data;
 		init_data.SysMemPitch = 0;
 		init_data.SysMemSlicePitch = 0;
 

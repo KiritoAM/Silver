@@ -5,12 +5,20 @@
 //! Includes
 //////////////////////////////////////////////////////////////////////
 
+#include "core/shared/type_wrappers/vector.h"
+#include "gui/shared/screen/screen_area.h"
+#include "gui/shared/graphics/constant_buffers.h"
+
 #include <memory>
-#include <vector>
 
 //////////////////////////////////////////////////////////////////////
 //! Forward Declerations
 //////////////////////////////////////////////////////////////////////
+
+namespace core
+{
+	class MATRIX;
+}
 
 namespace engine
 {
@@ -25,8 +33,7 @@ namespace gui
 
 	struct WINDOW_CONTEXT
 	{
-		uint32_t width = 0;
-		uint32_t height = 0;
+		core::VECTOR<SCREEN_AREA> screen_areas;
 	};
 
 	class RENDERER_BASE
@@ -35,12 +42,28 @@ namespace gui
 		RENDERER_BASE();
 		~RENDERER_BASE();
 
-	protected:
+		void set_global_shader_object_transform( const core::MATRIX& transform );
+
+	//protected:
 		template<typename BUFFER, typename VERTEX>
-		BUFFER* create_buffer( RENDERING_DEVICE_BASE& device, BUFFER_TYPE buffer_type, const std::vector<VERTEX>& vertices )
+		BUFFER* create_buffer( RENDERING_DEVICE_BASE& device, BUFFER_TYPE buffer_type, const std::vector<VERTEX>& data )
 		{
 			auto buffer{ std::make_unique<BUFFER>() };
-			if ( buffer->create( device, buffer_type, vertices ) )
+			if ( buffer->create( device, buffer_type, data ) )
+			{
+				return buffer.release();
+			}
+			else
+			{
+				return nullptr;
+			}
+		}
+
+		template<typename BUFFER, typename VERTEX>
+		BUFFER* create_dynamic_buffer( RENDERING_DEVICE_BASE& device, BUFFER_TYPE buffer_type, const uint32_t vertex_count )
+		{
+			auto buffer{ std::make_unique<BUFFER>() };
+			if ( buffer->create_dynamic<VERTEX>( device, buffer_type, vertex_count ) )
 			{
 				return buffer.release();
 			}
@@ -52,9 +75,16 @@ namespace gui
 
 		virtual void on_mesh_created( engine::MESH* ) = 0;
 
+		virtual void update_global_constant_buffer() = 0;
+
+		virtual void update_frame_constant_buffer() = 0;
+
+		GLOBAL_CONSTANT_BUFFER m_global_constant_buffer_cpu;
+		FRAME_CONSTANT_BUFFER m_frame_constant_buffer_cpu;
+
 	private:
 		void on_world_created( engine::WORLD* world );
-
+				
 		size_t m_on_world_created_id{};
 	};
 }

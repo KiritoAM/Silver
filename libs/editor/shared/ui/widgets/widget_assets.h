@@ -7,11 +7,26 @@
 
 #include "gui/shared/ui/widgets/widget.h"
 
+//////////////////////////////////////////////////////////////////////
+//! Forward Declerations
+//////////////////////////////////////////////////////////////////////
+
+namespace engine
+{
+	struct EVENT;
+}
+
 namespace editor
 {
 	class WIDGET_ASSETS : public gui::WIDGET
 	{
 	public:
-		bool receive_notification( engine::NODE_NOTIFICATION notification ) override;
+		WIDGET_ASSETS();
+		~WIDGET_ASSETS();
+
+		bool receive_event( const engine::EVENT& in_event ) override;
+
+	private:
+		void render() override;
 	};
 }

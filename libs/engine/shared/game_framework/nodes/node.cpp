@@ -7,34 +7,38 @@
 
 namespace engine
 {
-	bool NODE::receive_notification( const NODE_NOTIFICATION notification )
+	NODE::NODE() = default;
+
+	NODE::~NODE() = default;
+
+	bool NODE::receive_event( const EVENT& in_event )
 	{
 		bool handled{ false };
 
 		// Pass notification to children
 		for ( auto& child : m_children )
 		{
-			child->receive_notification( notification );
+			child->receive_event( in_event );
 		}
 
-		switch ( notification )
+		switch ( in_event.unique_id )
 		{
-		case NODE_NOTIFICATION::TICK:
+		case TICK_EVENT_ID:
 			{
 
 			}
 			break;
-		case NODE_NOTIFICATION::ENTER_TREE:
+		case ENTER_TREE_EVENT_ID:
 			{
 
 			}
 			break;
-		case NODE_NOTIFICATION::EXIT_TREE:
+		case EXIT_TREE_EVENT_ID:
 			{
 
 			}
 			break;
-		case NODE_NOTIFICATION::PRE_DELETE:
+		case PRE_DELETE_EVENT_ID:
 			{
 				m_children.clear();
 			}
@@ -46,6 +50,6 @@ namespace engine
 
 	void NODE::add_child( NODE* node )
 	{
-		m_children.emplace_back( std::make_unique<NODE>(node) );
+		m_children.emplace_back( node );
 	}
 }

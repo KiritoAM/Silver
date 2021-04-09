@@ -3,6 +3,8 @@
 
 namespace gui
 {
+	inline constexpr uint8_t rhi_max_render_target_count = 8;
+
 	enum RHI_PhysicalDevice_Type
 	{
 		RHI_PhysicalDevice_Unknown,

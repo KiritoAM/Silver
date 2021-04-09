@@ -10,6 +10,8 @@
 
 #include "core/shared/patterns/non_automatic_singleton.h"
 
+#include "gui/shared/window/window_details.h"
+
 #include <memory>
 #include <unordered_map>
 
@@ -19,30 +21,28 @@
 
 namespace gui
 {
-	class SCREEN;
+	class WINDOW;
 }
 
 namespace gui
 {
-	inline constexpr uint32_t MAIN_SCREEN_ID{ 0 };
-
 	class SCREEN_MANAGER : public core::NON_AUTOMATIC_SINGLETON<SCREEN_MANAGER>
 	{
 		friend class core::NON_AUTOMATIC_SINGLETON<SCREEN_MANAGER>;
+		SCREEN_MANAGER();
 
 	public:
 		~SCREEN_MANAGER();
 
-		uint32_t create_window();
+		WINDOW_ID_TYPE create_window();
 
-		SCREEN* get_screen( uint32_t screen_id ) const { return m_screens.at( screen_id ).get(); }
-		
+		WINDOW* get_window( WINDOW_ID_TYPE window_id ) const;
+
+		inline static WINDOW_ID_TYPE MAIN_SCREEN_ID{};
+
 	protected:
-		SCREEN_MANAGER();
-		
-
 		void tick();
 
-		std::unordered_map< uint32_t, std::unique_ptr<SCREEN> > m_screens;
+		std::unordered_map< WINDOW_ID_TYPE, std::unique_ptr<WINDOW> > m_windows;
 	};
 }

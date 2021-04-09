@@ -56,7 +56,7 @@ namespace gui
 
 		if ( FAILED( result ) )
 		{
-			ASSERT_FAILED( "Failed to create input layout, %s", dxgi_error_to_string( result ) );
+			ASSERT_FAILED( "Failed to create input layout" );
 			return false;
 		}
 

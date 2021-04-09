@@ -11,6 +11,7 @@ project (RUNTIME_NAME)
 	
 	includedirs 
     {
+		RUNTIME_DIR,
 		LIB_DIRECTORY
 	}
 	
@@ -30,7 +31,19 @@ project (RUNTIME_NAME)
 		"input",
 		"gui",		
 	}
-		
+	
+if PROJECT_TYPE == "editor" then
+	links
+	{
+		"editor.lib"
+	}
+	
+	dependson
+	{
+		"editor"
+	}
+end
+	
 	-- Files
 	files 
 	{

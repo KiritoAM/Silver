@@ -14,9 +14,9 @@ namespace core
 {
 	struct BOX_SPHERE
 	{
-		core::FVECTOR m_centre;
+		core::FVECTOR3D m_centre;
 
-		core::FVECTOR m_box_extents;
+		core::FVECTOR3D m_box_extents;
 
 		float m_sphere_radius{ 0.0f };
 	};

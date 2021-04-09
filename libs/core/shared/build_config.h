@@ -3,7 +3,7 @@
 
 namespace core
 {
-	constexpr bool is_debug()
+	inline constexpr bool is_debug()
 	{
 #if DEBUG
 		return true;
@@ -12,9 +12,27 @@ namespace core
 #endif
 	}
 
-	constexpr bool is_editor()
+	inline constexpr bool is_editor()
 	{
 #if EDITOR
+		return true;
+#else
+		return false;
+#endif
+	}
+
+	inline constexpr bool gui_available()
+	{
+#if GUI_AVAILABLE
+		return true;
+#else
+		return false;
+#endif
+	}
+
+	inline constexpr bool input_available()
+	{
+#if INPUT_AVAILABLE
 		return true;
 #else
 		return false;

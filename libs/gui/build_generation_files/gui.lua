@@ -19,14 +19,12 @@ create_static_library("gui")
 	links
 	{
 		"core.lib",
-		"engine.lib",
-		"input.lib"
+		"engine.lib"
 	}
 	
 	dependson
 	{
-		"engine",
-		"input"
+		"engine"
 	}
 
 	libdirs { get_thirdparty_directory("gui") }

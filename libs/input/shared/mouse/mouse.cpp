@@ -22,28 +22,28 @@ namespace input
 
 	void determine_input_types(const core::FVECTOR2D& in_position_delta, std::vector<INPUT_CONTAINER>& out_input_containers)
 	{
-		if (in_position_delta.X != 0)
+		if (in_position_delta.x != 0)
 		{
-			out_input_containers.push_back({ EINPUT_TYPE::MOUSE_MOVEMENT_HORIZONTAL, BUTTON::INVALID, in_position_delta.X });
+			out_input_containers.push_back({ EINPUT_TYPE::MOUSE_MOVEMENT_HORIZONTAL, BUTTON::INVALID, in_position_delta.x });
 		}
 
-		if (in_position_delta.Y != 0)
+		if (in_position_delta.y != 0)
 		{
-			out_input_containers.push_back({ EINPUT_TYPE::MOUSE_MOVEMENT_VERTICAL, BUTTON::INVALID, in_position_delta.Y });
+			out_input_containers.push_back({ EINPUT_TYPE::MOUSE_MOVEMENT_VERTICAL, BUTTON::INVALID, in_position_delta.y });
 		}
 	}
 }
 
 namespace input
 {
-	void POINTING_DEVICE::on_mouse_moved()
+	void MOUSE_DEVICE::on_mouse_moved()
 	{
 		super::on_mouse_moved();
 
 		std::vector<INPUT_CONTAINER> input_containers;
 		determine_input_types(m_pos_delta_norm, input_containers);
 
-		m_pointing_device_delegate.m_inner.execute<void, POINTING_DEVICE*>(this);
+		m_pointing_device_delegate.m_inner.execute<void, MOUSE_DEVICE*>(this);
 
 		m_on_moved_delegate.m_inner.execute<const MOUSE_POS_TYPE&, const MOUSE_POS_TYPE&>(m_current_position, m_pos_delta);
 

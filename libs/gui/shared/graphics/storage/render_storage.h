@@ -1,0 +1,20 @@
+
+#pragma once
+
+//////////////////////////////////////////////////////////////////////
+//! Includes
+//////////////////////////////////////////////////////////////////////
+
+#include "core/shared/patterns/non_automatic_singleton.h"
+
+namespace gui
+{
+	class RENDER_STORAGE : public core::NON_AUTOMATIC_SINGLETON<RENDER_STORAGE>
+	{
+	public:
+
+
+	private:
+
+	};
+}

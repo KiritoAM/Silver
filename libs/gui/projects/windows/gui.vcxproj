@@ -56,7 +56,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;GUI_AVAILABLE;INPUT_AVAILABLE;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdint.h</ForcedIncludeFiles>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -77,7 +77,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>core.lib;engine.lib;input.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;engine.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\..\build_output\debug;..\..\thirdparty;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -85,7 +85,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;GUI_AVAILABLE;INPUT_AVAILABLE;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdint.h</ForcedIncludeFiles>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
@@ -100,7 +100,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>core.lib;engine.lib;input.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;engine.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\..\build_output\debug;..\..\thirdparty;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -112,13 +112,19 @@
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_swapchain_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\buffer_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\command_list_d3d11.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\constant_buffer_d3d11 - Copy.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\constant_buffer_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\d3d11_types.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\dxgi_info_manager.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\input_layout_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\pipeline_state_d3d11.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\quad_d3d11.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.h" />
     <ClInclude Include="..\..\platforms\window\windows\window_windows.h" />
+    <ClInclude Include="..\..\shared\events\render_events.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\RHI_context_base.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\RHI_device.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\RHI_device_base.h" />
@@ -135,19 +141,28 @@
     <ClInclude Include="..\..\shared\graphics\RHI\pipeline_state_base.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\render_information.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\shader_base.h" />
+    <ClInclude Include="..\..\shared\graphics\RHI\shader_bindings.h" />
+    <ClInclude Include="..\..\shared\graphics\RHI\texture2d_base.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\viewport.h" />
+    <ClInclude Include="..\..\shared\graphics\constant_buffers.h" />
+    <ClInclude Include="..\..\shared\graphics\default_geometry.h" />
     <ClInclude Include="..\..\shared\graphics\renderer\renderer.h" />
     <ClInclude Include="..\..\shared\graphics\renderer\renderer_base.h" />
+    <ClInclude Include="..\..\shared\graphics\storage\render_storage.h" />
     <ClInclude Include="..\..\shared\graphics\window_resources\window_resources_base.h" />
     <ClInclude Include="..\..\shared\imgui\imgui.h" />
-    <ClInclude Include="..\..\shared\screen.h" />
-    <ClInclude Include="..\..\shared\screen_manager.h" />
+    <ClInclude Include="..\..\shared\nodes\gui_node.h" />
+    <ClInclude Include="..\..\shared\screen\camera3d.h" />
+    <ClInclude Include="..\..\shared\screen\screen.h" />
+    <ClInclude Include="..\..\shared\screen\screen_area.h" />
+    <ClInclude Include="..\..\shared\screen\screen_manager.h" />
     <ClInclude Include="..\..\shared\ui\image.h" />
     <ClInclude Include="..\..\shared\ui\rendering\ui_renderer.h" />
     <ClInclude Include="..\..\shared\ui\widgets\containers\container.h" />
     <ClInclude Include="..\..\shared\ui\widgets\widget.h" />
     <ClInclude Include="..\..\shared\window\window.h" />
     <ClInclude Include="..\..\shared\window\window_base.h" />
+    <ClInclude Include="..\..\shared\window\window_details.h" />
     <ClInclude Include="..\..\thirdparty\imgui\imconfig.h" />
     <ClInclude Include="..\..\thirdparty\imgui\imgui.h" />
     <ClInclude Include="..\..\thirdparty\imgui\imgui_internal.h" />
@@ -155,6 +170,7 @@
     <ClInclude Include="..\..\thirdparty\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\..\thirdparty\imgui\imstb_textedit.h" />
     <ClInclude Include="..\..\thirdparty\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\..\thirdparty\imgui\windows\imgui_impl_dx11.h" />
     <ClInclude Include="..\..\thirdparty\imgui\windows\imgui_impl_win32.h" />
     <ClInclude Include="..\..\thirdparty\vk_mem_alloc.h" />
     <ClInclude Include="..\..\thirdparty\vulkan\vk_enum_string_helper.h" />
@@ -191,7 +207,10 @@
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\dxgi_info_manager.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\input_layout_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\pipeline_state_d3d11.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\quad_d3d11.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\window\windows\window_windows.cpp" />
     <ClCompile Include="..\..\shared\graphics\RHI\RHI_device.cpp" />
@@ -203,8 +222,12 @@
     <ClCompile Include="..\..\shared\graphics\RHI\shader_base.cpp" />
     <ClCompile Include="..\..\shared\graphics\renderer\renderer.cpp" />
     <ClCompile Include="..\..\shared\graphics\renderer\renderer_base.cpp" />
-    <ClCompile Include="..\..\shared\screen.cpp" />
-    <ClCompile Include="..\..\shared\screen_manager.cpp" />
+    <ClCompile Include="..\..\shared\graphics\storage\render_storage.cpp" />
+    <ClCompile Include="..\..\shared\nodes\gui_node.cpp" />
+    <ClCompile Include="..\..\shared\screen\camera3d.cpp" />
+    <ClCompile Include="..\..\shared\screen\screen.cpp" />
+    <ClCompile Include="..\..\shared\screen\screen_area.cpp" />
+    <ClCompile Include="..\..\shared\screen\screen_manager.cpp" />
     <ClCompile Include="..\..\shared\ui\image.cpp" />
     <ClCompile Include="..\..\shared\ui\rendering\ui_renderer.cpp" />
     <ClCompile Include="..\..\shared\ui\widgets\containers\container.cpp" />
@@ -217,6 +240,7 @@
     <ClCompile Include="..\..\thirdparty\imgui\imgui_stdlib.cpp" />
     <ClCompile Include="..\..\thirdparty\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\..\thirdparty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\thirdparty\imgui\windows\imgui_impl_dx11.cpp" />
     <ClCompile Include="..\..\thirdparty\imgui\windows\imgui_impl_win32.cpp" />
     <ClCompile Include="..\..\thirdparty\vk_mem_alloc.cpp" />
   </ItemGroup>

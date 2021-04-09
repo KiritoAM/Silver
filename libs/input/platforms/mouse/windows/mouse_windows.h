@@ -16,16 +16,16 @@
 
 namespace input
 {
-	class POINTING_DEVICE_WINDOWS : public POINTING_DEVICE_BASE
+	class MOUSE_WINDOWS : public MOUSE_BASE
 	{
-		using super = POINTING_DEVICE_BASE;
+		using super = MOUSE_BASE;
 
 	public:
 		bool handle_message(HWND in_window, uint32_t in_message, WPARAM in_wparam, LPARAM in_lparam);
 
 	protected:
-		POINTING_DEVICE_WINDOWS();
-		~POINTING_DEVICE_WINDOWS();
+		MOUSE_WINDOWS();
+		~MOUSE_WINDOWS();
 
 		void on_mouse_moved() override;
 

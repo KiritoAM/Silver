@@ -33,13 +33,11 @@ namespace gui
 		RENDERING_DEVICE_D3D11();
 		~RENDERING_DEVICE_D3D11();
 
-		bool ValidateResolution( const uint32_t width, const uint32_t height ) const;
+		bool ValidateResolution( uint32_t width, uint32_t height ) const;
 
 		ID3D11Device* get_device() const { return m_device.Get(); }
 
 		RENDERING_CONTEXT_D3D11* get_context() const { return m_context.get(); }
-
-		SWAPCHAIN_D3D11* get_swapchain() const { return m_swapchain.get(); }
 
 	private:
 		void find_adapter();

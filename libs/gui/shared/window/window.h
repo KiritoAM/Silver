@@ -33,6 +33,7 @@ namespace gui
 		// ensure the following functions exist in each platform implementation
 		using WINDOW_PLATFORM::show_window;
 		using WINDOW_PLATFORM::get_native_window;
+		using WINDOW_PLATFORM::get_window_id;
 
 		bool find_window();
 	};

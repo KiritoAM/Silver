@@ -57,7 +57,6 @@ namespace core
 
 		static inline std::unique_ptr<TYPE> m_singleton;
 
-	private:
 		template<typename... ARGS>
 		static TYPE* create_singleton_custom( ARGS&&... in_args )
 		{

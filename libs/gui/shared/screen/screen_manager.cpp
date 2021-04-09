@@ -6,9 +6,9 @@
 //! Includes
 //////////////////////////////////////////////////////////////////////
 
-#include "gui/shared/screen_manager.h"
+#include "gui/shared/screen/screen_manager.h"
 
-#include "gui/shared/screen.h"
+#include "gui/shared/window/window.h"
 #include "gui/shared/graphics/renderer/renderer.h"
 
 namespace gui
@@ -17,18 +17,32 @@ namespace gui
 	
 	SCREEN_MANAGER::~SCREEN_MANAGER() = default;
 
-	uint32_t SCREEN_MANAGER::create_window()
+	WINDOW_ID_TYPE SCREEN_MANAGER::create_window()
 	{
-		static uint32_t window_id{ 0 };
-		m_screens.try_emplace( window_id, std::make_unique<SCREEN>() );
+		auto new_window = std::make_unique<WINDOW>();
+		const auto window_id{ new_window->get_window_id() };
+		m_windows.try_emplace( window_id, std::move( new_window ) );
+
+		MAIN_SCREEN_ID = window_id; // temp
 
 		RENDERER::get_singleton()->setup_window( window_id );
 
-		return window_id++;
+		return window_id;
 	}
 
 	void SCREEN_MANAGER::tick()
 	{
 		//m_screen->paint();
+	}
+
+	WINDOW* SCREEN_MANAGER::get_window( const WINDOW_ID_TYPE window_id ) const
+	{
+		if ( auto itr = m_windows.find( window_id ); itr != m_windows.end() )
+		{
+			return itr->second.get();
+		}
+
+		//ASSERT_SHOULDNT_BE_HERE();
+		return nullptr;
 	}
 }

@@ -22,6 +22,12 @@
     <Filter Include="platforms\clipboard\windows">
       <UniqueIdentifier>{B68F13CE-229D-41B4-AB83-3D9F17900D6B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platforms\console_application">
+      <UniqueIdentifier>{D265652A-3E7E-4C54-072B-DCED7302E1ED}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\console_application\windows">
+      <UniqueIdentifier>{2C5A648B-981E-637B-6184-9345CD07FFB0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="shared">
       <UniqueIdentifier>{9C5CB11B-88FE-DBF1-71B9-EF455DFA6242}</UniqueIdentifier>
     </Filter>
@@ -33,6 +39,9 @@
     </Filter>
     <Filter Include="shared\command_line">
       <UniqueIdentifier>{11161831-7D77-F53E-06E5-3BF172452CFE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\events">
+      <UniqueIdentifier>{20554AA1-8C15-C6D7-5550-0F55C1CF0AB4}</UniqueIdentifier>
     </Filter>
     <Filter Include="shared\game_framework">
       <UniqueIdentifier>{F2F8051E-5E65-C118-2759-59769384E380}</UniqueIdentifier>
@@ -51,6 +60,9 @@
     <ClInclude Include="..\..\platforms\clipboard\windows\clipboard_windows.h">
       <Filter>platforms\clipboard\windows</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\platforms\console_application\windows\console_application_windows.h">
+      <Filter>platforms\console_application\windows</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\application\application.h">
       <Filter>shared\application</Filter>
     </ClInclude>
@@ -60,6 +72,18 @@
     <ClInclude Include="..\..\shared\command_line\command_line.h">
       <Filter>shared\command_line</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\events\event_base.h">
+      <Filter>shared\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\events\events_manager.h">
+      <Filter>shared\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\events\events_receiver.h">
+      <Filter>shared\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\events\node_events.h">
+      <Filter>shared\events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\game_framework\game_instance.h">
       <Filter>shared\game_framework</Filter>
     </ClInclude>
@@ -68,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="..\..\shared\game_framework\mesh.h">
       <Filter>shared\game_framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\game_framework\nodes\engine_node.h">
+      <Filter>shared\game_framework\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\game_framework\nodes\node.h">
       <Filter>shared\game_framework\nodes</Filter>
@@ -92,6 +119,9 @@
     <ClCompile Include="..\..\platforms\clipboard\windows\clipboard_windows.cpp">
       <Filter>platforms\clipboard\windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\platforms\console_application\windows\console_application_windows.cpp">
+      <Filter>platforms\console_application\windows</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\shared\application\application.cpp">
       <Filter>shared\application</Filter>
     </ClCompile>
@@ -101,6 +131,12 @@
     <ClCompile Include="..\..\shared\command_line\command_line.cpp">
       <Filter>shared\command_line</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\shared\events\events_manager.cpp">
+      <Filter>shared\events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\events\events_receiver.cpp">
+      <Filter>shared\events</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\shared\game_framework\game_instance.cpp">
       <Filter>shared\game_framework</Filter>
     </ClCompile>
@@ -109,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="..\..\shared\game_framework\mesh.cpp">
       <Filter>shared\game_framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\game_framework\nodes\engine_node.cpp">
+      <Filter>shared\game_framework\nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\game_framework\nodes\node.cpp">
       <Filter>shared\game_framework\nodes</Filter>

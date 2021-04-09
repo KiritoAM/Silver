@@ -24,6 +24,22 @@ namespace engine
 		core::INSTANCE_TRACKER<WORLD>::remove_instance( this );
 	}
 
+	bool WORLD::receive_event( const engine::EVENT& in_event )
+	{
+		auto handled{ false };
+
+		switch ( in_event.unique_id )
+		{
+		case TICK_EVENT_ID:
+			{
+				
+			}
+			break;
+		}
+
+		return handled;
+	}
+
 	void WORLD::Tick(float InDeltaTime)
 	{
 
@@ -38,6 +54,13 @@ namespace engine
 	{
 		WORLD_OBJECT& world_object = s_current_level->m_world_objects.emplace_back();
 		world_object.create_mesh( { {0.0f, 0.5f}, {0.5f, -0.5f}, {-0.5f, -0.5f} }, { 0, 1, 2 } );
+		m_on_mesh_created.m_inner.execute<void, MESH*>( world_object.get_mesh() );
+	}
+
+	void WORLD::create_world_object( std::vector<core::RHI_Vertex_PosTexNorTan>&& vertices, std::vector<uint32_t>&& indices )
+	{
+		WORLD_OBJECT& world_object = s_current_level->m_world_objects.emplace_back();
+		world_object.create_mesh( std::move( vertices ), std::move( indices ) );
 		m_on_mesh_created.m_inner.execute<void, MESH*>( world_object.get_mesh() );
 	}
 

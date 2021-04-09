@@ -56,7 +56,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;GUI_AVAILABLE;INPUT_AVAILABLE;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdint.h</ForcedIncludeFiles>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -85,7 +85,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;GUI_AVAILABLE;INPUT_AVAILABLE;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdint.h</ForcedIncludeFiles>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
@@ -108,12 +108,18 @@
     <ClInclude Include="..\..\platforms\application\windows\application_windows.h" />
     <ClInclude Include="..\..\platforms\application_delegates\windows\application_delegates_windows.h" />
     <ClInclude Include="..\..\platforms\clipboard\windows\clipboard_windows.h" />
+    <ClInclude Include="..\..\platforms\console_application\windows\console_application_windows.h" />
     <ClInclude Include="..\..\shared\application\application.h" />
     <ClInclude Include="..\..\shared\clipboard\clipboard.h" />
     <ClInclude Include="..\..\shared\command_line\command_line.h" />
+    <ClInclude Include="..\..\shared\events\event_base.h" />
+    <ClInclude Include="..\..\shared\events\events_manager.h" />
+    <ClInclude Include="..\..\shared\events\events_receiver.h" />
+    <ClInclude Include="..\..\shared\events\node_events.h" />
     <ClInclude Include="..\..\shared\game_framework\game_instance.h" />
     <ClInclude Include="..\..\shared\game_framework\level.h" />
     <ClInclude Include="..\..\shared\game_framework\mesh.h" />
+    <ClInclude Include="..\..\shared\game_framework\nodes\engine_node.h" />
     <ClInclude Include="..\..\shared\game_framework\nodes\node.h" />
     <ClInclude Include="..\..\shared\game_framework\nodes\node_tree.h" />
     <ClInclude Include="..\..\shared\game_framework\world.h" />
@@ -123,12 +129,16 @@
     <ClCompile Include="..\..\platforms\application\windows\application_windows.cpp" />
     <ClCompile Include="..\..\platforms\application_delegates\windows\application_delegates_windows.cpp" />
     <ClCompile Include="..\..\platforms\clipboard\windows\clipboard_windows.cpp" />
+    <ClCompile Include="..\..\platforms\console_application\windows\console_application_windows.cpp" />
     <ClCompile Include="..\..\shared\application\application.cpp" />
     <ClCompile Include="..\..\shared\clipboard\clipboard.cpp" />
     <ClCompile Include="..\..\shared\command_line\command_line.cpp" />
+    <ClCompile Include="..\..\shared\events\events_manager.cpp" />
+    <ClCompile Include="..\..\shared\events\events_receiver.cpp" />
     <ClCompile Include="..\..\shared\game_framework\game_instance.cpp" />
     <ClCompile Include="..\..\shared\game_framework\level.cpp" />
     <ClCompile Include="..\..\shared\game_framework\mesh.cpp" />
+    <ClCompile Include="..\..\shared\game_framework\nodes\engine_node.cpp" />
     <ClCompile Include="..\..\shared\game_framework\nodes\node.cpp" />
     <ClCompile Include="..\..\shared\game_framework\nodes\node_tree.cpp" />
     <ClCompile Include="..\..\shared\game_framework\world.cpp" />

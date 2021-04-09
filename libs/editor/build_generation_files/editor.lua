@@ -21,14 +21,16 @@ create_static_library("editor")
 	{
 		"core.lib",
 		"engine.lib",
-		"input.lib"
+		"input.lib",
+		"gui.lib",
 	}
 	
 	dependson
 	{
+		"core",
 		"engine",
 		"input",
-		"gui"
+		"gui",
 	}
 	
 	-- "debug"

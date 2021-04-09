@@ -1,8 +1,9 @@
 
+#include "common.hlsl"
 
-float4 mainVS(float2 pos : POSITION) : SV_POSITION
+float4 mainVS(Vertex_Pos input) : SV_POSITION
 {
-    return float4(pos.x, pos.y, 0.0f, 1.0f);
+    return float4(input.position.xy, 0.0f, 1.0f);
 }
 
 float4 mainPS() : SV_TARGET

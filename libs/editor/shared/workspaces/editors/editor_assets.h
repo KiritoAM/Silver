@@ -15,7 +15,7 @@ namespace editor
 		EDITOR_ASSETS();
 		~EDITOR_ASSETS();
 
-		bool receive_notification( engine::NODE_NOTIFICATION notification ) override;
+		bool receive_event( const engine::EVENT& in_event ) override;
 
 		void listen() override;
 

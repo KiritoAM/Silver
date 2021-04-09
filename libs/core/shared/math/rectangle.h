@@ -18,30 +18,30 @@ namespace core
 	struct RECTANGLE : public VECTOR4D<TYPE>
 	{
 		using super = VECTOR4D<TYPE>;
-		using super::X;
-		using super::Y;
-		using super::Z;
-		using super::A;
+		using super::x;
+		using super::y;
+		using super::z;
+		using super::a;
 
 		RECTANGLE() = default;
 
 		RECTANGLE(TYPE InX, TYPE InY, TYPE InZ, TYPE InA)
 		{
-			X = InX;
-			super::Y = InY;
-			super::Z = InZ;
-			super::A = InA;
+			x = InX;
+			y = InY;
+			z = InZ;
+			a = InA;
 		}
 
 		static const RECTANGLE<TYPE> ZERO_VALUE;
 
-		TYPE get_left() const { return X; }
-		TYPE get_right() const { return X + get_width(); }
-		TYPE get_width() const { return Z; }
+		TYPE get_left() const { return x; }
+		TYPE get_right() const { return x + get_width(); }
+		TYPE get_width() const { return z; }
 
-		TYPE get_top() const { return Y; }
-		TYPE get_bottom() const { return Y + get_height(); }
-		TYPE get_height() const { return A; }
+		TYPE get_top() const { return y; }
+		TYPE get_bottom() const { return y + get_height(); }
+		TYPE get_height() const { return a; }
 
 		VECTOR2D<TYPE> get_top_left() const
 		{
@@ -66,6 +66,13 @@ namespace core
 		VECTOR2D<TYPE> get_dimensions() const
 		{
 			return { get_width(), get_height() };
+		}
+
+		template<typename OTHER_TYPE>
+		bool is_within( const VECTOR2D<OTHER_TYPE>& point ) const
+		{
+			return static_cast<TYPE>(point.x) >= x && static_cast<TYPE>(point.y) >= y && static_cast<TYPE>(point.x) <= get_right() 
+				&& static_cast<TYPE>(point.y) <= get_bottom();
 		}
 	};
 

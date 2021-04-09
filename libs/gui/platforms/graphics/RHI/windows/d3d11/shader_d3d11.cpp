@@ -117,11 +117,11 @@ namespace gui
 			const auto shader_name = core::FILE_SYSTEM::get_filename_from_filepath( shader );
 			if ( result == HRESULT_FROM_WIN32( ERROR_FILE_NOT_FOUND ) )
 			{
-				ASSERT_FAILED( "Failed to find shader \"%s\" with path \"%s\".", shader_name.c_str(), shader.c_str() );
+				ASSERT_FAILED( "Failed to find shader" );
 			}
 			else
 			{
-				ASSERT_FAILED( "An error occurred when trying to load and compile \"%s\"", shader_name.c_str() );
+				ASSERT_FAILED( "An error occurred when trying to load and compile" );
 			}
 		}
 
@@ -133,27 +133,27 @@ namespace gui
 			{
 				if ( FAILED( device_d3d11.get_device()->CreateVertexShader( shader_blob->GetBufferPointer(), shader_blob->GetBufferSize(), nullptr, reinterpret_cast<ID3D11VertexShader**>(&shader_view) ) ) )
 				{
-					ASSERT_FAILED( "Failed to create vertex shader, %s", dxgi_error_to_string( result ) );
+					ASSERT_FAILED( "Failed to create vertex shader" );
 				}
 
 				// Create input layout
 				if ( !m_input_layout->create( device, m_vertex_type, shader_blob.Get() ) )
 				{
-					ASSERT_FAILED( "Failed to create input layout for %s", core::FILE_SYSTEM::get_filename_from_filepath( m_file_path ).c_str() );
+					ASSERT_FAILED( "Failed to create input layout for" );
 				}
 			}
 			else if ( m_shader_type == RHI_Shader_Type::RHI_Shader_Pixel )
 			{
 				if ( FAILED( device_d3d11.get_device()->CreatePixelShader( shader_blob->GetBufferPointer(), shader_blob->GetBufferSize(), nullptr, reinterpret_cast<ID3D11PixelShader**>(&shader_view) ) ) )
 				{
-					ASSERT_FAILED( "Failed to create pixel shader, %s", dxgi_error_to_string( result ) );
+					ASSERT_FAILED( "Failed to create pixel shader" );
 				}
 			}
 			else if ( m_shader_type == RHI_Shader_Type::RHI_Shader_Compute )
 			{
 				if ( FAILED( device_d3d11.get_device()->CreateComputeShader( shader_blob->GetBufferPointer(), shader_blob->GetBufferSize(), nullptr, reinterpret_cast<ID3D11ComputeShader**>(&shader_view) ) ) )
 				{
-					ASSERT_FAILED( "Failed to create compute shader, %s", dxgi_error_to_string( result ) );
+					ASSERT_FAILED( "Failed to create compute shader" );
 				}
 			}
 		}

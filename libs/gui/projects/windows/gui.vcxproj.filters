@@ -31,6 +31,9 @@
     <Filter Include="shared">
       <UniqueIdentifier>{9C5CB11B-88FE-DBF1-71B9-EF455DFA6242}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shared\events">
+      <UniqueIdentifier>{20554AA1-8C15-C6D7-5550-0F55C1CF0AB4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="shared\graphics">
       <UniqueIdentifier>{7CB097B8-E83B-057D-F14C-88715D57617D}</UniqueIdentifier>
     </Filter>
@@ -40,11 +43,20 @@
     <Filter Include="shared\graphics\renderer">
       <UniqueIdentifier>{C2DB218A-AE00-710A-D74B-569AC3CF6F28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shared\graphics\storage">
+      <UniqueIdentifier>{E002BD64-4C3A-05FC-5544-691FC1FA2BF5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="shared\graphics\window_resources">
       <UniqueIdentifier>{7D0928E2-695A-1324-92BE-01E67E6EA68D}</UniqueIdentifier>
     </Filter>
     <Filter Include="shared\imgui">
       <UniqueIdentifier>{066F0FA8-F2D1-9E4C-9B57-D70287996ACF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\nodes">
+      <UniqueIdentifier>{84F36AA8-7056-FA4C-19DC-3203051EC6CF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared\screen">
+      <UniqueIdentifier>{0BB5A1C0-7775-1DF7-40B0-6674AC2F62D3}</UniqueIdentifier>
     </Filter>
     <Filter Include="shared\ui">
       <UniqueIdentifier>{893EDA7C-F5A8-8EF3-3EE7-3F99AA906C48}</UniqueIdentifier>
@@ -96,6 +108,12 @@
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\command_list_d3d11.h">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\constant_buffer_d3d11 - Copy.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\constant_buffer_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\d3d11_types.h">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClInclude>
@@ -108,7 +126,16 @@
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\pipeline_state_d3d11.h">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\quad_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.h">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.h">
@@ -116,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="..\..\platforms\window\windows\window_windows.h">
       <Filter>platforms\window\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\events\render_events.h">
+      <Filter>shared\events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\graphics\RHI\RHI_context_base.h">
       <Filter>shared\graphics\RHI</Filter>
@@ -165,8 +195,20 @@
     <ClInclude Include="..\..\shared\graphics\RHI\shader_base.h">
       <Filter>shared\graphics\RHI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\shader_bindings.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\texture2d_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\graphics\RHI\viewport.h">
       <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\constant_buffers.h">
+      <Filter>shared\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\default_geometry.h">
+      <Filter>shared\graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\graphics\renderer\renderer.h">
       <Filter>shared\graphics\renderer</Filter>
@@ -174,17 +216,29 @@
     <ClInclude Include="..\..\shared\graphics\renderer\renderer_base.h">
       <Filter>shared\graphics\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\storage\render_storage.h">
+      <Filter>shared\graphics\storage</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\graphics\window_resources\window_resources_base.h">
       <Filter>shared\graphics\window_resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\imgui\imgui.h">
       <Filter>shared\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\shared\screen.h">
-      <Filter>shared</Filter>
+    <ClInclude Include="..\..\shared\nodes\gui_node.h">
+      <Filter>shared\nodes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\shared\screen_manager.h">
-      <Filter>shared</Filter>
+    <ClInclude Include="..\..\shared\screen\camera3d.h">
+      <Filter>shared\screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\screen\screen.h">
+      <Filter>shared\screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\screen\screen_area.h">
+      <Filter>shared\screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\screen\screen_manager.h">
+      <Filter>shared\screen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\ui\image.h">
       <Filter>shared\ui</Filter>
@@ -202,6 +256,9 @@
       <Filter>shared\window</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\window\window_base.h">
+      <Filter>shared\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\window\window_details.h">
       <Filter>shared\window</Filter>
     </ClInclude>
     <ClInclude Include="..\..\thirdparty\imgui\imconfig.h">
@@ -224,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="..\..\thirdparty\imgui\imstb_truetype.h">
       <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\imgui\windows\imgui_impl_dx11.h">
+      <Filter>thirdparty\imgui\windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\thirdparty\imgui\windows\imgui_impl_win32.h">
       <Filter>thirdparty\imgui\windows</Filter>
@@ -329,7 +389,16 @@
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\pipeline_state_d3d11.cpp">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\quad_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.cpp">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClCompile>
     <ClCompile Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.cpp">
@@ -365,11 +434,23 @@
     <ClCompile Include="..\..\shared\graphics\renderer\renderer_base.cpp">
       <Filter>shared\graphics\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\shared\screen.cpp">
-      <Filter>shared</Filter>
+    <ClCompile Include="..\..\shared\graphics\storage\render_storage.cpp">
+      <Filter>shared\graphics\storage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\shared\screen_manager.cpp">
-      <Filter>shared</Filter>
+    <ClCompile Include="..\..\shared\nodes\gui_node.cpp">
+      <Filter>shared\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\screen\camera3d.cpp">
+      <Filter>shared\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\screen\screen.cpp">
+      <Filter>shared\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\screen\screen_area.cpp">
+      <Filter>shared\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\screen\screen_manager.cpp">
+      <Filter>shared\screen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\ui\image.cpp">
       <Filter>shared\ui</Filter>
@@ -406,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="..\..\thirdparty\imgui\imgui_widgets.cpp">
       <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdparty\imgui\windows\imgui_impl_dx11.cpp">
+      <Filter>thirdparty\imgui\windows</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdparty\imgui\windows\imgui_impl_win32.cpp">
       <Filter>thirdparty\imgui\windows</Filter>

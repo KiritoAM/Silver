@@ -23,6 +23,12 @@ namespace gui
 		core::INSTANCE_TRACKER<engine::WORLD>::m_on_added_delegate.m_inner.remove_function( m_on_world_created_id );
 	}
 
+	void RENDERER_BASE::set_global_shader_object_transform( const core::MATRIX& transform )
+	{
+		m_global_constant_buffer_cpu.transform = transform;
+		update_global_constant_buffer();
+	}
+
 	void RENDERER_BASE::on_world_created( engine::WORLD* world )
 	{
 		world->m_on_mesh_created.m_inner.add_function( [this]( engine::MESH* mesh )

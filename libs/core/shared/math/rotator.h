@@ -16,9 +16,9 @@ namespace core
 	struct ROTATOR : public core::VECTOR3D<TYPE>
 	{
 		using super = core::VECTOR3D<TYPE>;
-		using super::X;
-		using super::Y;
-		using super::Z;
+		using super::x;
+		using super::y;
+		using super::z;
 
 	public:
 		ROTATOR()
@@ -37,12 +37,12 @@ namespace core
 
 		ROTATOR<TYPE>& operator+=(const ROTATOR<TYPE>& InVector);
 
-		TYPE get_pitch() const { return X; }
-		TYPE get_yaw() const { return Y; }
-		TYPE get_roll() const { return Z; }
+		TYPE get_pitch() const { return x; }
+		TYPE get_yaw() const { return y; }
+		TYPE get_roll() const { return z; }
 
-		ROTATOR<TYPE>& add_pitch(TYPE in_value) { X += in_value; return *this; }
-		ROTATOR<TYPE>& add_yaw(TYPE in_value) { Y += in_value; return *this; }
+		ROTATOR<TYPE>& add_pitch(TYPE in_value) { x += in_value; return *this; }
+		ROTATOR<TYPE>& add_yaw(TYPE in_value) { y += in_value; return *this; }
 	};
 
 	template<typename TYPE>

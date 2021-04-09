@@ -9,6 +9,7 @@
 #include "core/shared/math/vector3d.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/buffer_d3d11.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/pipeline_state_d3d11.h"
+#include "gui/platforms/graphics/RHI/windows/d3d11/sampler_d3d11.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/shader_d3d11.h"
 #include "gui/shared/graphics/RHI/input_layout.h"
 #include "gui/shared/graphics/RHI/viewport.h"
@@ -85,6 +86,34 @@ namespace gui
 			}
 		}
 
+		// Render target(s)
+		{
+			// Current state
+			core::ARRAY<ID3D11RenderTargetView*, D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT> set_render_target_views;
+			ID3D11DepthStencilView* set_depth_stencil_view;
+			m_device_context->OMGetRenderTargets( D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, set_render_target_views.data(), &set_depth_stencil_view );
+
+			// Set if dirty
+			if ( pipeline_state.m_render_targets != set_render_target_views )
+			{
+				UINT render_target_count = 0;
+				for ( ID3D11RenderTargetView* rt : pipeline_state.m_render_targets )
+				{
+					if ( rt )
+					{
+						render_target_count++;
+					}
+				}
+
+				m_device_context->OMSetRenderTargets
+				(
+					render_target_count,
+					reinterpret_cast<ID3D11RenderTargetView* const*>(pipeline_state.m_render_targets.data()),
+					nullptr
+				);
+			}
+		}
+
 		// Primitive topology
 		if ( pipeline_state.primitive_topology != RHI_PrimitiveTopology_Unknown )
 		{
@@ -113,7 +142,7 @@ namespace gui
 
 	void RENDERING_CONTEXT_D3D11::clear_render_target_view( ID3D11RenderTargetView* render_target_view, const core::VECTOR3D<float>& rgb )
 	{
-		const float colour[] { rgb.X, rgb.Y, rgb.Z, 1.0f };
+		const float colour[] { rgb.x, rgb.y, rgb.z, 1.0f };
 		m_device_context->ClearRenderTargetView( render_target_view, colour );
 	}
 
@@ -122,8 +151,8 @@ namespace gui
 		const auto top_left = viewport.m_area.get_top_left();
 
 		D3D11_VIEWPORT d3d11_viewport;
-		d3d11_viewport.TopLeftX = top_left.X;
-		d3d11_viewport.TopLeftY = top_left.Y;
+		d3d11_viewport.TopLeftX = top_left.x;
+		d3d11_viewport.TopLeftY = top_left.y;
 		d3d11_viewport.Width = viewport.m_area.get_width();
 		d3d11_viewport.Height = viewport.m_area.get_height();
 		d3d11_viewport.MinDepth = viewport.m_min_depth;
@@ -156,6 +185,108 @@ namespace gui
 		{
 			m_device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, &offsets );
 		}
+	}
+
+	void RENDERING_CONTEXT_D3D11::set_index_buffer( BUFFER_D3D11& buffer_d3d11, uint32_t offset )
+	{
+		ID3D11Buffer* index_buffer = buffer_d3d11.GetResource();
+
+		if ( !index_buffer )
+		{
+			ASSERT_SHOULDNT_BE_HERE();
+			return;
+		}
+
+		const DXGI_FORMAT format = DXGI_FORMAT_R32_UINT;// buffer_d3d11->Is16Bit() ? DXGI_FORMAT_R16_UINT : DXGI_FORMAT_R32_UINT;
+
+		// Get currently set buffer
+		ID3D11Buffer* set_buffer = nullptr;
+		DXGI_FORMAT set_format = DXGI_FORMAT_UNKNOWN;
+		UINT set_offset = 0;
+		m_device_context->IAGetIndexBuffer( &set_buffer, &set_format, &set_offset );
+
+		// Skip if already set
+		if ( set_buffer != index_buffer || set_offset != offset )
+		{
+			m_device_context->IASetIndexBuffer( index_buffer, format, static_cast<UINT>(offset) );
+		}
+	}
+
+	void RENDERING_CONTEXT_D3D11::set_constant_buffer( const uint32_t slot, const uint8_t shader_types, const BUFFER_D3D11& buffer_d3d11 )
+	{
+		ID3D11Buffer* buffer = static_cast<ID3D11Buffer*>(buffer_d3d11.GetResource());
+		constexpr uint32_t num_buffers{ 1 };
+
+		if ( shader_types & (uint8_t)RHI_Shader_Type::RHI_Shader_Vertex )
+		{
+			// Set only if not set
+			ID3D11Buffer* set_buffer = nullptr;
+			m_device_context->VSGetConstantBuffers( slot, num_buffers, &set_buffer );
+			if ( set_buffer != buffer )
+			{
+				m_device_context->VSSetConstantBuffers( slot, num_buffers, static_cast<ID3D11Buffer* const*>(&buffer) );
+			}
+		}
+
+		if ( shader_types & (uint8_t)RHI_Shader_Type::RHI_Shader_Pixel )
+		{
+			// Set only if not set
+			ID3D11Buffer* set_buffer = nullptr;
+			m_device_context->PSGetConstantBuffers( slot, num_buffers, &set_buffer );
+			if ( set_buffer != buffer )
+			{
+				m_device_context->PSSetConstantBuffers( slot, num_buffers, static_cast<ID3D11Buffer* const*>(&buffer) );
+			}
+		}
+
+		if ( shader_types & (uint8_t)RHI_Shader_Type::RHI_Shader_Compute )
+		{
+			// Set only if not set
+			ID3D11Buffer* set_buffer = nullptr;
+			m_device_context->CSGetConstantBuffers( slot, num_buffers, &set_buffer );
+			if ( set_buffer != buffer )
+			{
+				m_device_context->CSSetConstantBuffers( slot, num_buffers, static_cast<ID3D11Buffer* const*>(&buffer) );
+			}
+		}
+	}
+
+	void RENDERING_CONTEXT_D3D11::set_texture( const TEXTURE_SLOTS texture_slot, TEXTURE2D_D3D11* texture )
+	{
+		ASSERT( texture, "Texture is nullptr" );
+
+		const auto start_slot{ static_cast<UINT>(texture_slot) };
+		const UINT range = 1;
+
+		const void* srv_array[1] = { texture ? texture->get_resource_view() : nullptr };
+		ID3D11ShaderResourceView* set_srv = nullptr;
+		m_device_context->PSGetShaderResources( start_slot, range, &set_srv );
+		if ( set_srv != srv_array[0] )
+		{
+			m_device_context->PSSetShaderResources( start_slot, range, reinterpret_cast<ID3D11ShaderResourceView* const*>(&srv_array) );
+		}
+	}
+
+	void RENDERING_CONTEXT_D3D11::set_sampler( SAMPLER_SLOTS sampler_slot, SAMPLER_D3D11* sampler )
+	{
+		const auto start_slot{ static_cast<UINT>(sampler_slot) };
+		const UINT range = 1;
+		const void* sampler_array[1] = { sampler ? sampler->GetResource() : nullptr };
+		
+		ID3D11SamplerState* set_sampler;
+		m_device_context->PSGetSamplers( start_slot, range, &set_sampler );
+		if ( set_sampler != sampler_array[0] )
+		{
+			m_device_context->PSSetSamplers( start_slot, range, reinterpret_cast<ID3D11SamplerState* const*>(&sampler_array) );
+		}
+	}
+
+	void RENDERING_CONTEXT_D3D11::set_scissor_rect( const core::FRECTANGLE& rect )
+	{
+		const D3D11_RECT d3d11_rectangle = { static_cast<LONG>(rect.get_left()), static_cast<LONG>(rect.get_top()), 
+			static_cast<LONG>(rect.get_right()), static_cast<LONG>(rect.get_bottom()) };
+
+		m_device_context->RSSetScissorRects( 1u, &d3d11_rectangle );
 	}
 
 	bool RENDERING_CONTEXT_D3D11::draw( const uint32_t vertex_count, const uint32_t vertex_offset )

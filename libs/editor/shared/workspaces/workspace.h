@@ -5,12 +5,16 @@
 //! Includes
 //////////////////////////////////////////////////////////////////////
 
+#include "core/shared/type_wrappers/vector.h"
+#include "gui/shared/screen/screen_area.h"
 
 namespace editor
 {
-	class AREA_BASE
+	struct WORKSPACE
 	{
-	public:
+		WORKSPACE();
+		~WORKSPACE();
 
+		core::VECTOR<gui::SCREEN_AREA> screen_areas;
 	};
 }

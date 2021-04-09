@@ -56,7 +56,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;GUI_AVAILABLE;INPUT_AVAILABLE;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdint.h</ForcedIncludeFiles>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -77,7 +77,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>core.lib;engine.lib;input.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;engine.lib;input.lib;gui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\..\build_output\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -85,7 +85,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;GUI_AVAILABLE;INPUT_AVAILABLE;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdint.h</ForcedIncludeFiles>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
@@ -100,25 +100,42 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>core.lib;engine.lib;input.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;engine.lib;input.lib;gui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\..\build_output\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\shared\events\editor_events.h" />
     <ClInclude Include="..\..\shared\nodes\editor_node.h" />
     <ClInclude Include="..\..\shared\ui\widgets\widget_assets.h" />
+    <ClInclude Include="..\..\shared\ui\widgets\widget_files.h" />
+    <ClInclude Include="..\..\shared\ui\widgets\widget_scene_tree.h" />
+    <ClInclude Include="..\..\shared\ui\widgets\widget_toolbar.h" />
+    <ClInclude Include="..\..\shared\ui\widgets\widget_viewport.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_assets.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_base.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_components\editor_component_base.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_components\editor_component_files.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_components\regions\region_base.h" />
+    <ClInclude Include="..\..\shared\workspaces\editors\editor_scene_tree.h" />
+    <ClInclude Include="..\..\shared\workspaces\editors\editor_toolbar.h" />
+    <ClInclude Include="..\..\shared\workspaces\editors\editor_viewport.h" />
+    <ClInclude Include="..\..\shared\workspaces\editors\editor_world.h" />
     <ClInclude Include="..\..\shared\workspaces\workspace.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\shared\nodes\editor_node.cpp" />
     <ClCompile Include="..\..\shared\ui\widgets\widget_assets.cpp" />
+    <ClCompile Include="..\..\shared\ui\widgets\widget_files.cpp" />
+    <ClCompile Include="..\..\shared\ui\widgets\widget_scene_tree.cpp" />
+    <ClCompile Include="..\..\shared\ui\widgets\widget_toolbar.cpp" />
+    <ClCompile Include="..\..\shared\ui\widgets\widget_viewport.cpp" />
     <ClCompile Include="..\..\shared\workspaces\editors\editor_assets.cpp" />
     <ClCompile Include="..\..\shared\workspaces\editors\editor_components\editor_component_files.cpp" />
+    <ClCompile Include="..\..\shared\workspaces\editors\editor_scene_tree.cpp" />
+    <ClCompile Include="..\..\shared\workspaces\editors\editor_toolbar.cpp" />
+    <ClCompile Include="..\..\shared\workspaces\editors\editor_viewport.cpp" />
+    <ClCompile Include="..\..\shared\workspaces\editors\editor_world.cpp" />
     <ClCompile Include="..\..\shared\workspaces\workspace.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -9,13 +9,15 @@
 #include "gui/shared/ui/widgets/widget.h"
 
 #include "core/shared/math/rectangle.h"
+#include "engine/shared/events/event_base.h"
+#include "gui/shared/events/render_events.h"
 #include "gui/shared/imgui/imgui.h"
 
 #include <gui/thirdparty/imgui/imgui_internal.h>
 
 namespace gui
 {
-	struct WIDGET::impl
+	struct WIDGET::IMPL
 	{
 		core::RECTANGLE<int32_t> m_bounds{ 0, 0, 0, 0 };
 	};
@@ -24,31 +26,36 @@ namespace gui
 namespace gui
 {
 	WIDGET::WIDGET()
-		: m_impl( std::make_unique<impl>() )
-	{}
+		: m_impl{ std::make_unique<IMPL>() }
+	{
+		m_should_render = m_is_visible = true; // temp
+	}
 
 	WIDGET::~WIDGET() = default;
 
-	bool WIDGET::receive_notification( const engine::NODE_NOTIFICATION notification )
+	bool WIDGET::receive_event( const engine::EVENT& in_event )
 	{
-		auto handled = engine::NODE::receive_notification( notification );
+		auto handled = engine::NODE::receive_event( in_event );
 
-		switch ( notification )
+		switch ( in_event.unique_id )
 		{
-		case engine::NODE_NOTIFICATION::TICK:
+		case gui::MARK_FOR_RENDER_EVENT_ID:
+			{
+				m_should_render = true;
+			}
+			break;
+		case gui::RENDER_IMGUI_EVENT_ID:
 			{
 				if ( m_is_visible )
 				{
-					bool begun{ false };
-
 					if ( m_position != core::FVECTOR2D::ZERO_VALUE )
 					{
-						ImGui::SetNextWindowPos( { m_position.X, m_position.Y } );
+						ImGui::SetNextWindowPos( { m_position.x, m_position.y } );
 					}
 
 					if ( m_padding != core::FVECTOR2D::ZERO_VALUE )
 					{
-						ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, { m_padding.X, m_padding.Y } );
+						ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, { m_padding.x, m_padding.y } );
 						++m_var_pushes;
 					}
 
@@ -60,15 +67,16 @@ namespace gui
 
 					if ( m_size != core::FVECTOR2D::ZERO_VALUE )
 					{
-						ImGui::SetNextWindowSize( { m_size.X, m_size.Y }, ImGuiCond_FirstUseEver );
+						ImGui::SetNextWindowSize( { m_size.x, m_size.y }, ImGuiCond_FirstUseEver );
 					}
 
 					if ( m_size != core::FVECTOR2D::ZERO_VALUE || m_max_size != core::FVECTOR2D::ZERO_VALUE )
 					{
-						ImGui::SetNextWindowSizeConstraints( { m_size.X, m_size.Y }, { m_max_size.X, m_max_size.Y } );
+						ImGui::SetNextWindowSizeConstraints( { m_size.x, m_size.y }, { m_max_size.x, m_max_size.y } );
 					}
 
-					// Begin
+					bool begun{ false };
+
 					if ( ImGui::Begin( m_title.c_str(), &m_is_visible, m_flags ) )
 					{
 						m_window = ImGui::GetCurrentWindow();
@@ -94,7 +102,7 @@ namespace gui
 
 					if ( begun )
 					{
-
+						render();
 
 						ImGui::End();
 

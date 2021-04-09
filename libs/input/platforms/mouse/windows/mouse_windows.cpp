@@ -18,7 +18,7 @@
 
 namespace input
 {
-	struct POINTING_DEVICE_WINDOWS::impl
+	struct MOUSE_WINDOWS::impl
 	{
 		HWND m_window;
 		LPARAM m_lparam;
@@ -27,13 +27,13 @@ namespace input
 
 namespace input
 {
-	POINTING_DEVICE_WINDOWS::POINTING_DEVICE_WINDOWS()
+	MOUSE_WINDOWS::MOUSE_WINDOWS()
 		: m_impl( std::make_unique<impl>() )
 	{}
 
-	POINTING_DEVICE_WINDOWS::~POINTING_DEVICE_WINDOWS() = default;
+	MOUSE_WINDOWS::~MOUSE_WINDOWS() = default;
 
-	bool POINTING_DEVICE_WINDOWS::handle_message(HWND in_window, uint32_t in_message, WPARAM in_wparam, LPARAM in_lparam)
+	bool MOUSE_WINDOWS::handle_message(HWND in_window, uint32_t in_message, WPARAM in_wparam, LPARAM in_lparam)
 	{
 		m_impl->m_window = in_window;
 		m_impl->m_lparam = in_lparam;
@@ -73,7 +73,7 @@ namespace input
 		return true;
 	}
 
-	void POINTING_DEVICE_WINDOWS::handle_absolute_input()
+	void MOUSE_WINDOWS::handle_absolute_input()
 	{
 		m_previous_position = m_current_position;
 
@@ -83,7 +83,7 @@ namespace input
 		m_current_position = new_mouse_position;
 	}
 
-	bool POINTING_DEVICE_WINDOWS::handle_raw_input()
+	bool MOUSE_WINDOWS::handle_raw_input()
 	{
 		UINT size;
 		// get the size of the input data
@@ -108,7 +108,7 @@ namespace input
 		{
 			m_pos_delta = MOUSE_POS_TYPE(raw_input.data.mouse.lLastX, raw_input.data.mouse.lLastY);
 			std::wostringstream os_;
-			os_ << m_pos_delta.X << "\n";
+			os_ << m_pos_delta.x << "\n";
 			OutputDebugStringW(os_.str().c_str());
 			//OutputDebugString("Stuff: " << m_pos_delta.X);
 			return true;
@@ -117,19 +117,19 @@ namespace input
 		return false;
 	}
 
-	void POINTING_DEVICE_WINDOWS::on_mouse_moved()
+	void MOUSE_WINDOWS::on_mouse_moved()
 	{
 		super::on_mouse_moved();
 	}
 
-	void POINTING_DEVICE_WINDOWS::on_mouse_button_down(const BUTTON in_pressed_button)
+	void MOUSE_WINDOWS::on_mouse_button_down(const BUTTON in_pressed_button)
 	{
 		super::on_mouse_button_down(in_pressed_button);
 
 		while (::ShowCursor(FALSE) >= 0);
 	}
 
-	void POINTING_DEVICE_WINDOWS::on_mouse_button_up(const BUTTON in_released_button)
+	void MOUSE_WINDOWS::on_mouse_button_up(const BUTTON in_released_button)
 	{
 		super::on_mouse_button_up(in_released_button);
 

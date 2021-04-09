@@ -19,7 +19,7 @@ namespace input
 
 namespace input
 {
-	class POINTING_DEVICE_BASE
+	class MOUSE_BASE
 	{
 	public:
 		const MOUSE_POS_TYPE& get_previous_position() const { return m_previous_position; }

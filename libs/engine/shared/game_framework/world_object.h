@@ -24,7 +24,7 @@ namespace engine
 		~WORLD_OBJECT();
 		WORLD_OBJECT( const engine::WORLD_OBJECT& other );
 
-		void create_mesh( const std::vector<core::RHI_Vertex_PosTexNorTan>&& vertices, const std::vector<uint32_t>&& indices );
+		void create_mesh( std::vector<core::RHI_Vertex_PosTexNorTan>&& vertices, std::vector<uint32_t>&& indices );
 
 		MESH* get_mesh() const { return m_mesh.get(); }
 

@@ -8,6 +8,8 @@
 //! Includes
 //////////////////////////////////////////////////////////////////////
 
+#include "engine/shared/game_framework/nodes/node.h"
+
 #include "core/shared/patterns/instance_tracker.h"
 #include "engine/shared/game_framework/level.h"
 
@@ -19,11 +21,13 @@ namespace engine
 
 	inline constexpr auto PERSISTENT_LEVEL_INDEX{ 0 };
 
-	class WORLD
+	class WORLD : public NODE
 	{
 	public:
 		WORLD();
 		~WORLD();
+
+		bool receive_event( const engine::EVENT& in_event ) override;
 
 		void Tick(float InDeltaTime);
 
@@ -31,8 +35,7 @@ namespace engine
 
 		void create_world_object( const std::string& mesh_filepath );
 
-		/*template<typename TYPE, typename... ARGS>
-		static TYPE* spawn_actor(LEVEL* in_level_override = nullptr, ARGS&& ... in_args);*/
+		void create_world_object( std::vector<core::RHI_Vertex_PosTexNorTan>&& vertices, std::vector<uint32_t>&& indices );
 
 		static WORLD* get_world();
 
@@ -42,11 +45,4 @@ namespace engine
 
 		std::vector<LEVEL> m_levels;
 	};
-
-	//template<typename TYPE, typename... ARGS>
-	//inline TYPE* WORLD::spawn_actor(LEVEL* in_level_override, ARGS&& ... in_args)
-	//{
-	//	// todo assert if doesn't inherit from WORLD_OBJECT
-	//	return NewObject<TYPE>(new TYPE( std::forward<ARGS>(in_args)... ), in_level_override ? (OBJECT*)in_level_override : (OBJECT*)s_current_level); // TEMP non-implicit converstion
-	//}
 }

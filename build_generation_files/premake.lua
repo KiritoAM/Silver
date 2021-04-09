@@ -56,6 +56,9 @@ if PROJECT_TYPE == "editor" then
 	defines{ "EDITOR" }
 end
 
+	defines{ "GUI_AVAILABLE" }
+	defines{ "INPUT_AVAILABLE" }
+
 	--	"debug"
 	filter "configurations:debug"
 		defines { "DEBUG" }
@@ -82,6 +85,7 @@ end
 group "Libraries"
 	dofile (LIB_DIRECTORY .. "/core/build_generation_files/core.lua")
 	dofile (LIB_DIRECTORY .. "/engine/build_generation_files/engine.lua")
+	
 	dofile (LIB_DIRECTORY .. "/input/build_generation_files/input.lua")
 	dofile (LIB_DIRECTORY .. "/gui/build_generation_files/gui.lua")
 

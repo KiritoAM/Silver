@@ -1,9 +1,9 @@
 
 #include "engine/shared/game_framework/game_instance.h"
 
+#include "engine/shared/events/events_manager.h"
 #include "engine/shared/game_framework/nodes/node_tree.h"
 #include "engine/shared/game_framework/nodes/node.h"
-#include "engine/shared/game_framework/world.h"
 
 namespace engine
 {
@@ -13,24 +13,20 @@ namespace engine
 
 	GAME_INSTANCE::~GAME_INSTANCE() = default;
 
-	void GAME_INSTANCE::tick()
+	void GAME_INSTANCE::tick( const float delta_time )
 	{
-		m_node_tree->tick();
+		EVENTS_MANAGER::get_singleton()->process_events();
+
+		m_node_tree->tick( delta_time );
 	}
 
-	WORLD* GAME_INSTANCE::create_world()
+	void GAME_INSTANCE::add_node_to_root( NODE* node )
 	{
-		m_world = std::make_unique<WORLD>();
-		return m_world.get();
+		m_node_tree->add_node( node );
 	}
 
-	void GAME_INSTANCE::set_world( WORLD* world )
+	bool GAME_INSTANCE::add_node_to_branch( NODE* node, const NODE_BRANCH_TYPE branch )
 	{
-		m_world = std::unique_ptr<WORLD>( world );
-	}
-
-	void GAME_INSTANCE::add_node( NODE* node )
-	{
-		m_node_tree->add_child( node );
+		return m_node_tree->add_node_to_branch( node, branch );
 	}
 }

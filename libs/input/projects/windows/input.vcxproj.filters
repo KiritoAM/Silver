@@ -51,6 +51,9 @@
     <ClInclude Include="..\..\shared\input_definition.h">
       <Filter>shared</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\input_events.h">
+      <Filter>shared</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\input_forward_declares.h">
       <Filter>shared</Filter>
     </ClInclude>

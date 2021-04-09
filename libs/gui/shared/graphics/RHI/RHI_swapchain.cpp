@@ -6,8 +6,7 @@
 
 #include "gui/shared/graphics/RHI/RHI_swapchain.h"
 
-#include "gui/shared/screen.h"
-#include "gui/shared/screen_manager.h"
+#include "gui/shared/screen/screen_manager.h"
 #include "gui/shared/window/window.h"
 #include "gui/shared/graphics/RHI/RHI_swapchain _base.h"
 #include "gui/shared/graphics/RHI/RHI_types.h"
@@ -20,7 +19,7 @@ namespace gui
 {
 	SWAPCHAIN::SWAPCHAIN( const RHI_Api_Type api_type )
 	{
-		const WINDOW* window = SCREEN_MANAGER::get_singleton()->get_screen( MAIN_SCREEN_ID )->get_window();
+		const WINDOW* window = SCREEN_MANAGER::get_singleton()->get_window( SCREEN_MANAGER::MAIN_SCREEN_ID );
 		const auto height = window->get_height();
 		const auto width = window->get_width();
 		void* window_handle = window->get_native_window();

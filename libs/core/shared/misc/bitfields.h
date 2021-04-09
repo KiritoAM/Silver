@@ -25,5 +25,5 @@ namespace core
 	inline constexpr TYPE clear_bits(TYPE in_value, TYPE in_bits) { return static_cast<TYPE>(in_value & ~in_bits); }
 
 	template<typename TYPE>
-	inline constexpr void clear_bits(TYPE* in_value, TYPE in_bits) { (*in_value) = *in_value & ~in_bits; }
+	inline constexpr void clear_bits(TYPE* in_value, TYPE in_bits) { *in_value &= ~in_bits; }
 }

@@ -10,23 +10,23 @@
 
 namespace gui
 {
-	void WINDOW_BASE::set_bounds(const core::RECTANGLE<int32_t>& in_bounds)
+	void WINDOW_BASE::set_bounds(const core::FRECTANGLE& in_bounds)
 	{
 		m_bounds = in_bounds;
 	}
 
-	const core::RECTANGLE<int32_t>& WINDOW_BASE::get_bounds() const
+	const core::FRECTANGLE& WINDOW_BASE::get_bounds() const
 	{
 		return m_bounds;
 	}
 
-	uint32_t WINDOW_BASE::get_width() const
+	float WINDOW_BASE::get_width() const
 	{
-		return static_cast<uint32_t>(m_bounds.get_width());
+		return m_bounds.get_width();
 	}
 
-	uint32_t WINDOW_BASE::get_height() const
+	float WINDOW_BASE::get_height() const
 	{
-		return static_cast<uint32_t>(m_bounds.get_height());
+		return m_bounds.get_height();
 	}
 }

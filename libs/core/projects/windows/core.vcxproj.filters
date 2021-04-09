@@ -90,7 +90,13 @@
     <ClInclude Include="..\..\shared\math\math_utilities.h">
       <Filter>shared\math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\math\matrix.h">
+      <Filter>shared\math</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\math\positional_math.h">
+      <Filter>shared\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\math\quaternion.h">
       <Filter>shared\math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\math\rectangle.h">
@@ -109,6 +115,9 @@
       <Filter>shared\math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\math\vector4d.h">
+      <Filter>shared\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\math\vector_types.h">
       <Filter>shared\math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\misc\bitfields.h">
@@ -135,8 +144,20 @@
     <ClInclude Include="..\..\shared\patterns\non_automatic_singleton.h">
       <Filter>shared\patterns</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\patterns\ref_counting.h">
+      <Filter>shared\patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\patterns\scoped_value.h">
+      <Filter>shared\patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\patterns\unique_id.h">
+      <Filter>shared\patterns</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\platform.h">
       <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\type_wrappers\array.h">
+      <Filter>shared\type_wrappers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\type_wrappers\map.h">
       <Filter>shared\type_wrappers</Filter>
@@ -180,6 +201,9 @@
       <Filter>shared\math</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\math\positional_math.cpp">
+      <Filter>shared\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\math\quaternion.cpp">
       <Filter>shared\math</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\math\transform.cpp">

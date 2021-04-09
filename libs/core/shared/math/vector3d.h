@@ -23,15 +23,15 @@ namespace core
 		{}
 
 		constexpr explicit VECTOR3D(TYPE InXYZ)
-			: X(InXYZ)
-			, Y(InXYZ)
-			, Z(InXYZ)
+			: x(InXYZ)
+			, y(InXYZ)
+			, z(InXYZ)
 		{}
 
 		constexpr VECTOR3D(TYPE InX, TYPE InY, TYPE InZ)
-			: X(InX)
-			, Y(InY)
-			, Z(InZ)
+			: x(InX)
+			, y(InY)
+			, z(InZ)
 		{}
 
 		bool operator==(const VECTOR3D<TYPE>& in_vector) const;
@@ -52,106 +52,157 @@ namespace core
 
 		VECTOR3D<TYPE> operator^(const VECTOR3D<TYPE>& in_vector) const;
 
-		float get_size() const;
+		float length_squared() const { return x * x + y * y + z * z; }
 
-		TYPE X{};
+		float length() const;
 
-		TYPE Y{};
+		void normalise();
 
-		TYPE Z{};
+		VECTOR3D<TYPE> normalised() const;
+
+		static inline VECTOR3D<TYPE> normalised( const VECTOR3D<TYPE>& v1 ) { return v1.normalised(); }
+
+		[[nodiscard]] float Dot( const VECTOR3D<TYPE>& rhs ) const { return x * rhs.x + y * rhs.y + z * rhs.z; }
+
+		static inline float Dot( const VECTOR3D<TYPE>& v1, const VECTOR3D<TYPE>& v2 )    { return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z); }
+
+		[[nodiscard]] VECTOR3D<TYPE> Cross( const VECTOR3D<TYPE>& v2 ) const { return Cross( *this, v2 ); }
+
+		static inline VECTOR3D<TYPE> Cross( const VECTOR3D<TYPE>& v1, const VECTOR3D<TYPE>& v2 )
+		{
+			return {
+				v1.y * v2.z - v2.y * v1.z,
+				-(v1.x * v2.z - v2.x * v1.z),
+				v1.x * v2.y - v2.x * v1.y
+			};
+		}
+
+		TYPE x{};
+
+		TYPE y{};
+
+		TYPE z{};
 	};
 
 	template<typename TYPE>
 	inline bool VECTOR3D<TYPE>::operator==(const VECTOR3D<TYPE>& in_vector) const
 	{
-		return X == in_vector.X && Y == in_vector.Y && Z == in_vector.Z;
+		return x == in_vector.x && y == in_vector.y && z == in_vector.z;
 	}
 
 	template<typename TYPE>
 	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::operator+(const VECTOR3D<TYPE>& in_vector) const
 	{
-		return { X + in_vector.X, Y + in_vector.Y, Z + in_vector.Z };
+		return { x + in_vector.x, y + in_vector.y, z + in_vector.z };
 	}
 
 	template<typename TYPE>
 	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::operator+(float in_scalar) const
 	{
-		return { X + in_scalar, Y + in_scalar, Z + in_scalar };
+		return { x + in_scalar, y + in_scalar, z + in_scalar };
 	}
 
 	template<typename TYPE>
 	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::operator-(const VECTOR3D<TYPE>& in_vector) const
 	{
-		return { X - in_vector.X, Y - in_vector.Y, Z - in_vector.Z };
+		return { x - in_vector.x, y - in_vector.y, z - in_vector.z };
 	}
 
 	template<typename TYPE>
 	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::operator-() const
 	{
-		return { -X, -Y, -Z };
+		return { -x, -y, -z };
 	}
 
 	template<typename TYPE>
 	inline VECTOR3D<TYPE>& VECTOR3D<TYPE>::operator+=(const VECTOR3D<TYPE>& in_vector)
 	{
-		X += in_vector.X;
-		Y += in_vector.Y;
-		Z += in_vector.Z;
+		x += in_vector.x;
+		y += in_vector.y;
+		z += in_vector.z;
 		return *this;
 	}
 
 	template<typename TYPE>
 	inline VECTOR3D<TYPE>& VECTOR3D<TYPE>::operator-=(const VECTOR3D<TYPE>& in_vector)
 	{
-		X -= in_vector.X;
-		Y -= in_vector.Y;
-		Z -= in_vector.Z;
+		x -= in_vector.x;
+		y -= in_vector.y;
+		z -= in_vector.z;
 		return *this;
 	}
 
 	template<typename TYPE>
 	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::operator*(float in_scale) const
 	{
-		return { X * in_scale, Y * in_scale, Z * in_scale };
+		return { x * in_scale, y * in_scale, z * in_scale };
 	}
 
 	template<typename TYPE>
 	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::operator^(const VECTOR3D<TYPE>& in_vector) const
 	{
-		return { Y * in_vector.Z - Z * in_vector.Y,
-			Z * in_vector.X - X * in_vector.Z,
-			X * in_vector.Y - Y * in_vector.X };
+		return { y * in_vector.z - z * in_vector.y,
+			z * in_vector.x - x * in_vector.z,
+			x * in_vector.y - y * in_vector.x };
 	}
 
 	template<typename TYPE>
-	inline float VECTOR3D<TYPE>::get_size() const
+	inline float VECTOR3D<TYPE>::length() const
 	{
-		return sqrtf(X*X + Y*Y + Z*Z);
+		return sqrtf( length_squared() );
+	}
+
+	template<typename TYPE>
+	inline void VECTOR3D<TYPE>::normalise()
+	{
+		const auto length_sq = length_squared();
+		if ( !Equals( length_sq, 1.0f ) && length_sq > 0.0f )
+		{
+			const auto length_inverted = 1.0f / length();
+			x *= length_inverted;
+			y *= length_inverted;
+			z *= length_inverted;
+		}
+	};
+
+	template<typename TYPE>
+	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::normalised() const
+	{
+		const auto length_sq = length_squared();
+		if ( !Equals( length_sq, 1.0f ) && length_sq > 0.0f )
+		{
+			const auto length_inverted = 1.0f / length();
+			return (*this) * length_inverted;
+		}
+		else
+		{
+			return *this;
+		}
 	}
 
 	//////////////////////////////////////////////////////////////////////
 	//! Types
 	//////////////////////////////////////////////////////////////////////
 
-	using FVECTOR = VECTOR3D<float>;
+	using FVECTOR3D = VECTOR3D<float>;
 
 	//////////////////////////////////////////////////////////////////////
 	//! Constants
 	//////////////////////////////////////////////////////////////////////
 
-	static inline constexpr FVECTOR ZERO_VALUE(0.0f);
+	static inline constexpr VECTOR3D ZERO_VALUE(0.0f);
 
-	static inline constexpr FVECTOR ONE_VECTOR(1.0f);
+	static inline constexpr VECTOR3D ONE_VECTOR(1.0f);
 
-	static inline constexpr FVECTOR UP_VECTOR(0.0f, 0.0f, 1.0f);
+	static inline constexpr VECTOR3D UP_VECTOR(0.0f, 0.0f, 1.0f);
 
-	static inline constexpr FVECTOR DOWN_VECTOR(0.0f, 0.0f, -1.0f);
+	static inline constexpr VECTOR3D DOWN_VECTOR(0.0f, 0.0f, -1.0f);
 
-	static inline constexpr FVECTOR FORWARD_VECTOR(1.0f, 0.0f, 0.0f);
+	static inline constexpr VECTOR3D FORWARD_VECTOR(1.0f, 0.0f, 0.0f);
 
-	static inline constexpr FVECTOR BACKWARD_VECTOR(-1.0f, 0.0f, 0.0f);
+	static inline constexpr VECTOR3D BACKWARD_VECTOR(-1.0f, 0.0f, 0.0f);
 
-	static inline constexpr FVECTOR RIGHT_VECTOR(0.0f, 1.0f, 0.0f);
+	static inline constexpr VECTOR3D RIGHT_VECTOR(0.0f, 1.0f, 0.0f);
 
-	static inline constexpr FVECTOR LEFT_VECTOR(0.0f, -1.0f, 0.0f);
+	static inline constexpr VECTOR3D LEFT_VECTOR(0.0f, -1.0f, 0.0f);
 }

@@ -23,6 +23,8 @@ namespace gui
 		HWND find_os_window(const std::string& in_window_name);
 
 		HWND get_native_window() const { return m_window; }
+
+		WINDOW_ID_TYPE get_window_id() const { return reinterpret_cast<WINDOW_ID_TYPE>(m_window); }
 		
 	protected:
 		void show_window();

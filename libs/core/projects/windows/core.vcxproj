@@ -56,7 +56,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;GUI_AVAILABLE;INPUT_AVAILABLE;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdint.h</ForcedIncludeFiles>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -81,7 +81,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>Silver_RUNTIME_STATIC=1;Silver_RUNTIME_SHARED=0;PLATFORM_WINDOWS;EDITOR;GUI_AVAILABLE;INPUT_AVAILABLE;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdint.h</ForcedIncludeFiles>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
@@ -112,13 +112,16 @@
     <ClInclude Include="..\..\shared\logging\logging.h" />
     <ClInclude Include="..\..\shared\math\box_sphere.h" />
     <ClInclude Include="..\..\shared\math\math_utilities.h" />
+    <ClInclude Include="..\..\shared\math\matrix.h" />
     <ClInclude Include="..\..\shared\math\positional_math.h" />
+    <ClInclude Include="..\..\shared\math\quaternion.h" />
     <ClInclude Include="..\..\shared\math\rectangle.h" />
     <ClInclude Include="..\..\shared\math\rotator.h" />
     <ClInclude Include="..\..\shared\math\transform.h" />
     <ClInclude Include="..\..\shared\math\vector2d.h" />
     <ClInclude Include="..\..\shared\math\vector3d.h" />
     <ClInclude Include="..\..\shared\math\vector4d.h" />
+    <ClInclude Include="..\..\shared\math\vector_types.h" />
     <ClInclude Include="..\..\shared\misc\bitfields.h" />
     <ClInclude Include="..\..\shared\misc\core_misc_defines.h" />
     <ClInclude Include="..\..\shared\misc\noop_counter.h" />
@@ -127,7 +130,11 @@
     <ClInclude Include="..\..\shared\patterns\delegate.h" />
     <ClInclude Include="..\..\shared\patterns\instance_tracker.h" />
     <ClInclude Include="..\..\shared\patterns\non_automatic_singleton.h" />
+    <ClInclude Include="..\..\shared\patterns\ref_counting.h" />
+    <ClInclude Include="..\..\shared\patterns\scoped_value.h" />
+    <ClInclude Include="..\..\shared\patterns\unique_id.h" />
     <ClInclude Include="..\..\shared\platform.h" />
+    <ClInclude Include="..\..\shared\type_wrappers\array.h" />
     <ClInclude Include="..\..\shared\type_wrappers\map.h" />
     <ClInclude Include="..\..\shared\type_wrappers\vector.h" />
     <ClInclude Include="..\..\shared\vertex.h" />
@@ -144,6 +151,7 @@
     <ClCompile Include="..\..\shared\logging\log_message.cpp" />
     <ClCompile Include="..\..\shared\math\box_sphere.cpp" />
     <ClCompile Include="..\..\shared\math\positional_math.cpp" />
+    <ClCompile Include="..\..\shared\math\quaternion.cpp" />
     <ClCompile Include="..\..\shared\math\transform.cpp" />
     <ClCompile Include="..\..\shared\platform.cpp" />
   </ItemGroup>

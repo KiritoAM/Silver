@@ -9,12 +9,13 @@
 #include "input/shared/mouse/mouse_base.h"
 
 #include "core/shared/math/rectangle.h"
-//#include "graphics/shared/window/window.h"
+#include "engine/shared/events/events_manager.h"
+#include "input/shared/input_events.h"
 #include "input/shared/mouse/mouse_codes.h"
 
 namespace input
 {
-	void POINTING_DEVICE_BASE::on_mouse_moved()
+	void MOUSE_BASE::on_mouse_moved()
 	{
 		// todo get the window that currently has focus, and maybe cache it
 		/*gui::WINDOW* active_window = application::ENGINE::get_engine_window();
@@ -23,9 +24,11 @@ namespace input
 		const float pos_delta_norm_x = static_cast<float>( m_pos_delta.X ) / static_cast<float>( window_bounds.get_width() );
 		const float pos_delta_norm_y = static_cast<float>( m_pos_delta.Y ) / static_cast<float>( window_bounds.get_height() );
 		m_pos_delta_norm = { pos_delta_norm_x, pos_delta_norm_y };*/
+
+		engine::EVENTS_MANAGER::get_singleton()->add_event( std::make_unique<MOUSE_MOVE_EVENT>( m_current_position ) );
 	}
 
-	void POINTING_DEVICE_BASE::on_mouse_button_down(BUTTON in_pressed_button)
+	void MOUSE_BASE::on_mouse_button_down(BUTTON in_pressed_button)
 	{
 		switch (in_pressed_button)
 		{
@@ -53,7 +56,7 @@ namespace input
 		m_button_up_down.m_inner.execute<void, BUTTON, bool>(std::move(in_pressed_button), true);
 	}
 
-	void POINTING_DEVICE_BASE::on_mouse_button_up(BUTTON in_released_button)
+	void MOUSE_BASE::on_mouse_button_up(BUTTON in_released_button)
 	{
 		switch (in_released_button)
 		{

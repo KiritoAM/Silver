@@ -10,6 +10,7 @@
 
 #include "core/shared/patterns/non_automatic_singleton.h"
 
+#include "core/shared/patterns/unique_id.h"
 #include "engine/shared/game_framework/game_instance.h"
 
 #include <chrono>
@@ -21,7 +22,7 @@ using APPLICATION_PLATFORM = engine::APPLICATION_WINDOWS;
 #endif
 
 //////////////////////////////////////////////////////////////////////
-//! Forward Declerations
+//! Forward Declarations
 //////////////////////////////////////////////////////////////////////
 
 namespace core
@@ -32,12 +33,15 @@ namespace core
 namespace engine
 {
 	inline constexpr uint32_t MAIN_INSTANCE_ID{ 0u };
+	inline constexpr core::UNIQUE_ID POST_APP_ITERATION_EVENT_ID{ 'PAIt' };
 
 	class APPLICATION : public APPLICATION_PLATFORM, public core::NON_AUTOMATIC_SINGLETON<APPLICATION>
 	{
 		friend class core::NON_AUTOMATIC_SINGLETON<APPLICATION>;
 
 	public:
+		static engine::APPLICATION* create_singleton_custom();
+
 		void run_loop();
 
 		//std::chrono::duration<double> get_delta_time() const { return m_delta_time; }
@@ -52,16 +56,15 @@ namespace engine
 		
 		std::chrono::system_clock::time_point m_engine_start_time{};
 		std::chrono::system_clock::time_point m_last_time{};
-		std::chrono::duration<double> m_delta_time{}; // @todo make a singleton per thread and make this available via each singleton
+		std::chrono::duration<float> m_delta_time{}; // @todo make a singleton per thread and make this available via each singleton
 
 		bool m_should_shutdown{ false };
 
-	private:
-		void startup();
+		virtual void startup();
 
 		void iteration();
 
-		void shutdown();
+		virtual void shutdown();
 
 		using APPLICATION_PLATFORM::process_os_messages;
 	};

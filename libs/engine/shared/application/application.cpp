@@ -2,15 +2,11 @@
 
 #include "engine/shared/application/application.h"
 
+#include "engine/shared/events/events_manager.h"
 #include "engine/shared/game_framework/world.h"
 
 namespace engine
 {
-	/*ENGINE* ENGINE::create_singleton_custom()
-	{
-		return new UGameEngine;
-	}*/
-
 	APPLICATION::APPLICATION()
 	{
 		m_game_instances.try_emplace( MAIN_INSTANCE_ID );
@@ -26,6 +22,8 @@ namespace engine
 		while ( !m_should_shutdown )
 		{
 			iteration();
+
+			EVENTS_MANAGER::get_singleton()->send_event( { POST_APP_ITERATION_EVENT_ID } );
 		}
 
 		shutdown();
@@ -44,10 +42,10 @@ namespace engine
 
 		process_os_messages();
 
-		/*if (WorldList[0] && WorldList[0]->get_current_world())
+		for ( auto& [id, game_instance] : m_game_instances )
 		{
-			WorldList[0]->get_current_world()->Tick(in_delta_time);
-		}*/
+			game_instance.tick( m_delta_time.count() );
+		}
 	}
 
 	void APPLICATION::shutdown()

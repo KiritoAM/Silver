@@ -16,15 +16,15 @@ namespace editor
 
 	EDITOR_ASSETS::~EDITOR_ASSETS() = default;
 
-	bool EDITOR_ASSETS::receive_notification( const engine::NODE_NOTIFICATION notification )
+	bool EDITOR_ASSETS::receive_event( const engine::EVENT& in_event )
 	{
-		auto handled = EDITOR_BASE::receive_notification( notification );
+		auto handled = EDITOR_BASE::receive_event( in_event );
 
-		switch ( notification )
+		switch ( in_event.unique_id )
 		{
-		case engine::NODE_NOTIFICATION::TICK:
+		case engine::TICK_EVENT_ID:
 			{
-
+				
 			}
 			break;
 		}
