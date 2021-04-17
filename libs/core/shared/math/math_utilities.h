@@ -26,7 +26,13 @@ namespace core
 
 	// Check for equality but allow for a small error
 	template <class T>
-	constexpr bool Equals( T lhs, T rhs, T error = std::numeric_limits<T>::epsilon() ) { return lhs + error >= rhs && lhs - error <= rhs; }
+	constexpr bool equals( T lhs, T rhs, T error = std::numeric_limits<T>::epsilon() ) { return lhs + error >= rhs && lhs - error <= rhs; }
+
+	template <typename T>
+	constexpr int Sign( T x ) { return (static_cast<T>(0) < x) - (x < static_cast<T>(0)); }
+
+	template <class T, class U>
+	constexpr T Lerp( T lhs, T rhs, U t ) { return lhs * (static_cast<U>(1) - t) + rhs * t; }
 
 	class Math
 	{

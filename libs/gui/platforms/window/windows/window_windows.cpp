@@ -14,7 +14,6 @@
 #include "gui/thirdparty/imgui/imgui.h"
 #include "gui/thirdparty/imgui/windows/imgui_impl_win32.h"
 
-#include <windows.h>
 //#include <WtsApi32.h>
 
 namespace
@@ -29,7 +28,7 @@ namespace
 		bool handled{ false };
 
 		auto window = gui::SCREEN_MANAGER::get_singleton()->get_window( reinterpret_cast<gui::WINDOW_ID_TYPE>(hwnd) );
-		if ( window )
+		//if ( window )
 		{
 			for ( size_t index{ 0u }; index < engine::EVENTS_MANAGER::s_event_processors.size() && !handled; ++index )
 			{
@@ -56,7 +55,7 @@ namespace
 		wc.hCursor = LoadCursor( instance, IDC_ARROW );
 		wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 		wc.lpszMenuName = nullptr;
-		wc.lpszClassName = L"my_application";;
+		wc.lpszClassName = L"ImGui Platform";;
 		wc.hIconSm = LoadIcon( instance, IDI_APPLICATION );
 
 		if ( !RegisterClassEx( &wc ) )
@@ -86,7 +85,7 @@ namespace gui
 			::AdjustWindowRect( &rect, 13565952, false );
 		}
 
-		m_window = ::CreateWindowW( L"my_application", L"aaa", 13565952, window_bounds.get_left(), window_bounds.get_top(),
+		m_window = ::CreateWindowW( L"ImGui Platform", L"aaa", 13565952, window_bounds.get_left(), window_bounds.get_top(),
 									window_bounds.get_width(), window_bounds.get_height(), nullptr, nullptr, (HINSTANCE)GetModuleHandle( nullptr ), nullptr );
 		if ( m_window )
 		{

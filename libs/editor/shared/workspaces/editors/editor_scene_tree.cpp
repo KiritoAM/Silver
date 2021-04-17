@@ -6,12 +6,14 @@
 #include "editor/shared/workspaces/editors/editor_scene_tree.h"
 
 #include "editor/shared/ui/widgets/widget_scene_tree.h"
+#include "engine/shared/game_framework/world.h"
 
 namespace editor
 {
 	EDITOR_SCENE_TREE::EDITOR_SCENE_TREE()
 	{
-		m_children.emplace_back( std::make_unique<WIDGET_SCENE_TREE>() );
+		m_children.emplace_back( new engine::WORLD );
+		m_children.emplace_back( new WIDGET_SCENE_TREE );
 	}
 
 	EDITOR_SCENE_TREE::~EDITOR_SCENE_TREE() = default;

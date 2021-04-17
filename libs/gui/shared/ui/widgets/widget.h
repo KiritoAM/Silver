@@ -10,6 +10,7 @@
 
 #include "engine/shared/game_framework/nodes/node.h"
 
+#include "core/shared/math/rectangle.h"
 #include "core/shared/math/vector2d.h"
 
 #include <memory>
@@ -22,19 +23,13 @@
 
 struct ImGuiWindow;
 
-namespace core
-{
-	template<typename TYPE>
-	struct RECTANGLE;
-}
-
 namespace gui
 {
 	class WIDGET : public engine::NODE
 	{
 	public:
 		WIDGET();
-		virtual ~WIDGET();
+		virtual ~WIDGET() = default;
 		
 		bool receive_event( const engine::EVENT& in_event ) override;
 
@@ -44,13 +39,11 @@ namespace gui
 
 		//virtual void paint(graphics::RENDERER& renderer) = 0;
 
-		const core::RECTANGLE<int32_t>& get_bounds() const;
-
 		bool set_size( const core::FVECTOR2D& possible_new_size )
 		{
 			if ( possible_new_size <= m_max_size )
 			{
-				m_size = possible_new_size;
+				m_bounds.set_dimensions( possible_new_size );
 				return true;
 			}
 			else
@@ -67,15 +60,13 @@ namespace gui
 		uint8_t m_var_pushes{};
 		int32_t m_flags{};
 		std::optional<float> m_alpha;
-		core::FVECTOR2D m_position;
+		core::FRECTANGLE m_bounds;
+		core::FVECTOR2D m_position_override;
+		core::FVECTOR2D m_size_override;
 		core::FVECTOR2D m_padding;
-		core::FVECTOR2D m_size;
+		core::FVECTOR2D m_min_size;
 		core::FVECTOR2D m_max_size;
-		ImGuiWindow* m_window{ nullptr };
+		ImGuiWindow* m_window{};
 		std::string m_title{ "Unnamed" };
-
-	private:
-		struct IMPL;
-		std::unique_ptr<IMPL> m_impl;
 	};
 }

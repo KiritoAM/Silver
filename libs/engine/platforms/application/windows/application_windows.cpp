@@ -1,7 +1,7 @@
 
 #include "engine/platforms/application/windows/application_windows.h"
 
-#include <windows.h>
+#include "core/platforms/include_wrappers/windows/windows.h"
 
 namespace engine
 {

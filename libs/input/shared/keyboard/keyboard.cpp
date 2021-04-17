@@ -13,18 +13,5 @@
 
 namespace input
 {
-	void KEYBOARD::on_key_down(const KEY in_key)
-	{
 
-	}
-
-	void KEYBOARD::on_key_down(const KEY in_key, const WINDOWS_KEYS_STATE& in_windows_keys_state)
-	{
-
-	}
-
-	void KEYBOARD::on_key_up(const KEY in_key)
-	{
-
-	}
 }

@@ -50,6 +50,8 @@ namespace core
 
 		VECTOR3D<TYPE> operator*(float in_scale) const;
 
+		VECTOR3D<TYPE> operator*( const VECTOR3D<TYPE>& b ) const;
+
 		VECTOR3D<TYPE> operator^(const VECTOR3D<TYPE>& in_vector) const;
 
 		float length_squared() const { return x * x + y * y + z * z; }
@@ -139,6 +141,16 @@ namespace core
 	}
 
 	template<typename TYPE>
+	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::operator*( const VECTOR3D<TYPE>& b ) const
+	{
+		return { x * b.x, y * b.y, z * b.z };
+	}
+
+	// Reverse order operators
+	template<typename TYPE>
+	inline VECTOR3D<TYPE> operator*( float lhs, const VECTOR3D<TYPE>& rhs ) { return rhs * lhs; }
+
+	template<typename TYPE>
 	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::operator^(const VECTOR3D<TYPE>& in_vector) const
 	{
 		return { y * in_vector.z - z * in_vector.y,
@@ -156,7 +168,7 @@ namespace core
 	inline void VECTOR3D<TYPE>::normalise()
 	{
 		const auto length_sq = length_squared();
-		if ( !Equals( length_sq, 1.0f ) && length_sq > 0.0f )
+		if ( !equals( length_sq, 1.0f ) && length_sq > 0.0f )
 		{
 			const auto length_inverted = 1.0f / length();
 			x *= length_inverted;
@@ -169,7 +181,7 @@ namespace core
 	inline VECTOR3D<TYPE> VECTOR3D<TYPE>::normalised() const
 	{
 		const auto length_sq = length_squared();
-		if ( !Equals( length_sq, 1.0f ) && length_sq > 0.0f )
+		if ( !equals( length_sq, 1.0f ) && length_sq > 0.0f )
 		{
 			const auto length_inverted = 1.0f / length();
 			return (*this) * length_inverted;

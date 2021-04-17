@@ -53,6 +53,7 @@ namespace engine
 		if ( branch == NODE_BRANCH_TYPE::NONE )
 		{
 			add_node( node );
+			return true;
 		}
 
 		NODE* found_node = check_children( m_root_node.get(), branch );

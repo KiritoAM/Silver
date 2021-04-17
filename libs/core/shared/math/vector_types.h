@@ -4,10 +4,19 @@
 
 #pragma once
 
+//////////////////////////////////////////////////////////////////////
+//! Forward Declarations
+//////////////////////////////////////////////////////////////////////
+
 namespace core
 {
 	template<typename TYPE>
 	struct VECTOR2D;
 
 	using FVECTOR2D = VECTOR2D<float>;
+
+	template<typename TYPE>
+	struct VECTOR3D;
+
+	using FVECTOR3D = VECTOR3D<float>;
 }

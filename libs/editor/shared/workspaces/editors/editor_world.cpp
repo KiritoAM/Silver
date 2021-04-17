@@ -11,7 +11,7 @@ namespace editor
 {
 	EDITOR_WORLD::EDITOR_WORLD()
 	{
-		m_children.emplace_back( new engine::WORLD );
+		//m_children.emplace_back( new engine::WORLD );
 	}
 
 	EDITOR_WORLD::~EDITOR_WORLD() = default;

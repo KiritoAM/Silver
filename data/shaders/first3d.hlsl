@@ -1,18 +1,19 @@
 
 #include "common.hlsl"
 
-float4 mainVS(Vertex_PosUvNorTan input) : SV_POSITION
+Pixel_PosUv mainVS(Vertex_PosUvNorTan input)
 {
-	float4 out_position;
+	Pixel_PosUv output;
 
-    input.position.w         = 1.0f;
-    out_position             = mul(input.position, g_transform);
-    out_position             = mul(out_position, g_view_projection);
+    input.position.w = 1.0f;
+    output.position = mul(input.position, g_transform);
+    output.position = mul(output.position, g_view_projection);
+	output.uv = input.uv;
 	
-	return out_position;
+	return output;
 }
 
-float4 mainPS() : SV_TARGET
+float4 mainPS(Pixel_PosUv input) : SV_TARGET
 {
-	return float4(0.0f, 0.0f, 1.0f, 1.0f);
+    return material_albedo.Sample(sampler_point_clamp, input.uv);
 }

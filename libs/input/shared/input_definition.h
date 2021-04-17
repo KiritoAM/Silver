@@ -47,7 +47,7 @@ namespace input
 
 	struct AXIS_INPUT_BINDING : public INPUT_BINDING
 	{
-		AXIS_INPUT_BINDING(EINPUT_TYPE in_input_type, BUTTON in_button = BUTTON::INVALID)
+		AXIS_INPUT_BINDING(EINPUT_TYPE in_input_type, MOUSE_BUTTON in_button = MOUSE_BUTTON::INVALID)
 			: INPUT_BINDING(in_input_type)
 			, m_button(in_button)
 		{}
@@ -59,7 +59,7 @@ namespace input
 			return INPUT_BINDING::operator==(in_other) && m_button == in_other.m_button;
 		}
 
-		BUTTON m_button{ BUTTON::INVALID };
+		MOUSE_BUTTON m_button{ MOUSE_BUTTON::INVALID };
 	};
 
 	struct ACTION_INPUT_BINDING : public INPUT_BINDING
@@ -118,7 +118,7 @@ namespace std
 		size_t operator()(const input::AXIS_INPUT_BINDING& in_input_binding) const
 		{
 			// Compute individual hash values for class' data members and combine them using XOR and bit shifting.
-			return ((hash<input::INPUT_BINDING>()(in_input_binding) ^ (hash<input::BUTTON>()(in_input_binding.m_button) << 1)) >> 1);
+			return ((hash<input::INPUT_BINDING>()(in_input_binding) ^ (hash<input::MOUSE_BUTTON>()(in_input_binding.m_button) << 1)) >> 1);
 		}
 	};
 

@@ -7,6 +7,8 @@
 
 #include "gui/shared/graphics/RHI/buffer_base.h"
 
+#include "core/platforms/include_wrappers/windows/windows.h"
+
 #include <d3d11.h>
 #include <wrl/client.h>
 

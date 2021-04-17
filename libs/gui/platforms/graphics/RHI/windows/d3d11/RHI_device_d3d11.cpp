@@ -11,8 +11,6 @@
 #include "gui/platforms/graphics/RHI/windows/d3d11/RHI_context_d3d11.h"
 
 #include <array>
-//#include <vector>
-//#include <windows.h>
 #include <dxgi.h>
 
 namespace

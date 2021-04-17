@@ -29,9 +29,8 @@ namespace editor
 	{
 		m_title = "Assets";
 
-		//m_position = { 0.0f, 600.0f };
 		m_max_size = { 1000.0f, 800.0f };
-		m_size = { 700.0f, 100.0f };
+		m_bounds.set_dimensions( { 700.0f, 100.0f } );
 
 		m_children.emplace_back( new WIDGET_FILE );
 
@@ -56,11 +55,7 @@ namespace editor
 			break;
 		case input::MOUSE_MOVE_EVENT_ID:
 			{
-				handled = WIDGET::receive_event( in_event );
-
-				auto mouse_move_event = static_cast<const input::MOUSE_MOVE_EVENT&>(in_event);
-
-				if ( get_bounds().is_within( mouse_move_event.current_position ) )
+				if ( WIDGET::receive_event( in_event ) )
 				{
 					receive_event( { gui::MARK_FOR_RENDER_EVENT_ID } );
 				}

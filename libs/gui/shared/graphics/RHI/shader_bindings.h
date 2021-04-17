@@ -11,6 +11,7 @@ namespace gui
 {
 	enum class TEXTURE_SLOTS : uint8_t
 	{
+		MATERIAL_ALBEDO = 0,
 		TEXTURE = 31,
 	};
 

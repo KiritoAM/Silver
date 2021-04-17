@@ -8,8 +8,9 @@
 //! Includes
 //////////////////////////////////////////////////////////////////////
 
+#include "core/platforms/include_wrappers/windows/windows.h"
+
 #include <stdint.h>
-#include <Windows.h>
 
 namespace input
 {

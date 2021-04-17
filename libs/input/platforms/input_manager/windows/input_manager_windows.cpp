@@ -29,7 +29,7 @@ namespace input
 			return true;
 		}
 
-		if (input::MOUSE_DEVICE::get_singleton().handle_message(in_window, in_message, in_wparam, in_lparam))
+		if (input::MOUSE::get_singleton().handle_message(in_window, in_message, in_wparam, in_lparam))
 		{
 			return true;
 		}

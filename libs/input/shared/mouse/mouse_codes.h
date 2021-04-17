@@ -6,7 +6,7 @@
 
 namespace input
 {
-	enum class BUTTON : uint8_t
+	enum class MOUSE_BUTTON : uint8_t
 	{
 		INVALID = 0x0,
 

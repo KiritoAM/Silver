@@ -8,8 +8,9 @@
 
 #include "core/platforms/console/windows/windows_console.h"
 
+#include "core/platforms/include_wrappers/windows/windows.h"
+
 #include <iostream>
-#include <windows.h>
 
 namespace
 {

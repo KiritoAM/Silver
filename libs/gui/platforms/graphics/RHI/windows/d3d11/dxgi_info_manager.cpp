@@ -51,7 +51,6 @@ namespace gui
 		const auto end = pDxgiInfoQueue->GetNumStoredMessages( DXGI_DEBUG_ALL );
 		for ( auto i = next; i < end; i++ )
 		{
-			HRESULT hr;
 			SIZE_T messageLength;
 			// get the size of message i in bytes
 			pDxgiInfoQueue->GetMessage( DXGI_DEBUG_ALL, i, nullptr, &messageLength );

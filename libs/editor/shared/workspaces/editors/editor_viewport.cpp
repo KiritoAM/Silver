@@ -51,4 +51,9 @@ namespace editor
 	{
 
 	}
+
+	void EDITOR_VIEWPORT::on_world_object_selected( const engine::WORLD_OBJECT* world_object )
+	{
+
+	}
 }

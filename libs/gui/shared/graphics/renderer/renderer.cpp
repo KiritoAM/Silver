@@ -10,6 +10,7 @@
 #include "gui/platforms/graphics/RHI/windows/d3d11/shader_d3d11.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/texture2d_d3d11.h"
 #include "gui/platforms/graphics/renderer/windows/renderer_d3d11.h"
+#include "gui/shared/graphics/storage/render_storage.h"
 
 namespace
 {
@@ -25,6 +26,8 @@ namespace gui
 	RENDERER::RENDERER( const RHI_Api_Type api_type )
 		: m_api_type{ api_type }
 	{
+		RENDER_STORAGE::create_singleton();
+
 		engine::EVENTS_MANAGER::get_singleton()->add_events_receiver( this, s_broadcastable_events );
 
 		switch ( m_api_type )
@@ -36,7 +39,7 @@ namespace gui
 			}
 		case RHI_Api_Type::RHI_Api_Vulkan:
 			{
-
+				m_impl = std::make_unique<RENDERER_VULKAN>();
 				break;
 			}
 		}

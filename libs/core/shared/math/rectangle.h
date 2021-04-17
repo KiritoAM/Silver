@@ -43,6 +43,12 @@ namespace core
 		TYPE get_bottom() const { return y + get_height(); }
 		TYPE get_height() const { return a; }
 
+		void set_top_left( const VECTOR2D<TYPE>& position )
+		{
+			x = position.x;
+			y = position.y;
+		}
+
 		VECTOR2D<TYPE> get_top_left() const
 		{
 			return {get_left(), get_top()};
@@ -63,6 +69,12 @@ namespace core
 			return { get_right(), get_bottom() };
 		}
 
+		void set_dimensions( const VECTOR2D<TYPE>& in_dimensions)
+		{
+			z = in_dimensions.x;
+			a = in_dimensions.y;
+		}
+
 		VECTOR2D<TYPE> get_dimensions() const
 		{
 			return { get_width(), get_height() };
@@ -71,7 +83,7 @@ namespace core
 		template<typename OTHER_TYPE>
 		bool is_within( const VECTOR2D<OTHER_TYPE>& point ) const
 		{
-			return static_cast<TYPE>(point.x) >= x && static_cast<TYPE>(point.y) >= y && static_cast<TYPE>(point.x) <= get_right() 
+			return static_cast<TYPE>(point.x) >= get_left() && static_cast<TYPE>(point.y) >= get_top() && static_cast<TYPE>(point.x) <= get_right()
 				&& static_cast<TYPE>(point.y) <= get_bottom();
 		}
 	};

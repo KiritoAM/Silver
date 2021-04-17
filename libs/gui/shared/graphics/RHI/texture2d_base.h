@@ -9,6 +9,7 @@
 #include "gui/shared/graphics/RHI/viewport.h"
 
 #include <array>
+#include <string>
 #include <vector>
 
 //////////////////////////////////////////////////////////////////////
@@ -65,6 +66,8 @@ namespace gui
 				m_data.emplace_back( data );
 			}
 		}
+
+		static TEXTURE2D_BASE* load_from_file( const std::string& filepath );
 
 		bool IsSampled()        const { return m_flags & RHI_Texture_Sampled; }
 		bool IsStorage()        const { return m_flags & RHI_Texture_Storage; }

@@ -17,7 +17,7 @@
 #include <shared_mutex>
 
 #if PLATFORM_WINDOWS
-#include <windows.h>
+#include "core/platforms/include_wrappers/windows/windows.h"
 #endif
 
 namespace engine

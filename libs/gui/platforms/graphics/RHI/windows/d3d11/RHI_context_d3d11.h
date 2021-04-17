@@ -7,6 +7,7 @@
 
 #include "gui/shared/graphics/RHI/RHI_context_base.h"
 
+#include "core/platforms/include_wrappers/windows/windows.h"
 #include "core/shared/math/rectangle.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/d3d11_types.h"
 

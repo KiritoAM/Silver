@@ -7,6 +7,7 @@
 
 #include "gui/shared/graphics/RHI/RHI_swapchain _base.h"
 
+#include "core/platforms/include_wrappers/windows/windows.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/quad_d3d11.h"
 #include "gui/shared/graphics/RHI/RHI_types.h"
 

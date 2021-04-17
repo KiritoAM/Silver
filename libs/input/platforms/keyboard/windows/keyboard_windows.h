@@ -10,8 +10,9 @@
 
 #include "input/shared/keyboard/keyboard_base.h"
 
+#include "core/platforms/include_wrappers/windows/windows.h"
+
 #include <stdint.h>
-#include <Windows.h>
 
 namespace input
 {

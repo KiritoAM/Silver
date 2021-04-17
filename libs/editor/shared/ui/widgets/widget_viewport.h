@@ -7,6 +7,8 @@
 
 #include "gui/shared/ui/widgets/widget.h"
 
+#include "gui/shared/screen/camera3d.h"
+
 #include <memory>
 
 //////////////////////////////////////////////////////////////////////
@@ -16,11 +18,6 @@
 namespace engine
 {
 	class WORLD;
-}
-
-namespace gui
-{
-	class CAMERA3D;
 }
 
 namespace editor
@@ -36,7 +33,8 @@ namespace editor
 	private:
 		void render() override;
 
-		std::unique_ptr<gui::CAMERA3D> m_camera3d;
+		bool m_allow_camera_movement{};
 		engine::WORLD* m_world{};
+		gui::CAMERA3D m_camera3d;
 	};
 }

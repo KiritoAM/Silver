@@ -16,6 +16,12 @@
     <Filter Include="platforms\debugging\windows">
       <UniqueIdentifier>{7285373A-DE92-6520-6779-610BD38531D7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platforms\include_wrappers">
+      <UniqueIdentifier>{0376CE7C-EF85-7A4D-583F-DF6B446E69E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\include_wrappers\windows">
+      <UniqueIdentifier>{5D0BAF49-4947-B2B3-B259-CAAA9EB45ACE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="shared">
       <UniqueIdentifier>{9C5CB11B-88FE-DBF1-71B9-EF455DFA6242}</UniqueIdentifier>
     </Filter>
@@ -50,6 +56,9 @@
     </ClInclude>
     <ClInclude Include="..\..\platforms\debugging\windows\debugger_windows.h">
       <Filter>platforms\debugging\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\include_wrappers\windows\windows.h">
+      <Filter>platforms\include_wrappers\windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\build_config.h">
       <Filter>shared</Filter>

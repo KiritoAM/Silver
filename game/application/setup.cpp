@@ -45,15 +45,6 @@ namespace app
 			input::INPUT_MANAGER::create_singleton();
 		}
 
-		if constexpr ( core::gui_available() )
-		{
-			auto renderer = gui::RENDERER::create_singleton( gui::RHI_Api_Type::RHI_Api_D3d11 );
-
-			auto screen_manager = gui::SCREEN_MANAGER::create_singleton();
-			screen_manager->create_window();
-			//screen_manager->create_window();
-		}
-
 		// Add some library-specific functionality to the application through their corresponding nodes.
 		// The order in which the nodes are added is important - it determines in which order the node tree processes them.
 		auto& game_instance = get_main_game_instance();
@@ -62,6 +53,12 @@ namespace app
 
 		if constexpr ( core::gui_available() )
 		{
+			auto renderer = gui::RENDERER::create_singleton( gui::RHI_Api_Type::RHI_Api_Vulkan );
+
+			auto screen_manager = gui::SCREEN_MANAGER::create_singleton();
+			screen_manager->create_window();
+			//screen_manager->create_window();
+
 			game_instance.add_node_to_root( new gui::GUI_NODE );
 		}
 

@@ -6,8 +6,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "core/shared/patterns/non_automatic_singleton.h"
-
 #include "engine/shared/events/events_receiver.h"
+
 #include "gui/shared/graphics/RHI/RHI_types.h"
 #include "gui/shared/window/window_details.h"
 
@@ -47,7 +47,7 @@ namespace gui
 	class RENDERER : public engine::EVENTS_RECEIVER, public core::NON_AUTOMATIC_SINGLETON<RENDERER>
 	{
 	public:
-		bool receive_event( const engine::EVENT& in_event );
+		bool receive_event( const engine::EVENT& in_event ) override;
 
 		//void tick( float delta_time );
 

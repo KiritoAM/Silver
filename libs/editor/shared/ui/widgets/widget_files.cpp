@@ -32,11 +32,7 @@ namespace editor
 			break;
 		case input::MOUSE_MOVE_EVENT_ID:
 			{
-				handled = WIDGET::receive_event( in_event );
-
-				auto mouse_move_event = static_cast<const input::MOUSE_MOVE_EVENT&>(in_event);
-
-				if ( get_bounds().is_within( mouse_move_event.current_position ) )
+				if ( WIDGET::receive_event( in_event ) )
 				{
 					receive_event( { gui::MARK_FOR_RENDER_EVENT_ID } );
 				}

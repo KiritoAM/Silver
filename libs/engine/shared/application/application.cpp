@@ -42,6 +42,8 @@ namespace engine
 
 		process_os_messages();
 
+		EVENTS_MANAGER::get_singleton()->process_events();
+
 		for ( auto& [id, game_instance] : m_game_instances )
 		{
 			game_instance.tick( m_delta_time.count() );

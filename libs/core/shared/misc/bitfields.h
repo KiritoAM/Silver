@@ -7,10 +7,13 @@
 namespace core
 {
 	template<typename TYPE>
-	inline constexpr bool are_bits_set(TYPE in_value, TYPE in_bitmask) { return (in_value & in_bitmask) == in_bitmask; }
+	inline constexpr bool equals_bits(TYPE in_value, TYPE in_bitmask) { return (in_value & in_bitmask) == in_bitmask; }
 
 	template<typename TYPE>
-	inline constexpr bool are_bits_part_set(TYPE in_value, TYPE in_bitmask) { return (in_value & in_bitmask) != 0; }
+	inline constexpr bool contains_bits(TYPE in_value, TYPE in_bitmask) { return (in_value & in_bitmask) != 0; }
+
+	template<typename VALUE_TYPE, typename MASK_TYPE>
+	inline constexpr bool contains_bit( VALUE_TYPE in_value, MASK_TYPE in_bitmask ) { return (in_value & in_bitmask) != 0; }
 
 	template<typename TYPE>
 	inline constexpr bool are_bits_clear(TYPE in_value, TYPE in_bitmask) { return (in_value & in_bitmask) == 0; }

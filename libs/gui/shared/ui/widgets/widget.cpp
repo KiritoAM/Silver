@@ -12,26 +12,17 @@
 #include "engine/shared/events/event_base.h"
 #include "gui/shared/events/render_events.h"
 #include "gui/shared/imgui/imgui.h"
+#include "input/shared/input_events.h"
 
 #include <gui/thirdparty/imgui/imgui_internal.h>
 
 namespace gui
 {
-	struct WIDGET::IMPL
-	{
-		core::RECTANGLE<int32_t> m_bounds{ 0, 0, 0, 0 };
-	};
-}
-
-namespace gui
-{
 	WIDGET::WIDGET()
-		: m_impl{ std::make_unique<IMPL>() }
+		: m_max_size{ core::FVECTOR2D::MAX_VALUE }
 	{
 		m_should_render = m_is_visible = true; // temp
 	}
-
-	WIDGET::~WIDGET() = default;
 
 	bool WIDGET::receive_event( const engine::EVENT& in_event )
 	{
@@ -39,6 +30,36 @@ namespace gui
 
 		switch ( in_event.unique_id )
 		{
+		case input::MOUSE_MOVE_EVENT_ID:
+			{
+				auto scroll_event = static_cast<const input::MOUSE_MOVE_EVENT&>(in_event);
+
+				if ( m_bounds.is_within( /* todo: make events window-specific or use screen-relative mouse position */ scroll_event.current_position ) )
+				{
+					return true; // should be handled by child class(es)
+				}
+			}
+			break;
+		case input::MOUSE_BUTTON_PRESSED_EVENT_ID:
+			{
+				auto scroll_event = static_cast<const input::MOUSE_BUTTON_PRESSED_EVENT&>(in_event);
+
+				if ( m_bounds.is_within( /* todo: make events window-specific or use screen-relative mouse position */ scroll_event.current_position ) )
+				{
+					return true; // should be handled by child class(es)
+				}
+			}
+			break;
+		case input::MOUSE_SCROLL_EVENT_ID:
+			{
+				auto scroll_event = static_cast<const input::MOUSE_SCROLL_EVENT&>(in_event);
+
+				if ( m_bounds.is_within( /* todo: make events window-specific or use screen-relative mouse position */ scroll_event.current_position ) )
+				{
+					return true; // should be handled by child class(es)
+				}
+			}
+			break;
 		case gui::MARK_FOR_RENDER_EVENT_ID:
 			{
 				m_should_render = true;
@@ -48,9 +69,9 @@ namespace gui
 			{
 				if ( m_is_visible )
 				{
-					if ( m_position != core::FVECTOR2D::ZERO_VALUE )
+					if ( m_position_override != core::FVECTOR2D::ZERO_VALUE )
 					{
-						ImGui::SetNextWindowPos( { m_position.x, m_position.y } );
+						ImGui::SetNextWindowPos( { m_position_override.x, m_position_override.y } );
 					}
 
 					if ( m_padding != core::FVECTOR2D::ZERO_VALUE )
@@ -64,23 +85,26 @@ namespace gui
 						ImGui::PushStyleVar( ImGuiStyleVar_Alpha, m_alpha.value() );
 						++m_var_pushes;
 					}
-
-					if ( m_size != core::FVECTOR2D::ZERO_VALUE )
+					
+					if ( m_size_override != core::FVECTOR2D::ZERO_VALUE )
 					{
-						ImGui::SetNextWindowSize( { m_size.x, m_size.y }, ImGuiCond_FirstUseEver );
+						ImGui::SetNextWindowSize( { m_size_override.x, m_size_override.y }, ImGuiCond_FirstUseEver );
 					}
 
-					if ( m_size != core::FVECTOR2D::ZERO_VALUE || m_max_size != core::FVECTOR2D::ZERO_VALUE )
+					if ( m_min_size != core::FVECTOR2D::ZERO_VALUE || m_max_size != core::FVECTOR2D::MAX_VALUE )
 					{
-						ImGui::SetNextWindowSizeConstraints( { m_size.x, m_size.y }, { m_max_size.x, m_max_size.y } );
+						ImGui::SetNextWindowSizeConstraints( { m_min_size.x, m_min_size.y }, { m_max_size.x, m_max_size.y } );
 					}
 
 					bool begun{ false };
 
 					if ( ImGui::Begin( m_title.c_str(), &m_is_visible, m_flags ) )
 					{
-						m_window = ImGui::GetCurrentWindow();
 						begun = true;
+
+						m_window = ImGui::GetCurrentWindow();
+
+						m_bounds = { m_window->Pos.x, m_window->Pos.y, m_window->ContentSize.x, m_window->ContentSize.y };
 					}
 					else if ( m_window && m_window->Hidden )
 					{
@@ -115,10 +139,5 @@ namespace gui
 		}
 
 		return handled;
-	}
-
-	const core::RECTANGLE<int32_t>& WIDGET::get_bounds() const
-	{
-		return m_impl->m_bounds;
 	}
 }

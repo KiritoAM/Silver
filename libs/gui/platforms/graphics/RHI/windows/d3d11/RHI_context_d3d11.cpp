@@ -11,6 +11,7 @@
 #include "gui/platforms/graphics/RHI/windows/d3d11/pipeline_state_d3d11.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/sampler_d3d11.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/shader_d3d11.h"
+#include "gui/platforms/graphics/RHI/windows/d3d11/rasteriser_state_d3d11.h"
 #include "gui/shared/graphics/RHI/input_layout.h"
 #include "gui/shared/graphics/RHI/viewport.h"
 
@@ -111,6 +112,22 @@ namespace gui
 					reinterpret_cast<ID3D11RenderTargetView* const*>(pipeline_state.m_render_targets.data()),
 					nullptr
 				);
+			}
+		}
+
+		// Rasterizer state
+		{
+			// New state
+			ID3D11RasterizerState* rasterizer_state = static_cast<ID3D11RasterizerState*>(pipeline_state.m_rasteriser_state ? pipeline_state.m_rasteriser_state->get_rasterizer_state() : nullptr);
+
+			// Current state
+			ID3D11RasterizerState* rasterizer_state_set = nullptr;
+
+			// Set if dirty
+			m_device_context->RSGetState( &rasterizer_state_set );
+			if ( rasterizer_state_set != rasterizer_state )
+			{
+				m_device_context->RSSetState( rasterizer_state );
 			}
 		}
 

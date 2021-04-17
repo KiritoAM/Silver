@@ -1,7 +1,6 @@
 
 #include "engine/shared/game_framework/game_instance.h"
 
-#include "engine/shared/events/events_manager.h"
 #include "engine/shared/game_framework/nodes/node_tree.h"
 #include "engine/shared/game_framework/nodes/node.h"
 
@@ -15,8 +14,6 @@ namespace engine
 
 	void GAME_INSTANCE::tick( const float delta_time )
 	{
-		EVENTS_MANAGER::get_singleton()->process_events();
-
 		m_node_tree->tick( delta_time );
 	}
 

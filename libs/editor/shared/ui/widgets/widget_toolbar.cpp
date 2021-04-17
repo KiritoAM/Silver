@@ -24,7 +24,7 @@ namespace editor
 		m_title = "Toolbar";
 
 		m_max_size = { 800.0f, 200.0f };
-		m_size = { 800.0f, 100.0f };
+		m_bounds.set_dimensions( { 800.0f, 100.0f } );
 	}
 
 	bool WIDGET_TOOLBAR::receive_event( const engine::EVENT& in_event )

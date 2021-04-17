@@ -121,63 +121,63 @@ namespace core
 
         static inline QUATERNION RotationMatrixToQuaternion(const MATRIX& mRot)
         {
-            QUATERNION quaternion;
-            float sqrt;
-            float half;
-            const float scale = mRot.m00 + mRot.m11 + mRot.m22;
+			QUATERNION quaternion;
+			float sqrt;
+			float half;
+			const float scale = mRot.m00 + mRot.m11 + mRot.m22;
 
-            if (scale > 0.0f)
-            {
-                sqrt = std::sqrt(scale + 1.0f);
-                quaternion.w = sqrt * 0.5f;
-                sqrt = 0.5f / sqrt;
+			if ( scale > 0.0f )
+			{
+				sqrt = std::sqrt( scale + 1.0f );
+				quaternion.w = sqrt * 0.5f;
+				sqrt = 0.5f / sqrt;
 
-                quaternion.x = (mRot.m12 - mRot.m21) * sqrt;
-                quaternion.y = (mRot.m20 - mRot.m02) * sqrt;
-                quaternion.z = (mRot.m01 - mRot.m10) * sqrt;
+				quaternion.x = (mRot.m12 - mRot.m21) * sqrt;
+				quaternion.y = (mRot.m20 - mRot.m02) * sqrt;
+				quaternion.z = (mRot.m01 - mRot.m10) * sqrt;
 
-                return quaternion;
-            }
-            if ((mRot.m00 >= mRot.m11) && (mRot.m00 >= mRot.m22))
-            {
-                sqrt = std::sqrt(1.0f + mRot.m00 - mRot.m11 - mRot.m22);
-                half = 0.5f / sqrt;
+				return quaternion;
+			}
+			if ( (mRot.m00 >= mRot.m11) && (mRot.m00 >= mRot.m22) )
+			{
+				sqrt = std::sqrt( 1.0f + mRot.m00 - mRot.m11 - mRot.m22 );
+				half = 0.5f / sqrt;
 
-                quaternion.x = 0.5f * sqrt;
-                quaternion.y = (mRot.m01 + mRot.m10) * half;
-                quaternion.z = (mRot.m02 + mRot.m20) * half;
-                quaternion.w = (mRot.m12 - mRot.m21) * half;
+				quaternion.x = 0.5f * sqrt;
+				quaternion.y = (mRot.m01 + mRot.m10) * half;
+				quaternion.z = (mRot.m02 + mRot.m20) * half;
+				quaternion.w = (mRot.m12 - mRot.m21) * half;
 
-                return quaternion;
-            }
-            if (mRot.m11 > mRot.m22)
-            {
-                sqrt = std::sqrt(1.0f + mRot.m11 - mRot.m00 - mRot.m22);
-                half = 0.5f / sqrt;
+				return quaternion;
+			}
+			if ( mRot.m11 > mRot.m22 )
+			{
+				sqrt = std::sqrt( 1.0f + mRot.m11 - mRot.m00 - mRot.m22 );
+				half = 0.5f / sqrt;
 
-                quaternion.x = (mRot.m10 + mRot.m01) * half;
-                quaternion.y = 0.5f * sqrt;
-                quaternion.z = (mRot.m21 + mRot.m12) * half;
-                quaternion.w = (mRot.m20 - mRot.m02) * half;
+				quaternion.x = (mRot.m10 + mRot.m01) * half;
+				quaternion.y = 0.5f * sqrt;
+				quaternion.z = (mRot.m21 + mRot.m12) * half;
+				quaternion.w = (mRot.m20 - mRot.m02) * half;
 
-                return quaternion;
-            }
-            sqrt = std::sqrt(1.0f + mRot.m22 - mRot.m00 - mRot.m11);
-            half = 0.5f / sqrt;
+				return quaternion;
+			}
+			sqrt = std::sqrt( 1.0f + mRot.m22 - mRot.m00 - mRot.m11 );
+			half = 0.5f / sqrt;
 
-            quaternion.x = (mRot.m20 + mRot.m02) * half;
-            quaternion.y = (mRot.m21 + mRot.m12) * half;
-            quaternion.z = 0.5f * sqrt;
-            quaternion.w = (mRot.m01 - mRot.m10) * half;
+			quaternion.x = (mRot.m20 + mRot.m02) * half;
+			quaternion.y = (mRot.m21 + mRot.m12) * half;
+			quaternion.z = 0.5f * sqrt;
+			quaternion.w = (mRot.m01 - mRot.m10) * half;
 
-            return quaternion;
+			return quaternion;
         }
         //================================================================================================
 
         //= SCALE ========================================================================================
         [[nodiscard]] FVECTOR3D GetScale() const
         {
-            /*const int xs = (Sign(m00 * m01 * m02 * m03) < 0) ? -1 : 1;
+            const int xs = (Sign(m00 * m01 * m02 * m03) < 0) ? -1 : 1;
             const int ys = (Sign(m10 * m11 * m12 * m13) < 0) ? -1 : 1;
             const int zs = (Sign(m20 * m21 * m22 * m23) < 0) ? -1 : 1;
 
@@ -185,9 +185,7 @@ namespace core
                 static_cast<float>(xs) * std::sqrt(m00 * m00 + m01 * m01 + m02 * m02),
                 static_cast<float>(ys) * std::sqrt(m10 * m10 + m11 * m11 + m12 * m12),
                 static_cast<float>(zs) * std::sqrt(m20 * m20 + m21 * m21 + m22 * m22)
-            );*/
-
-            return {};
+            );
         }
 
         static inline MATRIX CreateScale(float scale) { return CreateScale(scale, scale, scale); }

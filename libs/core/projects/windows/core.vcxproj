@@ -99,6 +99,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\platforms\console\windows\windows_console.h" />
     <ClInclude Include="..\..\platforms\debugging\windows\debugger_windows.h" />
+    <ClInclude Include="..\..\platforms\include_wrappers\windows\windows.h" />
     <ClInclude Include="..\..\shared\build_config.h" />
     <ClInclude Include="..\..\shared\console\console.h" />
     <ClInclude Include="..\..\shared\debugging\asserts.h" />

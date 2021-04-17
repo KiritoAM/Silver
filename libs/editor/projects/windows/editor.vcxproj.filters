@@ -39,6 +39,9 @@
     <ClInclude Include="..\..\shared\ui\widgets\widget_files.h">
       <Filter>ui\widgets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\ui\widgets\widget_properties.h">
+      <Filter>ui\widgets</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\ui\widgets\widget_scene_tree.h">
       <Filter>ui\widgets</Filter>
     </ClInclude>
@@ -62,6 +65,9 @@
     </ClInclude>
     <ClInclude Include="..\..\shared\workspaces\editors\editor_components\regions\region_base.h">
       <Filter>workspaces\editors\editor_components\regions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\workspaces\editors\editor_properties.h">
+      <Filter>workspaces\editors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\workspaces\editors\editor_scene_tree.h">
       <Filter>workspaces\editors</Filter>
@@ -89,6 +95,9 @@
     <ClCompile Include="..\..\shared\ui\widgets\widget_files.cpp">
       <Filter>ui\widgets</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\shared\ui\widgets\widget_properties.cpp">
+      <Filter>ui\widgets</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\shared\ui\widgets\widget_scene_tree.cpp">
       <Filter>ui\widgets</Filter>
     </ClCompile>
@@ -103,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="..\..\shared\workspaces\editors\editor_components\editor_component_files.cpp">
       <Filter>workspaces\editors\editor_components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\workspaces\editors\editor_properties.cpp">
+      <Filter>workspaces\editors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\workspaces\editors\editor_scene_tree.cpp">
       <Filter>workspaces\editors</Filter>

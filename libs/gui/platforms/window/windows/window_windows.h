@@ -10,8 +10,9 @@
 
 #include "gui/shared/window/window_base.h"
 
+#include "core/platforms/include_wrappers/windows/windows.h"
+
 #include <string>
-#include <Windows.h>
 
 namespace gui
 {

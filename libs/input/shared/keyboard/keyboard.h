@@ -22,11 +22,6 @@ namespace input
 	public:
 		using KEYBOARD_PLATFORM::handle_message;
 
-		void on_key_down(KEY in_key) override;
-		void on_key_down(KEY in_key, const WINDOWS_KEYS_STATE& in_windows_keys_state) override;
-
-		void on_key_up(KEY in_key) override;
-
 	//private:
 		friend core::AUTOMATIC_SINGLETON<KEYBOARD>;
 		KEYBOARD() = default;

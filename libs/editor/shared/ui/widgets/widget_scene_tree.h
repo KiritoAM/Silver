@@ -7,6 +7,13 @@
 
 #include "gui/shared/ui/widgets/widget.h"
 
+#include "core/shared/patterns/delegate.h"
+
+namespace engine
+{
+	class WORLD_OBJECT;
+}
+
 namespace editor
 {
 	class WIDGET_SCENE_TREE : public gui::WIDGET

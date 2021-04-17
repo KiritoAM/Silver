@@ -18,7 +18,7 @@
 
 namespace input
 {
-	struct MOUSE_WINDOWS::impl
+	struct MOUSE_WINDOWS::IMPL
 	{
 		HWND m_window;
 		LPARAM m_lparam;
@@ -28,7 +28,7 @@ namespace input
 namespace input
 {
 	MOUSE_WINDOWS::MOUSE_WINDOWS()
-		: m_impl( std::make_unique<impl>() )
+		: m_impl( std::make_unique<IMPL>() )
 	{}
 
 	MOUSE_WINDOWS::~MOUSE_WINDOWS() = default;
@@ -42,20 +42,35 @@ namespace input
 		{
 		case WM_LBUTTONDOWN:
 		{
-			on_mouse_button_down(BUTTON::LEFT);
+			on_mouse_button_down(MOUSE_BUTTON::LEFT);
 			return true;
 		}
 		case WM_LBUTTONUP:
 		{
-			on_mouse_button_up(BUTTON::LEFT);
+			on_mouse_button_up(MOUSE_BUTTON::LEFT);
 			return true;
 		}
+		case WM_RBUTTONDOWN:
+			{
+				on_mouse_button_down( MOUSE_BUTTON::RIGHT );
+				return true;
+			}
+		case WM_RBUTTONUP:
+			{
+				on_mouse_button_up( MOUSE_BUTTON::RIGHT );
+				return true;
+			}
 		case WM_MOUSEMOVE:
 		{
-			handle_absolute_input();
+			handle_absolute_input( in_lparam );
 			on_mouse_moved();
 			return true;
 		}
+		case WM_MOUSEWHEEL:
+			{
+				on_mouse_wheel_scrolled_vertical( in_window, in_wparam, in_lparam );
+				return true;
+			}
 		case WM_INPUT:
 		{			
 			if (handle_raw_input())
@@ -73,14 +88,16 @@ namespace input
 		return true;
 	}
 
-	void MOUSE_WINDOWS::handle_absolute_input()
+	void MOUSE_WINDOWS::handle_absolute_input( LPARAM lparam )
 	{
 		m_previous_position = m_current_position;
 
-		const MOUSE_POS_TYPE new_mouse_position(static_cast<MOUSE_AXIS_TYPE>(GET_X_LPARAM(m_impl->m_lparam)),
-			static_cast<MOUSE_AXIS_TYPE>(GET_Y_LPARAM(m_impl->m_lparam)));
+		const MOUSE_POS_TYPE new_mouse_position( static_cast<MOUSE_AXIS_TYPE>(GET_X_LPARAM( lparam )),
+												 static_cast<MOUSE_AXIS_TYPE>(GET_Y_LPARAM( lparam )) );
 
 		m_current_position = new_mouse_position;
+
+		m_pos_delta = m_current_position - m_previous_position;
 	}
 
 	bool MOUSE_WINDOWS::handle_raw_input()
@@ -117,22 +134,30 @@ namespace input
 		return false;
 	}
 
-	void MOUSE_WINDOWS::on_mouse_moved()
-	{
-		super::on_mouse_moved();
-	}
-
-	void MOUSE_WINDOWS::on_mouse_button_down(const BUTTON in_pressed_button)
+	void MOUSE_WINDOWS::on_mouse_button_down(const MOUSE_BUTTON in_pressed_button)
 	{
 		super::on_mouse_button_down(in_pressed_button);
 
 		while (::ShowCursor(FALSE) >= 0);
 	}
 
-	void MOUSE_WINDOWS::on_mouse_button_up(const BUTTON in_released_button)
+	void MOUSE_WINDOWS::on_mouse_button_up(const MOUSE_BUTTON in_released_button)
 	{
 		super::on_mouse_button_up(in_released_button);
 
 		while (::ShowCursor(TRUE) < 0);
+	}
+
+	void MOUSE_WINDOWS::on_mouse_wheel_scrolled_vertical( HWND window, WPARAM wparam, LPARAM lparam )
+	{
+		const int16_t wheel_delta = GET_WHEEL_DELTA_WPARAM( wparam );
+
+		// Convert the mouse position from absolute to relative to the window origin
+		POINT point;
+		point.x = GET_X_LPARAM( lparam );
+		point.y = GET_Y_LPARAM( lparam );
+		ScreenToClient( window, &point );
+
+		on_mouse_wheel_scrolled( { static_cast<MOUSE_AXIS_TYPE>(point.x), static_cast<MOUSE_AXIS_TYPE>(point.y) }, {}, { 0, wheel_delta } );
 	}
 }

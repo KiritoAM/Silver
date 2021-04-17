@@ -119,6 +119,7 @@
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\input_layout_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\pipeline_state_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\quad_d3d11.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\rasteriser_state_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="..\..\shared\graphics\RHI\descriptor.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\input_layout.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\pipeline_state_base.h" />
+    <ClInclude Include="..\..\shared\graphics\RHI\rasteriser_state_base.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\render_information.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\shader_base.h" />
     <ClInclude Include="..\..\shared\graphics\RHI\shader_bindings.h" />
@@ -146,11 +148,13 @@
     <ClInclude Include="..\..\shared\graphics\RHI\viewport.h" />
     <ClInclude Include="..\..\shared\graphics\constant_buffers.h" />
     <ClInclude Include="..\..\shared\graphics\default_geometry.h" />
+    <ClInclude Include="..\..\shared\graphics\material.h" />
     <ClInclude Include="..\..\shared\graphics\renderer\renderer.h" />
     <ClInclude Include="..\..\shared\graphics\renderer\renderer_base.h" />
     <ClInclude Include="..\..\shared\graphics\storage\render_storage.h" />
     <ClInclude Include="..\..\shared\graphics\window_resources\window_resources_base.h" />
     <ClInclude Include="..\..\shared\imgui\imgui.h" />
+    <ClInclude Include="..\..\shared\importers\image_importer.h" />
     <ClInclude Include="..\..\shared\nodes\gui_node.h" />
     <ClInclude Include="..\..\shared\screen\camera3d.h" />
     <ClInclude Include="..\..\shared\screen\screen.h" />
@@ -172,6 +176,9 @@
     <ClInclude Include="..\..\thirdparty\imgui\imstb_truetype.h" />
     <ClInclude Include="..\..\thirdparty\imgui\windows\imgui_impl_dx11.h" />
     <ClInclude Include="..\..\thirdparty\imgui\windows\imgui_impl_win32.h" />
+    <ClInclude Include="..\..\thirdparty\stb\stb_image.h" />
+    <ClInclude Include="..\..\thirdparty\stb\stb_image_resize.h" />
+    <ClInclude Include="..\..\thirdparty\stb\stb_image_write.h" />
     <ClInclude Include="..\..\thirdparty\vk_mem_alloc.h" />
     <ClInclude Include="..\..\thirdparty\vulkan\vk_enum_string_helper.h" />
     <ClInclude Include="..\..\thirdparty\vulkan\vk_icd.h" />
@@ -208,6 +215,7 @@
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\input_layout_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\pipeline_state_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\quad_d3d11.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\rasteriser_state_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.cpp" />
@@ -219,10 +227,15 @@
     <ClCompile Include="..\..\shared\graphics\RHI\command_list.cpp" />
     <ClCompile Include="..\..\shared\graphics\RHI\command_list_base.cpp" />
     <ClCompile Include="..\..\shared\graphics\RHI\pipeline_state_base.cpp" />
+    <ClCompile Include="..\..\shared\graphics\RHI\rasteriser_state_base.cpp" />
     <ClCompile Include="..\..\shared\graphics\RHI\shader_base.cpp" />
+    <ClCompile Include="..\..\shared\graphics\RHI\texture2d_base.cpp" />
+    <ClCompile Include="..\..\shared\graphics\material.cpp" />
     <ClCompile Include="..\..\shared\graphics\renderer\renderer.cpp" />
     <ClCompile Include="..\..\shared\graphics\renderer\renderer_base.cpp" />
     <ClCompile Include="..\..\shared\graphics\storage\render_storage.cpp" />
+    <ClCompile Include="..\..\shared\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\shared\importers\image_importer.cpp" />
     <ClCompile Include="..\..\shared\nodes\gui_node.cpp" />
     <ClCompile Include="..\..\shared\screen\camera3d.cpp" />
     <ClCompile Include="..\..\shared\screen\screen.cpp" />
@@ -234,7 +247,9 @@
     <ClCompile Include="..\..\shared\ui\widgets\widget.cpp" />
     <ClCompile Include="..\..\shared\window\window.cpp" />
     <ClCompile Include="..\..\shared\window\window_base.cpp" />
-    <ClCompile Include="..\..\thirdparty\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\thirdparty\imgui\imgui.cpp">
+      <ObjectFileName>$(IntDir)\imgui1.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\thirdparty\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\..\thirdparty\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\thirdparty\imgui\imgui_stdlib.cpp" />

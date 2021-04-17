@@ -6,6 +6,7 @@
 
 #include "gui/platforms/graphics/RHI/windows/d3d11/sampler_d3d11.h"
 
+#include "core/platforms/include_wrappers/windows/windows.h"
 #include "core/shared/debugging/asserts.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/d3d11_types.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/RHI_device_d3d11.h"

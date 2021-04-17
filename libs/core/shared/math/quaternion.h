@@ -180,7 +180,7 @@ namespace core
         void Normalize()
         {
             const auto length_squared = LengthSquared();
-            if (!Equals(length_squared, 1.0f) && length_squared > 0.0f)
+            if (!equals(length_squared, 1.0f) && length_squared > 0.0f)
             {
                 const auto length_inverted = 1.0f / std::sqrt(length_squared);
                 x *= length_inverted;
@@ -194,7 +194,7 @@ namespace core
         QUATERNION Normalized() const
         {
             const auto length_squared = LengthSquared();
-            if (!Equals(length_squared, 1.0f) && length_squared > 0.0f)
+            if (!equals(length_squared, 1.0f) && length_squared > 0.0f)
             {
                 const auto length_inverted = 1.0f / std::sqrt(length_squared);
                 return (*this) * length_inverted;
@@ -251,14 +251,14 @@ namespace core
             *this = Multiply(*this, rhs);
         }
 
-        /*FVECTOR3D operator*(const FVECTOR3D& rhs) const
+        FVECTOR3D operator*(const FVECTOR3D& rhs) const
         {
             const FVECTOR3D qVec(x, y, z);
             const FVECTOR3D cross1(qVec.Cross(rhs));
             const FVECTOR3D cross2(qVec.Cross(cross1));
 
             return rhs + 2.0f * (cross1 * w + cross2);
-        }*/
+        }
 
         QUATERNION& operator *=(float rhs)
         {            
@@ -282,10 +282,10 @@ namespace core
         bool operator!=(const QUATERNION& rhs) const { return !(*this == rhs); }
 
         // Test for equality with a quaternion, using epsilon
-        /*bool Equals(const Quaternion& rhs) const
+        bool Equals(const QUATERNION& rhs) const
         {
-            return Equals(x, rhs.x) && Equals(y, rhs.y) && Equals(z, rhs.z) && Equals(w, rhs.w);
-        }*/
+            return equals(x, rhs.x) && equals(y, rhs.y) && equals(z, rhs.z) && equals(w, rhs.w);
+        }
 
         float x, y, z, w;
         static const QUATERNION Identity;

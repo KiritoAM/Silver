@@ -8,6 +8,7 @@
 #include "editor/shared/events/editor_events.h"
 #include "editor/shared/workspaces/editors/editor_base.h"
 #include "editor/shared/workspaces/editors/editor_assets.h"
+#include "editor/shared/workspaces/editors/editor_properties.h"
 #include "editor/shared/workspaces/editors/editor_scene_tree.h"
 #include "editor/shared/workspaces/editors/editor_toolbar.h"
 #include "editor/shared/workspaces/editors/editor_viewport.h"
@@ -17,6 +18,7 @@
 #include "gui/shared/imgui/imgui.h"
 #include "gui/shared/graphics/renderer/renderer.h"
 #include "gui/shared/screen/screen_manager.h"
+#include "input/shared/input_events.h"
 
 #include "gui/platforms/graphics/renderer/windows/renderer_d3d11.h" // temp
 #include <d3d11.h> // temp
@@ -27,7 +29,13 @@ namespace
 	// Events that can be received from an EVENT_MANAGER
 	const core::VECTOR<core::UNIQUE_ID> s_broadcastable_events
 	{
-		{ engine::ADD_NODE_EVENT_ID }
+		{ 
+			engine::ADD_NODE_EVENT_ID,
+			input::MOUSE_MOVE_EVENT_ID,
+			input::MOUSE_SCROLL_EVENT_ID,
+			input::MOUSE_BUTTON_PRESSED_EVENT_ID,
+			input::KEY_PRESSED_EVENT_ID,
+		}
 	};
 }
 
@@ -42,8 +50,9 @@ namespace editor
 		setup_imgui();
 
 		m_children.emplace_back( new EDITOR_ASSETS );
+		m_children.emplace_back( new EDITOR_PROPERTIES );
 		m_children.emplace_back( new EDITOR_SCENE_TREE );
-		m_children.emplace_back( new EDITOR_WORLD );
+		//m_children.emplace_back( new EDITOR_WORLD );
 		m_children.emplace_back( new EDITOR_VIEWPORT );
 		m_children.emplace_back( new EDITOR_TOOLBAR );
 	}
@@ -68,6 +77,14 @@ namespace editor
 
 				// ...then process editor-specific render data
 				receive_event( { gui::RENDER_IMGUI_EVENT_ID } );
+			}
+			break;
+		case input::MOUSE_MOVE_EVENT_ID:
+		case input::MOUSE_SCROLL_EVENT_ID:
+		case input::MOUSE_BUTTON_PRESSED_EVENT_ID:
+		case input::KEY_PRESSED_EVENT_ID:
+			{
+				handled = NODE::receive_event( in_event );
 			}
 			break;
 		case gui::RENDER_IMGUI_EVENT_ID:

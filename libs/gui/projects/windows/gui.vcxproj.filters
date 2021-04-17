@@ -52,6 +52,9 @@
     <Filter Include="shared\imgui">
       <UniqueIdentifier>{066F0FA8-F2D1-9E4C-9B57-D70287996ACF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shared\importers">
+      <UniqueIdentifier>{50E64C98-3CDF-6BEA-6511-516F51694BF6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="shared\nodes">
       <UniqueIdentifier>{84F36AA8-7056-FA4C-19DC-3203051EC6CF}</UniqueIdentifier>
     </Filter>
@@ -81,6 +84,9 @@
     </Filter>
     <Filter Include="thirdparty\imgui\windows">
       <UniqueIdentifier>{14CB4EB6-00F0-9D36-293B-83C615BF9C54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\stb">
+      <UniqueIdentifier>{A88B6809-9459-5C0F-7DED-CC35695A3874}</UniqueIdentifier>
     </Filter>
     <Filter Include="thirdparty\vulkan">
       <UniqueIdentifier>{F0AC15C4-5CC3-135A-A53A-9F7B1190E4E1}</UniqueIdentifier>
@@ -127,6 +133,9 @@
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\quad_d3d11.h">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\rasteriser_state_d3d11.h">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.h">
@@ -189,6 +198,9 @@
     <ClInclude Include="..\..\shared\graphics\RHI\pipeline_state_base.h">
       <Filter>shared\graphics\RHI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\RHI\rasteriser_state_base.h">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\graphics\RHI\render_information.h">
       <Filter>shared\graphics\RHI</Filter>
     </ClInclude>
@@ -210,6 +222,9 @@
     <ClInclude Include="..\..\shared\graphics\default_geometry.h">
       <Filter>shared\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shared\graphics\material.h">
+      <Filter>shared\graphics</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\shared\graphics\renderer\renderer.h">
       <Filter>shared\graphics\renderer</Filter>
     </ClInclude>
@@ -224,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="..\..\shared\imgui\imgui.h">
       <Filter>shared\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\importers\image_importer.h">
+      <Filter>shared\importers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\nodes\gui_node.h">
       <Filter>shared\nodes</Filter>
@@ -287,6 +305,15 @@
     </ClInclude>
     <ClInclude Include="..\..\thirdparty\imgui\windows\imgui_impl_win32.h">
       <Filter>thirdparty\imgui\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\stb\stb_image.h">
+      <Filter>thirdparty\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\stb\stb_image_resize.h">
+      <Filter>thirdparty\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\stb\stb_image_write.h">
+      <Filter>thirdparty\stb</Filter>
     </ClInclude>
     <ClInclude Include="..\..\thirdparty\vk_mem_alloc.h">
       <Filter>thirdparty</Filter>
@@ -392,6 +419,9 @@
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\quad_d3d11.cpp">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\rasteriser_state_d3d11.cpp">
+      <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.cpp">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
     </ClCompile>
@@ -425,8 +455,17 @@
     <ClCompile Include="..\..\shared\graphics\RHI\pipeline_state_base.cpp">
       <Filter>shared\graphics\RHI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\rasteriser_state_base.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\shared\graphics\RHI\shader_base.cpp">
       <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\RHI\texture2d_base.cpp">
+      <Filter>shared\graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\graphics\material.cpp">
+      <Filter>shared\graphics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\graphics\renderer\renderer.cpp">
       <Filter>shared\graphics\renderer</Filter>
@@ -436,6 +475,12 @@
     </ClCompile>
     <ClCompile Include="..\..\shared\graphics\storage\render_storage.cpp">
       <Filter>shared\graphics\storage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\imgui\imgui.cpp">
+      <Filter>shared\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\importers\image_importer.cpp">
+      <Filter>shared\importers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\nodes\gui_node.cpp">
       <Filter>shared\nodes</Filter>

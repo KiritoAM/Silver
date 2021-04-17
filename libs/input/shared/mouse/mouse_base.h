@@ -14,7 +14,7 @@
 
 namespace input
 {
-	enum class BUTTON : uint8_t;
+	enum class MOUSE_BUTTON : uint8_t;
 }
 
 namespace input
@@ -30,13 +30,15 @@ namespace input
 		bool is_right_button_down() const { return m_right_mouse_down; }
 		bool is_middle_button_down() const { return m_middle_mouse_down; }
 
-		core::MULTICAST_DELEGATE_TWO_PARAMS<void, BUTTON, bool> m_button_up_down;
+		core::MULTICAST_DELEGATE_TWO_PARAMS<void, MOUSE_BUTTON, bool> m_button_up_down;
 
 	protected:
-		virtual void on_mouse_moved();
+		void on_mouse_moved();
 
-		virtual void on_mouse_button_down(BUTTON in_pressed_button);
-		virtual void on_mouse_button_up(BUTTON in_released_button);
+		virtual void on_mouse_button_down(MOUSE_BUTTON in_pressed_button);
+		virtual void on_mouse_button_up(MOUSE_BUTTON in_released_button);
+
+		void on_mouse_wheel_scrolled( const MOUSE_POS_TYPE& mouse_position, const core::VECTOR2D<int8_t>& step_delta, const core::VECTOR2D<int16_t>& raw_delta );
 
 		uint8_t m_left_mouse_down : 1;
 		uint8_t m_right_mouse_down : 1;

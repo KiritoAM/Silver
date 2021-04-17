@@ -6,7 +6,7 @@
 
 #include "engine/platforms/clipboard/windows/clipboard_windows.h"
 
-#include <windows.h>
+#include "core/platforms/include_wrappers/windows/windows.h"
 
 namespace engine
 {

@@ -8,9 +8,8 @@
 
 #include "core/platforms/debugging/windows/debugger_windows.h"
 
+#include "core/platforms/include_wrappers/windows/windows.h"
 #include "core/shared/logging/log_message.h"
-
-#include <windows.h>
 
 namespace core
 {

@@ -109,6 +109,7 @@
     <ClInclude Include="..\..\shared\nodes\editor_node.h" />
     <ClInclude Include="..\..\shared\ui\widgets\widget_assets.h" />
     <ClInclude Include="..\..\shared\ui\widgets\widget_files.h" />
+    <ClInclude Include="..\..\shared\ui\widgets\widget_properties.h" />
     <ClInclude Include="..\..\shared\ui\widgets\widget_scene_tree.h" />
     <ClInclude Include="..\..\shared\ui\widgets\widget_toolbar.h" />
     <ClInclude Include="..\..\shared\ui\widgets\widget_viewport.h" />
@@ -117,6 +118,7 @@
     <ClInclude Include="..\..\shared\workspaces\editors\editor_components\editor_component_base.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_components\editor_component_files.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_components\regions\region_base.h" />
+    <ClInclude Include="..\..\shared\workspaces\editors\editor_properties.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_scene_tree.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_toolbar.h" />
     <ClInclude Include="..\..\shared\workspaces\editors\editor_viewport.h" />
@@ -127,11 +129,13 @@
     <ClCompile Include="..\..\shared\nodes\editor_node.cpp" />
     <ClCompile Include="..\..\shared\ui\widgets\widget_assets.cpp" />
     <ClCompile Include="..\..\shared\ui\widgets\widget_files.cpp" />
+    <ClCompile Include="..\..\shared\ui\widgets\widget_properties.cpp" />
     <ClCompile Include="..\..\shared\ui\widgets\widget_scene_tree.cpp" />
     <ClCompile Include="..\..\shared\ui\widgets\widget_toolbar.cpp" />
     <ClCompile Include="..\..\shared\ui\widgets\widget_viewport.cpp" />
     <ClCompile Include="..\..\shared\workspaces\editors\editor_assets.cpp" />
     <ClCompile Include="..\..\shared\workspaces\editors\editor_components\editor_component_files.cpp" />
+    <ClCompile Include="..\..\shared\workspaces\editors\editor_properties.cpp" />
     <ClCompile Include="..\..\shared\workspaces\editors\editor_scene_tree.cpp" />
     <ClCompile Include="..\..\shared\workspaces\editors\editor_toolbar.cpp" />
     <ClCompile Include="..\..\shared\workspaces\editors\editor_viewport.cpp" />

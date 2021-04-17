@@ -5,9 +5,8 @@
 #pragma once
 
 //////////////////////////////////////////////////////////////////////
-//! Includes
+//! Forward Declarations
 //////////////////////////////////////////////////////////////////////
-
 
 namespace input
 {
@@ -23,9 +22,9 @@ namespace input
 		KEYBOARD_BASE() = default;
 		virtual ~KEYBOARD_BASE() = default;
 
-		virtual void on_key_down(KEY in_key) = 0;
-		virtual void on_key_down(KEY in_key, const WINDOWS_KEYS_STATE& in_windows_keys_state) = 0;
+		//virtual void on_key_down( KEY in_key, const WINDOWS_KEYS_STATE& in_windows_keys_state ) = 0;
 
-		virtual void on_key_up(KEY in_key) = 0;
+		void on_key_down( KEY in_key );
+		void on_key_up( KEY in_key );
 	};
 }

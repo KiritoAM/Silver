@@ -42,7 +42,7 @@ namespace core
 
 		in_category.log_message(in_log_message);
 
-		if ( core::are_bits_set( in_category.get_log_flags(), core::LOG_ASSERT ) )
+		if ( core::equals_bits( in_category.get_log_flags(), core::LOG_ASSERT ) )
 		{
 			core::DEBUGGER::get_singleton().pause();
 		}
