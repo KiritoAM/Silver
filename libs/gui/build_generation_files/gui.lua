@@ -30,7 +30,11 @@ create_static_library("gui")
 	libdirs { get_thirdparty_directory("gui") }
 	links
 	{
-		"vulkan-1.lib"
+		"vulkan-1.lib",
+		"spirv-cross-core_debug",
+		"spirv-cross-glsl_debug",
+		"spirv-cross-hlsl_debug",
+		"dxcompiler",
 	}
 
 	--	"debug"

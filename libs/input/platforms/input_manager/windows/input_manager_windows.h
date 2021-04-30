@@ -10,8 +10,6 @@
 
 #include "core/platforms/include_wrappers/windows/windows.h"
 
-#include <stdint.h>
-
 namespace input
 {
 	class INPUT_MANAGER_WINDOWS

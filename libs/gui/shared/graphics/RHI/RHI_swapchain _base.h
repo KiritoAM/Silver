@@ -21,16 +21,18 @@ namespace gui
 
 		float get_height() const { return m_dimensions.y; }
 
+		uint32_t get_buffer_count() const { return m_buffer_count; }
+
 		uint32_t get_flags() const { return m_flags; }
 
-		virtual bool resize( float width, float height, const bool force = false ) = 0;
+		virtual bool resize( float width, float height, bool force = false ) = 0;
 
 		virtual void present() = 0;
 
 	protected:
-		bool m_windowed = false;
-		uint32_t m_buffer_count = 0;
-		uint32_t m_flags = 0;
+		bool m_windowed{};
+		uint32_t m_buffer_count{};
+		uint32_t m_flags{};
 		RHI_Format m_format = RHI_Format_R8G8B8A8_Unorm;
 		core::FVECTOR2D m_dimensions;
 	};

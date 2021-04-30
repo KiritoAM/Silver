@@ -77,7 +77,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>core.lib;engine.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;engine.lib;vulkan-1.lib;spirv-cross-core_debug.lib;spirv-cross-glsl_debug.lib;spirv-cross-hlsl_debug.lib;dxcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\..\build_output\debug;..\..\thirdparty;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -100,13 +100,25 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>core.lib;engine.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;engine.lib;vulkan-1.lib;spirv-cross-core_debug.lib;spirv-cross-glsl_debug.lib;spirv-cross-hlsl_debug.lib;dxcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\..\build_output\debug;..\..\thirdparty;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\platforms\graphics\RHI\RHI_context_vulkan.h" />
-    <ClInclude Include="..\..\platforms\graphics\RHI\RHI_device_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\RHI_context_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\RHI_device_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\buffer_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_layout_cache_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_layout_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\descriptor_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\pipeline_state_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\pipeline_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\shader_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\swapchain_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\texture2d_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\utilities_vulkan.h" />
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\vulkan_types.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_context_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_device_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_swapchain_d3d11.h" />
@@ -123,6 +135,7 @@
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.h" />
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.h" />
+    <ClInclude Include="..\..\platforms\graphics\renderer\vulkan\renderer_vulkan.h" />
     <ClInclude Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.h" />
     <ClInclude Include="..\..\platforms\window\windows\window_windows.h" />
     <ClInclude Include="..\..\shared\events\render_events.h" />
@@ -167,6 +180,18 @@
     <ClInclude Include="..\..\shared\window\window.h" />
     <ClInclude Include="..\..\shared\window\window_base.h" />
     <ClInclude Include="..\..\shared\window\window_details.h" />
+    <ClInclude Include="..\..\thirdparty\DirectXShaderCompiler\d3d12shader.h" />
+    <ClInclude Include="..\..\thirdparty\DirectXShaderCompiler\dxcapi.h" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\GLSL.std.450.h" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv.hpp" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cfg.hpp" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_common.hpp" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cross.hpp" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cross_containers.hpp" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cross_error_handling.hpp" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cross_parsed_ir.hpp" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_glsl.hpp" />
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_hlsl.hpp" />
     <ClInclude Include="..\..\thirdparty\imgui\imconfig.h" />
     <ClInclude Include="..\..\thirdparty\imgui\imgui.h" />
     <ClInclude Include="..\..\thirdparty\imgui\imgui_internal.h" />
@@ -204,8 +229,18 @@
     <ClInclude Include="..\..\thirdparty\vulkan\vulkan_xlib_xrandr.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\platforms\graphics\RHI\RHI_context_vulkan.cpp" />
-    <ClCompile Include="..\..\platforms\graphics\RHI\RHI_device_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\RHI_context_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\RHI_device_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\buffer_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_layout_cache_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_layout_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\pipeline_state_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\pipeline_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\shader_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\swapchain_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\texture2d_vulkan.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\utilities_vulkan.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_context_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_device_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_swapchain_d3d11.cpp" />
@@ -219,6 +254,7 @@
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\sampler_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\shader_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.cpp" />
+    <ClCompile Include="..\..\platforms\graphics\renderer\vulkan\renderer_vulkan.cpp" />
     <ClCompile Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.cpp" />
     <ClCompile Include="..\..\platforms\window\windows\window_windows.cpp" />
     <ClCompile Include="..\..\shared\graphics\RHI\RHI_device.cpp" />

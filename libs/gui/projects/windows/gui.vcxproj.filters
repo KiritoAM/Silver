@@ -10,6 +10,9 @@
     <Filter Include="platforms\graphics\RHI">
       <UniqueIdentifier>{AF0099E8-9BFA-C13A-8467-584B700028A7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platforms\graphics\RHI\vulkan">
+      <UniqueIdentifier>{6FA72DE1-DBBF-140B-A46C-A4A41044A9A4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="platforms\graphics\RHI\windows">
       <UniqueIdentifier>{0982FF37-F5A7-C99E-DEED-4E6ACAB2EE6A}</UniqueIdentifier>
     </Filter>
@@ -18,6 +21,9 @@
     </Filter>
     <Filter Include="platforms\graphics\renderer">
       <UniqueIdentifier>{630A9D66-CF17-CB4C-58FE-C637C40A9703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\graphics\renderer\vulkan">
+      <UniqueIdentifier>{A33E7761-8F7A-7ACB-F88C-92C2E4E722E6}</UniqueIdentifier>
     </Filter>
     <Filter Include="platforms\graphics\renderer\windows">
       <UniqueIdentifier>{BDFF7BC1-29B9-E66B-B218-01461ED19CDB}</UniqueIdentifier>
@@ -79,6 +85,15 @@
     <Filter Include="thirdparty">
       <UniqueIdentifier>{50A5DA7C-3C5D-1CCA-A564-F525913BB7BA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="thirdparty\DirectXShaderCompiler">
+      <UniqueIdentifier>{045F0B0D-F0AF-F64E-1914-E51005C489B8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\SPIRV-Cross-2020-09-17">
+      <UniqueIdentifier>{66165897-D284-AD16-1B6E-6816871BA3B2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\SPIRV-Cross-2020-09-17\spirv_cross">
+      <UniqueIdentifier>{B20D872C-1E7E-89A5-E79C-032E53CCC1A6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="thirdparty\imgui">
       <UniqueIdentifier>{BA6E0105-A667-2057-CF99-05DCBBF1FF62}</UniqueIdentifier>
     </Filter>
@@ -93,11 +108,47 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\platforms\graphics\RHI\RHI_context_vulkan.h">
-      <Filter>platforms\graphics\RHI</Filter>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\RHI_context_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\platforms\graphics\RHI\RHI_device_vulkan.h">
-      <Filter>platforms\graphics\RHI</Filter>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\RHI_device_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\buffer_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_layout_cache_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_layout_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\descriptor_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\pipeline_state_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\pipeline_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\shader_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\swapchain_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\texture2d_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\utilities_vulkan.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\RHI\vulkan\vulkan_types.h">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
     </ClInclude>
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_context_d3d11.h">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
@@ -146,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.h">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\graphics\renderer\vulkan\renderer_vulkan.h">
+      <Filter>platforms\graphics\renderer\vulkan</Filter>
     </ClInclude>
     <ClInclude Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.h">
       <Filter>platforms\graphics\renderer\windows</Filter>
@@ -279,6 +333,42 @@
     <ClInclude Include="..\..\shared\window\window_details.h">
       <Filter>shared\window</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\thirdparty\DirectXShaderCompiler\d3d12shader.h">
+      <Filter>thirdparty\DirectXShaderCompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\DirectXShaderCompiler\dxcapi.h">
+      <Filter>thirdparty\DirectXShaderCompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\GLSL.std.450.h">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cfg.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_common.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cross.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cross_containers.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cross_error_handling.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_cross_parsed_ir.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_glsl.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdparty\SPIRV-Cross-2020-09-17\spirv_cross\spirv_hlsl.hpp">
+      <Filter>thirdparty\SPIRV-Cross-2020-09-17\spirv_cross</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\thirdparty\imgui\imconfig.h">
       <Filter>thirdparty\imgui</Filter>
     </ClInclude>
@@ -386,11 +476,41 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\platforms\graphics\RHI\RHI_context_vulkan.cpp">
-      <Filter>platforms\graphics\RHI</Filter>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\RHI_context_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\platforms\graphics\RHI\RHI_device_vulkan.cpp">
-      <Filter>platforms\graphics\RHI</Filter>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\RHI_device_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\buffer_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_layout_cache_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_layout_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\descriptor_set_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\pipeline_state_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\pipeline_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\shader_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\swapchain_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\texture2d_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\RHI\vulkan\utilities_vulkan.cpp">
+      <Filter>platforms\graphics\RHI\vulkan</Filter>
     </ClCompile>
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\RHI_context_d3d11.cpp">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
@@ -430,6 +550,9 @@
     </ClCompile>
     <ClCompile Include="..\..\platforms\graphics\RHI\windows\d3d11\texture2d_d3d11.cpp">
       <Filter>platforms\graphics\RHI\windows\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\graphics\renderer\vulkan\renderer_vulkan.cpp">
+      <Filter>platforms\graphics\renderer\vulkan</Filter>
     </ClCompile>
     <ClCompile Include="..\..\platforms\graphics\renderer\windows\renderer_d3d11.cpp">
       <Filter>platforms\graphics\renderer\windows</Filter>

@@ -1,9 +1,25 @@
 
 #pragma once
 
+#include "core/shared/math/vector4d.h"
+
+#include <limits>
+
 namespace gui
 {
 	inline constexpr uint8_t rhi_max_render_target_count = 8;
+	inline constexpr uint8_t rhi_max_constant_buffer_count = 8;
+	inline constexpr uint32_t rhi_dynamic_offset_empty = std::numeric_limits<uint32_t>::max();
+	inline constexpr uint32_t rhi_shader_shift_buffer = 100;
+	inline constexpr uint32_t rhi_shader_shift_texture = 200;
+	inline constexpr uint32_t rhi_shader_shift_sampler = 300;
+
+	static const core::FVECTOR4D  rhi_color_dont_care{ -std::numeric_limits<float>::infinity(), 0.0f, 0.0f, 0.0f };
+	static const core::FVECTOR4D  rhi_color_load{ std::numeric_limits<float>::infinity(), 0.0f, 0.0f, 0.0f };
+	inline constexpr float          rhi_depth_dont_care = -std::numeric_limits<float>::infinity();
+	inline constexpr float          rhi_depth_load = std::numeric_limits<float>::infinity();
+	inline constexpr uint32_t       rhi_stencil_dont_care = (std::numeric_limits<uint32_t>::max)();
+	inline constexpr uint32_t       rhi_stencil_load = (std::numeric_limits<uint32_t>::max)() - 1;
 
 	enum RHI_PhysicalDevice_Type
 	{

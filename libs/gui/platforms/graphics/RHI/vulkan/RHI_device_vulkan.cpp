@@ -5,12 +5,12 @@
 //! Includes
 //////////////////////////////////////////////////////////////////////
 
-#include "gui/platforms/graphics/RHI/RHI_device_vulkan.h"
+#include "gui/platforms/graphics/RHI/vulkan/RHI_device_vulkan.h"
 
 #include "core/shared/debugging/asserts.h"
 #include "gui/shared/graphics/RHI/RHI_pyhsical_device.h"
 #include "gui/shared/graphics/RHI/RHI_types.h"
-#include "gui/platforms/graphics/RHI/RHI_context_vulkan.h"
+#include "gui/platforms/graphics/RHI/vulkan/RHI_context_vulkan.h"
 
 #include <algorithm>
 #include <string>
@@ -249,9 +249,9 @@ namespace
 
 				gui::RHI_PhysicalDevice_Type type = gui::RHI_PhysicalDevice_Type::RHI_PhysicalDevice_Unknown;
 				if ( device_properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU ) type = gui::RHI_PhysicalDevice_Type::RHI_PhysicalDevice_Integrated;
-				if ( device_properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU )   type = gui::RHI_PhysicalDevice_Type::RHI_PhysicalDevice_Discrete;
-				if ( device_properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU )    type = gui::RHI_PhysicalDevice_Type::RHI_PhysicalDevice_Virtual;
-				if ( device_properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_CPU )            type = gui::RHI_PhysicalDevice_Type::RHI_PhysicalDevice_Cpu;
+				else if ( device_properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU )   type = gui::RHI_PhysicalDevice_Type::RHI_PhysicalDevice_Discrete;
+				else if ( device_properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU )    type = gui::RHI_PhysicalDevice_Type::RHI_PhysicalDevice_Virtual;
+				else if ( device_properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_CPU )            type = gui::RHI_PhysicalDevice_Type::RHI_PhysicalDevice_Cpu;
 
 				// Let the engine know about it as it will sort all of the devices from best to worst
 				device->RegisterPhysicalDevice( gui::PYHSICAL_DEVICE(
@@ -314,7 +314,7 @@ namespace
 			}
 			else
 			{
-				//ASSERT_FAILED( "Device extension \"%s\" is not supported", extension );
+				ASSERT_FAILED( "A device extension is not supported" );
 			}
 		}
 
@@ -381,9 +381,9 @@ namespace gui
 		}
 
 		// Get queues
-		vkGetDeviceQueue( m_context->device, m_context->queue_graphics_index, 0, reinterpret_cast<VkQueue*>(&m_context->queue_graphics) );
-		vkGetDeviceQueue( m_context->device, m_context->queue_transfer_index, 0, reinterpret_cast<VkQueue*>(&m_context->queue_transfer) );
-		vkGetDeviceQueue( m_context->device, m_context->queue_compute_index, 0, reinterpret_cast<VkQueue*>(&m_context->queue_compute) );
+		vkGetDeviceQueue( m_context->device, m_context->queue_graphics_index, 0, &m_context->queue_graphics );
+		vkGetDeviceQueue( m_context->device, m_context->queue_transfer_index, 0, &m_context->queue_transfer );
+		vkGetDeviceQueue( m_context->device, m_context->queue_compute_index, 0, &m_context->queue_compute );
 
 		//detect_display_modes();
 
@@ -490,7 +490,7 @@ namespace gui
 			}
 			else
 			{
-				ASSERT_FAILED( "Validation layer was requested, but not available." );
+				//ASSERT_FAILED( "Validation layer was requested, but not available." );
 			}
 		}
 
@@ -619,10 +619,49 @@ namespace gui
 		return 0u;
 	}
 
+	bool RENDERING_DEVICE_VULKAN::Queue_Submit( const RHI_Queue_Type type, const uint32_t wait_flags, void* cmd_buffer, void* wait_semaphore /*= nullptr*/, void* signal_semaphore /*= nullptr*/, void* signal_fence /*= nullptr*/ ) const
+	{
+		// Validate input
+		ASSERT_TRUE( cmd_buffer != nullptr );
+
+		// Validate semaphore states
+		//if ( wait_semaphore )     ASSERT_TRUE( wait_semaphore->GetState() == RHI_Semaphore_State::Signaled );
+		//if ( signal_semaphore )   ASSERT_TRUE( signal_semaphore->GetState() == RHI_Semaphore_State::Idle );
+
+		//// Get semaphore Vulkan resources
+		//void* vk_wait_semaphore = wait_semaphore ? wait_semaphore->GetResource() : nullptr;
+		//void* vk_signal_semaphore = signal_semaphore ? signal_semaphore->GetResource() : nullptr;
+
+		// Submit info
+		VkSubmitInfo submit_info = {};
+		submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+		submit_info.pNext = nullptr;
+		submit_info.waitSemaphoreCount = wait_semaphore ? 1 : 0;
+		submit_info.pWaitSemaphores = nullptr;// wait_semaphore ? reinterpret_cast<VkSemaphore*>(&vk_wait_semaphore) : nullptr
+		submit_info.signalSemaphoreCount = signal_semaphore ? 1 : 0;
+		submit_info.pSignalSemaphores = nullptr;//signal_semaphore ? reinterpret_cast<VkSemaphore*>(&vk_signal_semaphore) : nullptr;
+		submit_info.pWaitDstStageMask = &wait_flags;
+		submit_info.commandBufferCount = 1;
+		submit_info.pCommandBuffers = reinterpret_cast<VkCommandBuffer*>(&cmd_buffer);
+
+		// Get signal fence
+		void* vk_signal_fence = {};// signal_fence ? signal_fence->GetResource() : nullptr;
+
+		std::lock_guard<std::mutex> lock( m_queue_mutex );
+		if ( vkQueueSubmit( static_cast<VkQueue>(Queue_Get( type )), 1, &submit_info, static_cast<VkFence>(vk_signal_fence) ) != VK_SUCCESS )
+			return false;
+
+		// Update semaphore states
+		/*if ( wait_semaphore )     wait_semaphore->SetState( RHI_Semaphore_State::Idle );
+		if ( signal_semaphore )   signal_semaphore->SetState( RHI_Semaphore_State::Signaled );*/
+
+		return true;
+	}
+
 	bool RENDERING_DEVICE_VULKAN::Queue_Wait( const RHI_Queue_Type type ) const
 	{
 		std::lock_guard<std::mutex> lock( m_queue_mutex );
-		return vkQueueWaitIdle( static_cast<VkQueue>(Queue_Get( type )) ) != VK_SUCCESS;
+		return vkQueueWaitIdle( static_cast<VkQueue>(Queue_Get( type )) ) == VK_SUCCESS;
 	}
 
 	bool RENDERING_DEVICE_VULKAN::Queue_WaitAll() const

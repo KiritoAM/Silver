@@ -53,7 +53,7 @@ namespace app
 
 		if constexpr ( core::gui_available() )
 		{
-			auto renderer = gui::RENDERER::create_singleton( gui::RHI_Api_Type::RHI_Api_Vulkan );
+			auto renderer = gui::RENDERER::create_singleton( gui::RHI_Api_Type::RHI_Api_D3d11 );
 
 			auto screen_manager = gui::SCREEN_MANAGER::create_singleton();
 			screen_manager->create_window();
@@ -66,5 +66,7 @@ namespace app
 		{
 			game_instance.add_node_to_root( new editor::EDITOR_NODE );
 		}
+
+		gui::RENDERER::get_singleton()->pass_main();
 	}
 }

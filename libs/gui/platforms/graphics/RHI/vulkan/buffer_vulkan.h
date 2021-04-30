@@ -7,6 +7,9 @@
 
 #include "gui/shared/graphics/RHI/buffer_base.h"
 
+#include <gui/thirdparty/vk_mem_alloc.h>
+#include <gui/thirdparty/vulkan/vulkan.h>
+
 namespace gui
 {
 	class RENDERING_DEVICE_VULKAN;
@@ -14,18 +17,21 @@ namespace gui
 	class BUFFER_VULKAN : public BUFFER_BASE
 	{
 	public:
-		void* Map( RENDERING_DEVICE_VULKAN& device );
 
-		bool Unmap( RENDERING_DEVICE_VULKAN& device );
-
-		ID3D11Buffer* GetResource() const { return m_buffer.Get(); }
 
 	private:
 		bool _create( RENDERING_DEVICE_BASE& device, BUFFER_TYPE buffer_type, const void* vertices ) override;
 
-		void _destroy();
+		VmaAllocation create_buffer( RENDERING_DEVICE_VULKAN& device_vulkan, VkBufferUsageFlags usage, VkMemoryPropertyFlags memory_property_flags,
+									 bool written_frequently, const void* data, VkBuffer* other_buffer = nullptr );
 
-		bool m_persistent_mapping = true; // only affects Vulkan
-		void* m_mapped = nullptr;
+		void _destroy( RENDERING_DEVICE_VULKAN& device_vulkan, VkBuffer* other_buffer = nullptr );
+
+		VkBuffer* m_buffer{};
+		VmaAllocation m_allocation{};
+		bool m_is_mappable{ true };
+
+		bool m_persistent_mapping{ true };
+		void* m_mapped{};
 	};
 }

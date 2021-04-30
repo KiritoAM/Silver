@@ -32,6 +32,8 @@ namespace gui
 		TEXTURE_PIXEL,
 	};
 
+	inline const std::string s_shader_dir{ "C:/dev/Silver/data/shaders/" };
+
 	class SHADER_BASE
 	{
 	public:
@@ -41,10 +43,13 @@ namespace gui
 
 		void* GetResource() const { return m_resource; }
 
+		std::string_view GetEntryPoint() const;
+
+		const std::vector<DESCRIPTOR>& get_descriptors() const { return m_descriptors; }
+		std::vector<DESCRIPTOR>& get_descriptors() { return m_descriptors; }
+
 	protected:
 		virtual void* api_compile( RENDERING_DEVICE_BASE& device, const std::string& shader ) = 0;
-
-		std::string_view GetEntryPoint() const;
 
 		std::string_view GetTargetProfile() const;
 

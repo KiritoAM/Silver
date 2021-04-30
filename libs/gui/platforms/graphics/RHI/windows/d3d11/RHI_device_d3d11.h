@@ -47,7 +47,5 @@ namespace gui
 
 		wrl::ComPtr<ID3D11Device> m_device;
 		std::unique_ptr<RENDERING_CONTEXT_D3D11> m_context; //! @todo may want to bring the d3d11 context into this class, leaving the rest
-		//std::unordered_map<uint32_t, SWAPCHAIN_D3D11/*WINDOW_RESOURCES_D3D11*/> m_windows;
-		std::unique_ptr<SWAPCHAIN_D3D11> m_swapchain;
 	};
 }

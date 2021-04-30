@@ -4,7 +4,7 @@
 //! Includes
 //////////////////////////////////////////////////////////////////////
 
-#include "gui/platforms/graphics/RHI/RHI_context_vulkan.h"
+#include "gui/platforms/graphics/RHI/vulkan/RHI_context_vulkan.h"
 
 namespace gui
 {

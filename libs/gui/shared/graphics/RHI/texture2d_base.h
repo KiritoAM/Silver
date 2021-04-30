@@ -109,6 +109,13 @@ namespace gui
 
 		void* get_render_target_view( const uint32_t i = 0 ) const { return i < m_resource_view_renderTarget.size() ? m_resource_view_renderTarget[i] : nullptr; }
 
+		RHI_Image_Layout GetLayout() const { return m_layout; }
+
+		auto GetFormat() const { return m_format; }
+
+		uint32_t get_width() const { return m_width; }
+		uint32_t get_height() const { return m_height; }
+
 	protected:
 		uint8_t m_mip_count = 1;
 		uint16_t m_flags = 0;

@@ -30,6 +30,8 @@ namespace gui
 
 		const PYHSICAL_DEVICE* GetPrimaryPhysicalDevice() const { return &m_physical_devices[m_physical_device_index]; }
 
+		uint32_t GetEnabledGraphicsStages() const { return m_enabled_graphics_shader_stages; }
+
 		uint32_t m_enabled_graphics_shader_stages = 0;
 		bool m_initialized = false;
 		mutable std::mutex m_queue_mutex;

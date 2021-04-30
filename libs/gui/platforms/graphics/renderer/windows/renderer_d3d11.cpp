@@ -32,7 +32,6 @@
 namespace
 {
 	gui::DXGI_INFO_MANAGER s_dxgi_info_manager;
-	const std::string s_shader_dir{ "C:/dev/Silver/data/shaders/" };
 }
 
 namespace gui

@@ -10,7 +10,7 @@ namespace app
 {
 	void GAME_APPLICATION::startup()
 	{
-		engine::APPLICATION::startup();
+		//engine::APPLICATION::startup();
 
 		initialise_libraries();
 	}

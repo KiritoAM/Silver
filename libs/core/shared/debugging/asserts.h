@@ -18,10 +18,11 @@
 //#if ENABLE_ASSERTS
 
 #define ASSERT(condition, message) \
-	if (!condition) { core::LOG_CATEGORY::LOG_TO_CATEGORY(core::LOG_CATEGORY::ASSERT_CATEGORY, DEBUG_LOG_MESSAGE, message); }
+	if (!(condition)) { core::LOG_CATEGORY::LOG_TO_CATEGORY(core::LOG_CATEGORY::ASSERT_CATEGORY, DEBUG_LOG_MESSAGE, message); }
 
 #define ASSERT_TRUE(condition) \
-	if (!condition) { core::LOG_CATEGORY::LOG_TO_CATEGORY(core::LOG_CATEGORY::ASSERT_CATEGORY, DEBUG_LOG_MESSAGE, "expected to be valid."); }
+	 ASSERT( condition, #condition "expected to be valid." )
+//if (!condition) { core::LOG_CATEGORY::LOG_TO_CATEGORY(core::LOG_CATEGORY::ASSERT_CATEGORY, DEBUG_LOG_MESSAGE, "expected to be valid."); }
 
 #define ASSERT_FALSE(condition) \
 	if (condition) { core::LOG_CATEGORY::LOG_TO_CATEGORY(core::LOG_CATEGORY::ASSERT_CATEGORY, DEBUG_LOG_MESSAGE, "expected to be invalid."); }

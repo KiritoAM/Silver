@@ -7,9 +7,10 @@
 
 #include "engine/shared/application/application.h"
 #include "engine/shared/events/events_manager.h"
+#include "gui/platforms/graphics/renderer/vulkan/renderer_vulkan.h"
+#include "gui/platforms/graphics/renderer/windows/renderer_d3d11.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/shader_d3d11.h"
 #include "gui/platforms/graphics/RHI/windows/d3d11/texture2d_d3d11.h"
-#include "gui/platforms/graphics/renderer/windows/renderer_d3d11.h"
 #include "gui/shared/graphics/storage/render_storage.h"
 
 namespace
@@ -73,6 +74,11 @@ namespace gui
 		case RHI_Api_Type::RHI_Api_D3d11:
 			{
 				static_cast<RENDERER_D3D11*>(m_impl.get())->setup_window( window_id );
+				break;
+			}
+		case RHI_Api_Type::RHI_Api_Vulkan:
+			{
+				static_cast<RENDERER_VULKAN*>(m_impl.get())->setup_window( window_id );
 				break;
 			}
 		}
@@ -177,6 +183,11 @@ namespace gui
 				static_cast<RENDERER_D3D11*>(m_impl.get())->pass_main();
 				break;
 			}
+		case RHI_Api_Type::RHI_Api_Vulkan:
+			{
+				static_cast<RENDERER_VULKAN*>(m_impl.get())->pass_main();
+				break;
+			}
 		}
 	}
 
@@ -199,6 +210,11 @@ namespace gui
 		case RHI_Api_Type::RHI_Api_D3d11:
 			{
 				static_cast<RENDERER_D3D11*>(m_impl.get())->present();
+				break;
+			}
+		case RHI_Api_Type::RHI_Api_Vulkan:
+			{
+				static_cast<RENDERER_VULKAN*>(m_impl.get())->present();
 				break;
 			}
 		}
