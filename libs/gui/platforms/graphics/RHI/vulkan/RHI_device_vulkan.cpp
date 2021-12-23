@@ -27,8 +27,10 @@ namespace
 
 		for ( const auto& extension : extensions )
 		{
-			if ( strcmp( extension_name, extension.extensionName ) == 0 )
+			if (strcmp(extension_name, extension.extensionName) == 0)
+			{
 				return true;
+			}
 		}
 
 		return false;

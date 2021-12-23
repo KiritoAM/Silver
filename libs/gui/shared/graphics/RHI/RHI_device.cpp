@@ -7,7 +7,7 @@
 
 #include "gui/shared/graphics/RHI/RHI_device.h"
 
-#include "gui/platforms/graphics/RHI/RHI_device_vulkan.h"
+#include "gui/platforms/graphics/RHI/vulkan/RHI_device_vulkan.h"
 #include "gui/shared/graphics/RHI/RHI_types.h"
 
 #if PLATFORM_WINDOWS
