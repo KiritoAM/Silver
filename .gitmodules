@@ -1,6 +1,3 @@
-[submodule "libs/engine-libs"]
-	path = libs/engine-libs
-	url = https://github.com/KiritoAM/engine-libs.git
 [submodule "engine-libs"]
-	path = engine-libs
+	path = libs
 	url = https://github.com/KiritoAM/engine-libs.git
